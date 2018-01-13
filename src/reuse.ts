@@ -1,3 +1,4 @@
+import * as PropTypes from 'prop-types'
 import { Component, ComponentClass } from 'react'
 import { Listener, Stream } from 'xstream'
 
@@ -13,7 +14,7 @@ export interface ReuseSources<P, S, St> {
 export type ReducerFn<T> = (t: T) => T
 
 export interface ReuseSinks<P, S, St> {
-  initialState: S
+  initialState?: S
   stateReducer?: Stream<ReducerFn<S>>
   storeReducer?: Stream<ReducerFn<St>>
   view: (p: P, s: S) => JSX.Element
@@ -37,7 +38,7 @@ const reuse = <P = {}, S = {}, St = {}>(mainFn: ReuseMainFn<P, S, St>) => {
       }
 
       this.sinks = mainFn(this.sources)
-      const {stateReducer, storeReducer, initialState} = this.sinks
+      const {stateReducer, storeReducer, initialState = {} as S} = this.sinks
 
       this.setState(initialState)
 
