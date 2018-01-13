@@ -1,6 +1,7 @@
 import * as PropTypes from 'prop-types'
 import { Component, ComponentClass } from 'react'
 import { Listener, Stream } from 'xstream'
+import ReactLifecycle, { ReactLifecycleName } from './react-lifecycle'
 
 export type ReuseMainFn<P, S, St> =
   (sources: ReuseSources<P, S, St>) => ReuseSinks<P, S, St>
@@ -9,6 +10,7 @@ export interface ReuseSources<P, S, St> {
   props: Stream<P>
   state: Stream<S>
   store: Stream<St>
+  lifecycle: Stream<ReactLifecycleName>
 }
 
 export type ReducerFn<T> = (t: T) => T
@@ -40,6 +42,7 @@ const reuse = <P = {}, S = {}, St = {}>(mainFn: ReuseMainFn<P, S, St>) => {
         props: Stream.create(),
         state: Stream.create(),
         store: hasStore ? this.context.store.getStoreStream() : Stream.never(),
+        lifecycle: Stream.create(),
       }
 
       this.sinks = mainFn(this.sources)
@@ -68,10 +71,36 @@ const reuse = <P = {}, S = {}, St = {}>(mainFn: ReuseMainFn<P, S, St>) => {
 
         this.sinks.storeReducer!.addListener(this.storeReducerListener)
       }
+
+      this.sources.lifecycle.shamefullySendNext(
+        ReactLifecycle.componentWillMount
+      )
+    }
+
+    componentWillReceiveProps() {
+      this.sources.lifecycle.shamefullySendNext(
+        ReactLifecycle.componentWillReceiveProps
+      )
+    }
+
+    componentDidMount() {
+      this.sources.lifecycle.shamefullySendNext(
+        ReactLifecycle.componentDidMount
+      )
+    }
+
+    componentWillUpdate() {
+      this.sources.lifecycle.shamefullySendNext(
+        ReactLifecycle.componentWillUpdate
+      )
     }
 
     componentDidUpdate() {
       this.sources.props.shamefullySendNext(this.props)
+
+      this.sources.lifecycle.shamefullySendNext(
+        ReactLifecycle.componentDidUpdate
+      )
     }
 
     componentWillUnmount() {
@@ -80,6 +109,10 @@ const reuse = <P = {}, S = {}, St = {}>(mainFn: ReuseMainFn<P, S, St>) => {
       if (this.storeReducerListener) {
         this.sinks.storeReducer!.removeListener(this.storeReducerListener)
       }
+
+      this.sources.lifecycle.shamefullySendNext(
+        ReactLifecycle.componentWillUnmount
+      )
     }
 
     render() {
