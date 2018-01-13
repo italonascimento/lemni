@@ -22,6 +22,11 @@ export interface ReuseSinks<P, S, St> {
 
 const reuse = <P = {}, S = {}, St = {}>(mainFn: ReuseMainFn<P, S, St>) => {
   class ReactComponent extends Component<P, S> {
+
+    static contextTypes = {
+      store: PropTypes.object,
+    }
+
     private sources: ReuseSources<P, S, St>
     private sinks: ReuseSinks<P, S, St>
 
