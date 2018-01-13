@@ -1,0 +1,1311 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`State reducer 1`] = `
+ReactWrapper {
+  "length": 1,
+  Symbol(enzyme.__unrendered__): <ReactComponent />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__node__): Object {
+    "instance": ReactComponent {
+      "_reactInternalFiber": FiberNode {
+        "_debugID": 4,
+        "_debugIsCurrentlyTiming": false,
+        "_debugOwner": FiberNode {
+          "_debugID": 3,
+          "_debugIsCurrentlyTiming": false,
+          "_debugOwner": null,
+          "_debugSource": null,
+          "alternate": null,
+          "child": [Circular],
+          "effectTag": 1,
+          "expirationTime": 0,
+          "firstEffect": null,
+          "index": 0,
+          "internalContextTag": 0,
+          "key": null,
+          "lastEffect": null,
+          "memoizedProps": Object {
+            "Component": [Function],
+            "context": null,
+            "props": Object {},
+          },
+          "memoizedState": Object {
+            "context": null,
+            "mount": true,
+            "props": Object {},
+          },
+          "nextEffect": null,
+          "pendingProps": null,
+          "ref": null,
+          "return": FiberNode {
+            "_debugID": 1,
+            "_debugIsCurrentlyTiming": false,
+            "_debugOwner": null,
+            "_debugSource": null,
+            "alternate": FiberNode {
+              "_debugID": 1,
+              "_debugIsCurrentlyTiming": false,
+              "_debugOwner": null,
+              "_debugSource": null,
+              "alternate": [Circular],
+              "child": null,
+              "effectTag": 0,
+              "expirationTime": 1,
+              "firstEffect": null,
+              "index": 0,
+              "internalContextTag": 0,
+              "key": null,
+              "lastEffect": null,
+              "memoizedProps": null,
+              "memoizedState": null,
+              "nextEffect": null,
+              "pendingProps": null,
+              "ref": null,
+              "return": null,
+              "sibling": null,
+              "stateNode": Object {
+                "containerInfo": <div>
+                  <div>
+                    Hello 
+                    world
+                    !
+                  </div>
+                </div>,
+                "context": Object {},
+                "current": [Circular],
+                "finishedWork": null,
+                "hydrate": false,
+                "isReadyForCommit": false,
+                "nextScheduledRoot": null,
+                "pendingChildren": null,
+                "pendingContext": null,
+                "remainingExpirationTime": 0,
+              },
+              "tag": 3,
+              "type": null,
+              "updateQueue": Object {
+                "baseState": null,
+                "callbackList": null,
+                "expirationTime": 1,
+                "first": Object {
+                  "callback": null,
+                  "expirationTime": 1,
+                  "isForced": false,
+                  "isReplace": false,
+                  "next": null,
+                  "nextCallback": null,
+                  "partialState": Object {
+                    "element": <WrapperComponent
+                      Component={[Function]}
+                      context={null}
+                      props={Object {}}
+                    />,
+                  },
+                },
+                "hasForceUpdate": false,
+                "isInitialized": false,
+                "isProcessing": false,
+                "last": Object {
+                  "callback": null,
+                  "expirationTime": 1,
+                  "isForced": false,
+                  "isReplace": false,
+                  "next": null,
+                  "nextCallback": null,
+                  "partialState": Object {
+                    "element": <WrapperComponent
+                      Component={[Function]}
+                      context={null}
+                      props={Object {}}
+                    />,
+                  },
+                },
+              },
+            },
+            "child": [Circular],
+            "effectTag": 0,
+            "expirationTime": 0,
+            "firstEffect": [Circular],
+            "index": 0,
+            "internalContextTag": 0,
+            "key": null,
+            "lastEffect": [Circular],
+            "memoizedProps": null,
+            "memoizedState": Object {
+              "element": <WrapperComponent
+                Component={[Function]}
+                context={null}
+                props={Object {}}
+              />,
+            },
+            "nextEffect": null,
+            "pendingProps": null,
+            "ref": null,
+            "return": null,
+            "sibling": null,
+            "stateNode": Object {
+              "containerInfo": <div>
+                <div>
+                  Hello 
+                  world
+                  !
+                </div>
+              </div>,
+              "context": Object {},
+              "current": [Circular],
+              "finishedWork": null,
+              "hydrate": false,
+              "isReadyForCommit": false,
+              "nextScheduledRoot": null,
+              "pendingChildren": null,
+              "pendingContext": null,
+              "remainingExpirationTime": 0,
+            },
+            "tag": 3,
+            "type": null,
+            "updateQueue": null,
+          },
+          "sibling": null,
+          "stateNode": WrapperComponent {
+            "_reactInternalFiber": [Circular],
+            "_reactInternalInstance": Object {},
+            "context": Object {},
+            "props": Object {
+              "Component": [Function],
+              "context": null,
+              "props": Object {},
+            },
+            "refs": Object {},
+            "state": Object {
+              "context": null,
+              "mount": true,
+              "props": Object {},
+            },
+            "updater": Object {
+              "enqueueForceUpdate": [Function],
+              "enqueueReplaceState": [Function],
+              "enqueueSetState": [Function],
+              "isMounted": [Function],
+            },
+          },
+          "tag": 2,
+          "type": [Function],
+          "updateQueue": null,
+        },
+        "_debugSource": null,
+        "alternate": null,
+        "child": FiberNode {
+          "_debugID": 5,
+          "_debugIsCurrentlyTiming": false,
+          "_debugOwner": [Circular],
+          "_debugSource": null,
+          "alternate": null,
+          "child": FiberNode {
+            "_debugID": 6,
+            "_debugIsCurrentlyTiming": false,
+            "_debugOwner": null,
+            "_debugSource": null,
+            "alternate": null,
+            "child": null,
+            "effectTag": 0,
+            "expirationTime": 0,
+            "firstEffect": null,
+            "index": 0,
+            "internalContextTag": 0,
+            "key": null,
+            "lastEffect": null,
+            "memoizedProps": "Hello ",
+            "memoizedState": null,
+            "nextEffect": null,
+            "pendingProps": null,
+            "ref": null,
+            "return": [Circular],
+            "sibling": FiberNode {
+              "_debugID": 7,
+              "_debugIsCurrentlyTiming": false,
+              "_debugOwner": null,
+              "_debugSource": null,
+              "alternate": null,
+              "child": null,
+              "effectTag": 0,
+              "expirationTime": 0,
+              "firstEffect": null,
+              "index": 1,
+              "internalContextTag": 0,
+              "key": null,
+              "lastEffect": null,
+              "memoizedProps": "world",
+              "memoizedState": null,
+              "nextEffect": null,
+              "pendingProps": null,
+              "ref": null,
+              "return": [Circular],
+              "sibling": FiberNode {
+                "_debugID": 8,
+                "_debugIsCurrentlyTiming": false,
+                "_debugOwner": null,
+                "_debugSource": null,
+                "alternate": null,
+                "child": null,
+                "effectTag": 0,
+                "expirationTime": 0,
+                "firstEffect": null,
+                "index": 2,
+                "internalContextTag": 0,
+                "key": null,
+                "lastEffect": null,
+                "memoizedProps": "!",
+                "memoizedState": null,
+                "nextEffect": null,
+                "pendingProps": null,
+                "ref": null,
+                "return": [Circular],
+                "sibling": null,
+                "stateNode": !,
+                "tag": 6,
+                "type": null,
+                "updateQueue": null,
+              },
+              "stateNode": world,
+              "tag": 6,
+              "type": null,
+              "updateQueue": null,
+            },
+            "stateNode": Hello ,
+            "tag": 6,
+            "type": null,
+            "updateQueue": null,
+          },
+          "effectTag": 0,
+          "expirationTime": 0,
+          "firstEffect": null,
+          "index": 0,
+          "internalContextTag": 0,
+          "key": null,
+          "lastEffect": null,
+          "memoizedProps": Object {
+            "children": Array [
+              "Hello ",
+              "world",
+              "!",
+            ],
+          },
+          "memoizedState": null,
+          "nextEffect": null,
+          "pendingProps": null,
+          "ref": null,
+          "return": [Circular],
+          "sibling": null,
+          "stateNode": <div>
+            Hello 
+            world
+            !
+          </div>,
+          "tag": 5,
+          "type": "div",
+          "updateQueue": null,
+        },
+        "effectTag": 1,
+        "expirationTime": 0,
+        "firstEffect": null,
+        "index": 0,
+        "internalContextTag": 0,
+        "key": null,
+        "lastEffect": null,
+        "memoizedProps": Object {},
+        "memoizedState": Object {
+          "helloTo": "world",
+        },
+        "nextEffect": null,
+        "pendingProps": null,
+        "ref": null,
+        "return": FiberNode {
+          "_debugID": 3,
+          "_debugIsCurrentlyTiming": false,
+          "_debugOwner": null,
+          "_debugSource": null,
+          "alternate": null,
+          "child": [Circular],
+          "effectTag": 1,
+          "expirationTime": 0,
+          "firstEffect": null,
+          "index": 0,
+          "internalContextTag": 0,
+          "key": null,
+          "lastEffect": null,
+          "memoizedProps": Object {
+            "Component": [Function],
+            "context": null,
+            "props": Object {},
+          },
+          "memoizedState": Object {
+            "context": null,
+            "mount": true,
+            "props": Object {},
+          },
+          "nextEffect": null,
+          "pendingProps": null,
+          "ref": null,
+          "return": FiberNode {
+            "_debugID": 1,
+            "_debugIsCurrentlyTiming": false,
+            "_debugOwner": null,
+            "_debugSource": null,
+            "alternate": FiberNode {
+              "_debugID": 1,
+              "_debugIsCurrentlyTiming": false,
+              "_debugOwner": null,
+              "_debugSource": null,
+              "alternate": [Circular],
+              "child": null,
+              "effectTag": 0,
+              "expirationTime": 1,
+              "firstEffect": null,
+              "index": 0,
+              "internalContextTag": 0,
+              "key": null,
+              "lastEffect": null,
+              "memoizedProps": null,
+              "memoizedState": null,
+              "nextEffect": null,
+              "pendingProps": null,
+              "ref": null,
+              "return": null,
+              "sibling": null,
+              "stateNode": Object {
+                "containerInfo": <div>
+                  <div>
+                    Hello 
+                    world
+                    !
+                  </div>
+                </div>,
+                "context": Object {},
+                "current": [Circular],
+                "finishedWork": null,
+                "hydrate": false,
+                "isReadyForCommit": false,
+                "nextScheduledRoot": null,
+                "pendingChildren": null,
+                "pendingContext": null,
+                "remainingExpirationTime": 0,
+              },
+              "tag": 3,
+              "type": null,
+              "updateQueue": Object {
+                "baseState": null,
+                "callbackList": null,
+                "expirationTime": 1,
+                "first": Object {
+                  "callback": null,
+                  "expirationTime": 1,
+                  "isForced": false,
+                  "isReplace": false,
+                  "next": null,
+                  "nextCallback": null,
+                  "partialState": Object {
+                    "element": <WrapperComponent
+                      Component={[Function]}
+                      context={null}
+                      props={Object {}}
+                    />,
+                  },
+                },
+                "hasForceUpdate": false,
+                "isInitialized": false,
+                "isProcessing": false,
+                "last": Object {
+                  "callback": null,
+                  "expirationTime": 1,
+                  "isForced": false,
+                  "isReplace": false,
+                  "next": null,
+                  "nextCallback": null,
+                  "partialState": Object {
+                    "element": <WrapperComponent
+                      Component={[Function]}
+                      context={null}
+                      props={Object {}}
+                    />,
+                  },
+                },
+              },
+            },
+            "child": [Circular],
+            "effectTag": 0,
+            "expirationTime": 0,
+            "firstEffect": [Circular],
+            "index": 0,
+            "internalContextTag": 0,
+            "key": null,
+            "lastEffect": [Circular],
+            "memoizedProps": null,
+            "memoizedState": Object {
+              "element": <WrapperComponent
+                Component={[Function]}
+                context={null}
+                props={Object {}}
+              />,
+            },
+            "nextEffect": null,
+            "pendingProps": null,
+            "ref": null,
+            "return": null,
+            "sibling": null,
+            "stateNode": Object {
+              "containerInfo": <div>
+                <div>
+                  Hello 
+                  world
+                  !
+                </div>
+              </div>,
+              "context": Object {},
+              "current": [Circular],
+              "finishedWork": null,
+              "hydrate": false,
+              "isReadyForCommit": false,
+              "nextScheduledRoot": null,
+              "pendingChildren": null,
+              "pendingContext": null,
+              "remainingExpirationTime": 0,
+            },
+            "tag": 3,
+            "type": null,
+            "updateQueue": null,
+          },
+          "sibling": null,
+          "stateNode": WrapperComponent {
+            "_reactInternalFiber": [Circular],
+            "_reactInternalInstance": Object {},
+            "context": Object {},
+            "props": Object {
+              "Component": [Function],
+              "context": null,
+              "props": Object {},
+            },
+            "refs": Object {},
+            "state": Object {
+              "context": null,
+              "mount": true,
+              "props": Object {},
+            },
+            "updater": Object {
+              "enqueueForceUpdate": [Function],
+              "enqueueReplaceState": [Function],
+              "enqueueSetState": [Function],
+              "isMounted": [Function],
+            },
+          },
+          "tag": 2,
+          "type": [Function],
+          "updateQueue": null,
+        },
+        "sibling": null,
+        "stateNode": [Circular],
+        "tag": 2,
+        "type": [Function],
+        "updateQueue": null,
+      },
+      "_reactInternalInstance": Object {},
+      "context": Object {},
+      "props": Object {},
+      "refs": Object {},
+      "sinks": Object {
+        "initialState": Object {
+          "helloTo": "nobody",
+        },
+        "stateReducer": Stream {
+          "_d": false,
+          "_dl": Object {},
+          "_err": Object {},
+          "_ils": Array [],
+          "_prod": FromArray {
+            "a": Array [
+              [Function],
+            ],
+            "type": "fromArray",
+          },
+          "_stopID": Object {},
+          "_target": Object {},
+        },
+        "view": [Function],
+      },
+      "sources": Object {
+        "props": Stream {
+          "_d": false,
+          "_dl": Object {},
+          "_err": Object {},
+          "_ils": Array [],
+          "_prod": Object {},
+          "_stopID": Object {},
+          "_target": Object {},
+        },
+        "state": Stream {
+          "_d": false,
+          "_dl": Object {},
+          "_err": Object {},
+          "_ils": Array [],
+          "_prod": Object {},
+          "_stopID": Object {},
+          "_target": Stream {
+            "_d": false,
+            "_dl": Object {},
+            "_err": Object {},
+            "_ils": Array [],
+            "_prod": Filter {
+              "f": [Function],
+              "ins": MemoryStream {
+                "_d": false,
+                "_dl": Object {},
+                "_err": Object {},
+                "_has": false,
+                "_ils": Array [],
+                "_prod": Fold {
+                  "acc": Object {
+                    "helloTo": "nobody",
+                  },
+                  "f": [Function],
+                  "ins": Stream {
+                    "_d": false,
+                    "_dl": Object {},
+                    "_err": Object {},
+                    "_ils": Array [],
+                    "_prod": FromArray {
+                      "a": Array [
+                        [Function],
+                      ],
+                      "type": "fromArray",
+                    },
+                    "_stopID": Object {},
+                    "_target": Object {},
+                  },
+                  "out": Object {},
+                  "seed": Object {
+                    "helloTo": "nobody",
+                  },
+                  "type": "fold",
+                },
+                "_stopID": Object {},
+                "_target": Object {},
+                "_v": Object {
+                  "helloTo": "world",
+                },
+              },
+              "out": Object {},
+              "type": "filter",
+            },
+            "_stopID": Object {},
+            "_target": Object {},
+          },
+        },
+        "store": Stream {
+          "_d": false,
+          "_dl": Object {},
+          "_err": Object {},
+          "_ils": Array [],
+          "_prod": Object {},
+          "_stopID": Object {},
+          "_target": Object {},
+        },
+      },
+      "state": Object {
+        "helloTo": "world",
+      },
+      "updater": Object {
+        "enqueueForceUpdate": [Function],
+        "enqueueReplaceState": [Function],
+        "enqueueSetState": [Function],
+        "isMounted": [Function],
+      },
+    },
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {},
+    "ref": null,
+    "rendered": Object {
+      "instance": <div>
+        Hello 
+        world
+        !
+      </div>,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          "Hello ",
+          "world",
+          "!",
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        "Hello ",
+        "world",
+        "!",
+      ],
+      "type": "div",
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": ReactComponent {
+        "_reactInternalFiber": FiberNode {
+          "_debugID": 4,
+          "_debugIsCurrentlyTiming": false,
+          "_debugOwner": FiberNode {
+            "_debugID": 3,
+            "_debugIsCurrentlyTiming": false,
+            "_debugOwner": null,
+            "_debugSource": null,
+            "alternate": null,
+            "child": [Circular],
+            "effectTag": 1,
+            "expirationTime": 0,
+            "firstEffect": null,
+            "index": 0,
+            "internalContextTag": 0,
+            "key": null,
+            "lastEffect": null,
+            "memoizedProps": Object {
+              "Component": [Function],
+              "context": null,
+              "props": Object {},
+            },
+            "memoizedState": Object {
+              "context": null,
+              "mount": true,
+              "props": Object {},
+            },
+            "nextEffect": null,
+            "pendingProps": null,
+            "ref": null,
+            "return": FiberNode {
+              "_debugID": 1,
+              "_debugIsCurrentlyTiming": false,
+              "_debugOwner": null,
+              "_debugSource": null,
+              "alternate": FiberNode {
+                "_debugID": 1,
+                "_debugIsCurrentlyTiming": false,
+                "_debugOwner": null,
+                "_debugSource": null,
+                "alternate": [Circular],
+                "child": null,
+                "effectTag": 0,
+                "expirationTime": 1,
+                "firstEffect": null,
+                "index": 0,
+                "internalContextTag": 0,
+                "key": null,
+                "lastEffect": null,
+                "memoizedProps": null,
+                "memoizedState": null,
+                "nextEffect": null,
+                "pendingProps": null,
+                "ref": null,
+                "return": null,
+                "sibling": null,
+                "stateNode": Object {
+                  "containerInfo": <div>
+                    <div>
+                      Hello 
+                      world
+                      !
+                    </div>
+                  </div>,
+                  "context": Object {},
+                  "current": [Circular],
+                  "finishedWork": null,
+                  "hydrate": false,
+                  "isReadyForCommit": false,
+                  "nextScheduledRoot": null,
+                  "pendingChildren": null,
+                  "pendingContext": null,
+                  "remainingExpirationTime": 0,
+                },
+                "tag": 3,
+                "type": null,
+                "updateQueue": Object {
+                  "baseState": null,
+                  "callbackList": null,
+                  "expirationTime": 1,
+                  "first": Object {
+                    "callback": null,
+                    "expirationTime": 1,
+                    "isForced": false,
+                    "isReplace": false,
+                    "next": null,
+                    "nextCallback": null,
+                    "partialState": Object {
+                      "element": <WrapperComponent
+                        Component={[Function]}
+                        context={null}
+                        props={Object {}}
+                      />,
+                    },
+                  },
+                  "hasForceUpdate": false,
+                  "isInitialized": false,
+                  "isProcessing": false,
+                  "last": Object {
+                    "callback": null,
+                    "expirationTime": 1,
+                    "isForced": false,
+                    "isReplace": false,
+                    "next": null,
+                    "nextCallback": null,
+                    "partialState": Object {
+                      "element": <WrapperComponent
+                        Component={[Function]}
+                        context={null}
+                        props={Object {}}
+                      />,
+                    },
+                  },
+                },
+              },
+              "child": [Circular],
+              "effectTag": 0,
+              "expirationTime": 0,
+              "firstEffect": [Circular],
+              "index": 0,
+              "internalContextTag": 0,
+              "key": null,
+              "lastEffect": [Circular],
+              "memoizedProps": null,
+              "memoizedState": Object {
+                "element": <WrapperComponent
+                  Component={[Function]}
+                  context={null}
+                  props={Object {}}
+                />,
+              },
+              "nextEffect": null,
+              "pendingProps": null,
+              "ref": null,
+              "return": null,
+              "sibling": null,
+              "stateNode": Object {
+                "containerInfo": <div>
+                  <div>
+                    Hello 
+                    world
+                    !
+                  </div>
+                </div>,
+                "context": Object {},
+                "current": [Circular],
+                "finishedWork": null,
+                "hydrate": false,
+                "isReadyForCommit": false,
+                "nextScheduledRoot": null,
+                "pendingChildren": null,
+                "pendingContext": null,
+                "remainingExpirationTime": 0,
+              },
+              "tag": 3,
+              "type": null,
+              "updateQueue": null,
+            },
+            "sibling": null,
+            "stateNode": WrapperComponent {
+              "_reactInternalFiber": [Circular],
+              "_reactInternalInstance": Object {},
+              "context": Object {},
+              "props": Object {
+                "Component": [Function],
+                "context": null,
+                "props": Object {},
+              },
+              "refs": Object {},
+              "state": Object {
+                "context": null,
+                "mount": true,
+                "props": Object {},
+              },
+              "updater": Object {
+                "enqueueForceUpdate": [Function],
+                "enqueueReplaceState": [Function],
+                "enqueueSetState": [Function],
+                "isMounted": [Function],
+              },
+            },
+            "tag": 2,
+            "type": [Function],
+            "updateQueue": null,
+          },
+          "_debugSource": null,
+          "alternate": null,
+          "child": FiberNode {
+            "_debugID": 5,
+            "_debugIsCurrentlyTiming": false,
+            "_debugOwner": [Circular],
+            "_debugSource": null,
+            "alternate": null,
+            "child": FiberNode {
+              "_debugID": 6,
+              "_debugIsCurrentlyTiming": false,
+              "_debugOwner": null,
+              "_debugSource": null,
+              "alternate": null,
+              "child": null,
+              "effectTag": 0,
+              "expirationTime": 0,
+              "firstEffect": null,
+              "index": 0,
+              "internalContextTag": 0,
+              "key": null,
+              "lastEffect": null,
+              "memoizedProps": "Hello ",
+              "memoizedState": null,
+              "nextEffect": null,
+              "pendingProps": null,
+              "ref": null,
+              "return": [Circular],
+              "sibling": FiberNode {
+                "_debugID": 7,
+                "_debugIsCurrentlyTiming": false,
+                "_debugOwner": null,
+                "_debugSource": null,
+                "alternate": null,
+                "child": null,
+                "effectTag": 0,
+                "expirationTime": 0,
+                "firstEffect": null,
+                "index": 1,
+                "internalContextTag": 0,
+                "key": null,
+                "lastEffect": null,
+                "memoizedProps": "world",
+                "memoizedState": null,
+                "nextEffect": null,
+                "pendingProps": null,
+                "ref": null,
+                "return": [Circular],
+                "sibling": FiberNode {
+                  "_debugID": 8,
+                  "_debugIsCurrentlyTiming": false,
+                  "_debugOwner": null,
+                  "_debugSource": null,
+                  "alternate": null,
+                  "child": null,
+                  "effectTag": 0,
+                  "expirationTime": 0,
+                  "firstEffect": null,
+                  "index": 2,
+                  "internalContextTag": 0,
+                  "key": null,
+                  "lastEffect": null,
+                  "memoizedProps": "!",
+                  "memoizedState": null,
+                  "nextEffect": null,
+                  "pendingProps": null,
+                  "ref": null,
+                  "return": [Circular],
+                  "sibling": null,
+                  "stateNode": !,
+                  "tag": 6,
+                  "type": null,
+                  "updateQueue": null,
+                },
+                "stateNode": world,
+                "tag": 6,
+                "type": null,
+                "updateQueue": null,
+              },
+              "stateNode": Hello ,
+              "tag": 6,
+              "type": null,
+              "updateQueue": null,
+            },
+            "effectTag": 0,
+            "expirationTime": 0,
+            "firstEffect": null,
+            "index": 0,
+            "internalContextTag": 0,
+            "key": null,
+            "lastEffect": null,
+            "memoizedProps": Object {
+              "children": Array [
+                "Hello ",
+                "world",
+                "!",
+              ],
+            },
+            "memoizedState": null,
+            "nextEffect": null,
+            "pendingProps": null,
+            "ref": null,
+            "return": [Circular],
+            "sibling": null,
+            "stateNode": <div>
+              Hello 
+              world
+              !
+            </div>,
+            "tag": 5,
+            "type": "div",
+            "updateQueue": null,
+          },
+          "effectTag": 1,
+          "expirationTime": 0,
+          "firstEffect": null,
+          "index": 0,
+          "internalContextTag": 0,
+          "key": null,
+          "lastEffect": null,
+          "memoizedProps": Object {},
+          "memoizedState": Object {
+            "helloTo": "world",
+          },
+          "nextEffect": null,
+          "pendingProps": null,
+          "ref": null,
+          "return": FiberNode {
+            "_debugID": 3,
+            "_debugIsCurrentlyTiming": false,
+            "_debugOwner": null,
+            "_debugSource": null,
+            "alternate": null,
+            "child": [Circular],
+            "effectTag": 1,
+            "expirationTime": 0,
+            "firstEffect": null,
+            "index": 0,
+            "internalContextTag": 0,
+            "key": null,
+            "lastEffect": null,
+            "memoizedProps": Object {
+              "Component": [Function],
+              "context": null,
+              "props": Object {},
+            },
+            "memoizedState": Object {
+              "context": null,
+              "mount": true,
+              "props": Object {},
+            },
+            "nextEffect": null,
+            "pendingProps": null,
+            "ref": null,
+            "return": FiberNode {
+              "_debugID": 1,
+              "_debugIsCurrentlyTiming": false,
+              "_debugOwner": null,
+              "_debugSource": null,
+              "alternate": FiberNode {
+                "_debugID": 1,
+                "_debugIsCurrentlyTiming": false,
+                "_debugOwner": null,
+                "_debugSource": null,
+                "alternate": [Circular],
+                "child": null,
+                "effectTag": 0,
+                "expirationTime": 1,
+                "firstEffect": null,
+                "index": 0,
+                "internalContextTag": 0,
+                "key": null,
+                "lastEffect": null,
+                "memoizedProps": null,
+                "memoizedState": null,
+                "nextEffect": null,
+                "pendingProps": null,
+                "ref": null,
+                "return": null,
+                "sibling": null,
+                "stateNode": Object {
+                  "containerInfo": <div>
+                    <div>
+                      Hello 
+                      world
+                      !
+                    </div>
+                  </div>,
+                  "context": Object {},
+                  "current": [Circular],
+                  "finishedWork": null,
+                  "hydrate": false,
+                  "isReadyForCommit": false,
+                  "nextScheduledRoot": null,
+                  "pendingChildren": null,
+                  "pendingContext": null,
+                  "remainingExpirationTime": 0,
+                },
+                "tag": 3,
+                "type": null,
+                "updateQueue": Object {
+                  "baseState": null,
+                  "callbackList": null,
+                  "expirationTime": 1,
+                  "first": Object {
+                    "callback": null,
+                    "expirationTime": 1,
+                    "isForced": false,
+                    "isReplace": false,
+                    "next": null,
+                    "nextCallback": null,
+                    "partialState": Object {
+                      "element": <WrapperComponent
+                        Component={[Function]}
+                        context={null}
+                        props={Object {}}
+                      />,
+                    },
+                  },
+                  "hasForceUpdate": false,
+                  "isInitialized": false,
+                  "isProcessing": false,
+                  "last": Object {
+                    "callback": null,
+                    "expirationTime": 1,
+                    "isForced": false,
+                    "isReplace": false,
+                    "next": null,
+                    "nextCallback": null,
+                    "partialState": Object {
+                      "element": <WrapperComponent
+                        Component={[Function]}
+                        context={null}
+                        props={Object {}}
+                      />,
+                    },
+                  },
+                },
+              },
+              "child": [Circular],
+              "effectTag": 0,
+              "expirationTime": 0,
+              "firstEffect": [Circular],
+              "index": 0,
+              "internalContextTag": 0,
+              "key": null,
+              "lastEffect": [Circular],
+              "memoizedProps": null,
+              "memoizedState": Object {
+                "element": <WrapperComponent
+                  Component={[Function]}
+                  context={null}
+                  props={Object {}}
+                />,
+              },
+              "nextEffect": null,
+              "pendingProps": null,
+              "ref": null,
+              "return": null,
+              "sibling": null,
+              "stateNode": Object {
+                "containerInfo": <div>
+                  <div>
+                    Hello 
+                    world
+                    !
+                  </div>
+                </div>,
+                "context": Object {},
+                "current": [Circular],
+                "finishedWork": null,
+                "hydrate": false,
+                "isReadyForCommit": false,
+                "nextScheduledRoot": null,
+                "pendingChildren": null,
+                "pendingContext": null,
+                "remainingExpirationTime": 0,
+              },
+              "tag": 3,
+              "type": null,
+              "updateQueue": null,
+            },
+            "sibling": null,
+            "stateNode": WrapperComponent {
+              "_reactInternalFiber": [Circular],
+              "_reactInternalInstance": Object {},
+              "context": Object {},
+              "props": Object {
+                "Component": [Function],
+                "context": null,
+                "props": Object {},
+              },
+              "refs": Object {},
+              "state": Object {
+                "context": null,
+                "mount": true,
+                "props": Object {},
+              },
+              "updater": Object {
+                "enqueueForceUpdate": [Function],
+                "enqueueReplaceState": [Function],
+                "enqueueSetState": [Function],
+                "isMounted": [Function],
+              },
+            },
+            "tag": 2,
+            "type": [Function],
+            "updateQueue": null,
+          },
+          "sibling": null,
+          "stateNode": [Circular],
+          "tag": 2,
+          "type": [Function],
+          "updateQueue": null,
+        },
+        "_reactInternalInstance": Object {},
+        "context": Object {},
+        "props": Object {},
+        "refs": Object {},
+        "sinks": Object {
+          "initialState": Object {
+            "helloTo": "nobody",
+          },
+          "stateReducer": Stream {
+            "_d": false,
+            "_dl": Object {},
+            "_err": Object {},
+            "_ils": Array [],
+            "_prod": FromArray {
+              "a": Array [
+                [Function],
+              ],
+              "type": "fromArray",
+            },
+            "_stopID": Object {},
+            "_target": Object {},
+          },
+          "view": [Function],
+        },
+        "sources": Object {
+          "props": Stream {
+            "_d": false,
+            "_dl": Object {},
+            "_err": Object {},
+            "_ils": Array [],
+            "_prod": Object {},
+            "_stopID": Object {},
+            "_target": Object {},
+          },
+          "state": Stream {
+            "_d": false,
+            "_dl": Object {},
+            "_err": Object {},
+            "_ils": Array [],
+            "_prod": Object {},
+            "_stopID": Object {},
+            "_target": Stream {
+              "_d": false,
+              "_dl": Object {},
+              "_err": Object {},
+              "_ils": Array [],
+              "_prod": Filter {
+                "f": [Function],
+                "ins": MemoryStream {
+                  "_d": false,
+                  "_dl": Object {},
+                  "_err": Object {},
+                  "_has": false,
+                  "_ils": Array [],
+                  "_prod": Fold {
+                    "acc": Object {
+                      "helloTo": "nobody",
+                    },
+                    "f": [Function],
+                    "ins": Stream {
+                      "_d": false,
+                      "_dl": Object {},
+                      "_err": Object {},
+                      "_ils": Array [],
+                      "_prod": FromArray {
+                        "a": Array [
+                          [Function],
+                        ],
+                        "type": "fromArray",
+                      },
+                      "_stopID": Object {},
+                      "_target": Object {},
+                    },
+                    "out": Object {},
+                    "seed": Object {
+                      "helloTo": "nobody",
+                    },
+                    "type": "fold",
+                  },
+                  "_stopID": Object {},
+                  "_target": Object {},
+                  "_v": Object {
+                    "helloTo": "world",
+                  },
+                },
+                "out": Object {},
+                "type": "filter",
+              },
+              "_stopID": Object {},
+              "_target": Object {},
+            },
+          },
+          "store": Stream {
+            "_d": false,
+            "_dl": Object {},
+            "_err": Object {},
+            "_ils": Array [],
+            "_prod": Object {},
+            "_stopID": Object {},
+            "_target": Object {},
+          },
+        },
+        "state": Object {
+          "helloTo": "world",
+        },
+        "updater": Object {
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+        },
+      },
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {},
+      "ref": null,
+      "rendered": Object {
+        "instance": <div>
+          Hello 
+          world
+          !
+        </div>,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            "Hello ",
+            "world",
+            "!",
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          "Hello ",
+          "world",
+          "!",
+        ],
+        "type": "div",
+      },
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
