@@ -9,8 +9,9 @@ export interface Store<T> {
 
 function createStore <T>(initialStore: T): Store<T> {
   const reducer: Stream<ReducerFn<T>> = Stream.create()
-  const store = reducer.fold((lastStore: T, reduce: ReducerFn<T>) =>
-    reduce(lastStore),
+  const store = reducer.fold(
+    (lastStore: T, reduce: ReducerFn<T>) =>
+      reduce(lastStore),
     initialStore,
   )
 
