@@ -37,6 +37,8 @@
     "typescript": "^2.6.2"
   },
   "dependencies": {
+    "@types/prop-types": "^15.5.2",
+    "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "xstream": "^11.1.0"
   }

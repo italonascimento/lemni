@@ -25,12 +25,15 @@ const reuse = <P = {}, S = {}, St = {}>(mainFn: ReuseMainFn<P, S, St>) => {
     private sinks: ReuseSinks<P, S, St>
 
     private stateListener: Partial<Listener<S>>
+    private storeReducerListener: Partial<Listener<ReducerFn<St>>>
 
     componentWillMount() {
+      const hasStore = this.context && this.context.store
+
       this.sources = {
         props: Stream.create(),
         state: Stream.create(),
-        store: Stream.create(),
+        store: hasStore ? this.context.store.getStoreStream() : Stream.never(),
       }
 
       this.sinks = mainFn(this.sources)
@@ -51,8 +54,13 @@ const reuse = <P = {}, S = {}, St = {}>(mainFn: ReuseMainFn<P, S, St>) => {
         this.sources.state.addListener(this.stateListener)
       }
 
-      if (storeReducer && this.context && this.context.store) {
-        // TODO
+      if (storeReducer && hasStore) {
+        this.storeReducerListener = {
+          next: (reducer: ReducerFn<St>) =>
+            this.context.store.sendNextReducer(reducer)
+        }
+
+        this.sinks.storeReducer!.addListener(this.storeReducerListener)
       }
     }
 
@@ -62,6 +70,10 @@ const reuse = <P = {}, S = {}, St = {}>(mainFn: ReuseMainFn<P, S, St>) => {
 
     componentWillUnmount() {
       this.sources.state.removeListener(this.stateListener)
+
+      if (this.storeReducerListener) {
+        this.sinks.storeReducer!.removeListener(this.storeReducerListener)
+      }
     }
 
     render() {
