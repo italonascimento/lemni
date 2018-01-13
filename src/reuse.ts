@@ -1,5 +1,5 @@
 import { Component, ComponentClass } from 'react'
-import { Stream } from 'xstream'
+import { Listener, Stream } from 'xstream'
 
 export type ReuseMainFn<P, S, St> =
   (sources: ReuseSources<P, S, St>) => ReuseSinks<P, S, St>
@@ -24,6 +24,8 @@ const reuse = <P = {}, S = {}, St = {}>(mainFn: ReuseMainFn<P, S, St>) => {
     private sources: ReuseSources<P, S, St>
     private sinks: ReuseSinks<P, S, St>
 
+    private stateListener: Partial<Listener<S>>
+
     componentWillMount() {
       this.sources = {
         props: Stream.create(),
@@ -32,7 +34,6 @@ const reuse = <P = {}, S = {}, St = {}>(mainFn: ReuseMainFn<P, S, St>) => {
       }
 
       this.sinks = mainFn(this.sources)
-
       const {stateReducer, storeReducer, initialState} = this.sinks
 
       this.setState(initialState)
@@ -46,14 +47,21 @@ const reuse = <P = {}, S = {}, St = {}>(mainFn: ReuseMainFn<P, S, St>) => {
 
         this.sources.state.imitate(state.filter(v => !!v))
 
-        state.addListener({
-          next: s => this.setState(s)
-        })
+        this.stateListener = { next: (s: S) => this.setState(s) }
+        this.sources.state.addListener(this.stateListener)
       }
 
       if (storeReducer && this.context && this.context.store) {
         // TODO
       }
+    }
+
+    componentDidUpdate() {
+      this.sources.props.shamefullySendNext(this.props)
+    }
+
+    componentWillUnmount() {
+      this.sources.state.removeListener(this.stateListener)
     }
 
     render() {
