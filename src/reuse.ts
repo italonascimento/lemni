@@ -119,6 +119,10 @@ const reuse = <P = {}, S = {}, St = {}>(mainFn: ReuseMainFn<P, S, St>) => {
     }
 
     componentWillUnmount() {
+      this.sources.lifecycle.shamefullySendNext(
+        ReactLifecycle.componentWillUnmount
+      )
+
       if (this.stateListener) {
         this.sources.state.removeListener(this.stateListener)
       }
@@ -130,10 +134,6 @@ const reuse = <P = {}, S = {}, St = {}>(mainFn: ReuseMainFn<P, S, St>) => {
       if (this.sideEffectListener) {
         this.sinks.sideEffect!.removeListener(this.sideEffectListener)
       }
-
-      this.sources.lifecycle.shamefullySendNext(
-        ReactLifecycle.componentWillUnmount
-      )
     }
 
     render() {
