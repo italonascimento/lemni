@@ -2,9 +2,7 @@ import { mount } from 'enzyme'
 import 'jest'
 import * as React from 'react'
 import { spy } from 'sinon'
-import xs from 'xstream'
 import sampleCombine from 'xstream/extra/sampleCombine'
-import ReactLifecycle from '../src/react-lifecycle'
 import reuse from '../src/reuse'
 
 interface Props {

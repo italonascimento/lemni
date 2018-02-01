@@ -19,7 +19,7 @@ export interface ReuseSinks<P, S, St> {
   initialState?: S
   stateReducer?: Stream<ReducerFn<S>>
   storeReducer?: Stream<ReducerFn<St>>
-  view: (p: P, s: S) => JSX.Element
+  view: (p: P, s: S) => JSX.Element | null | false
   sideEffect?: Stream<() => void>
 }
 
