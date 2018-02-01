@@ -1,7 +1,6 @@
 import { mount } from 'enzyme'
 import 'jest'
 import * as React from 'react'
-import { Stream } from 'xstream'
 import ReactLifecycle from '../src/react-lifecycle'
 import reuse from '../src/reuse'
 

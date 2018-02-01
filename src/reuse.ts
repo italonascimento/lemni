@@ -20,6 +20,7 @@ export interface ReuseSinks<P, S, St> {
   stateReducer?: Stream<ReducerFn<S>>
   storeReducer?: Stream<ReducerFn<St>>
   view: (p: P, s: S) => JSX.Element
+  sideEffect?: Stream<() => void>
 }
 
 const reuse = <P = {}, S = {}, St = {}>(mainFn: ReuseMainFn<P, S, St>) => {
@@ -34,6 +35,7 @@ const reuse = <P = {}, S = {}, St = {}>(mainFn: ReuseMainFn<P, S, St>) => {
 
     private stateListener: Partial<Listener<S>>
     private storeReducerListener: Partial<Listener<ReducerFn<St>>>
+    private sideEffectListener: Partial<Listener<() => void>>
 
     componentWillMount() {
       const hasStore = this.context && this.context.store
@@ -46,7 +48,12 @@ const reuse = <P = {}, S = {}, St = {}>(mainFn: ReuseMainFn<P, S, St>) => {
       }
 
       this.sinks = mainFn(this.sources)
-      const {stateReducer, storeReducer, initialState = {} as S} = this.sinks
+      const {
+        stateReducer,
+        storeReducer,
+        sideEffect,
+        initialState = {} as S
+      } = this.sinks
 
       this.setState(initialState)
 
@@ -69,7 +76,15 @@ const reuse = <P = {}, S = {}, St = {}>(mainFn: ReuseMainFn<P, S, St>) => {
             this.context.store.sendNextReducer(reducer)
         }
 
-        this.sinks.storeReducer!.addListener(this.storeReducerListener)
+        storeReducer.addListener(this.storeReducerListener)
+      }
+
+      if (sideEffect) {
+        this.sideEffectListener = {
+          next: (effect: () => void) => effect()
+        }
+
+        sideEffect.addListener(this.sideEffectListener)
       }
 
       this.sources.lifecycle.shamefullySendNext(
@@ -104,10 +119,16 @@ const reuse = <P = {}, S = {}, St = {}>(mainFn: ReuseMainFn<P, S, St>) => {
     }
 
     componentWillUnmount() {
-      this.sources.state.removeListener(this.stateListener)
+      if (this.stateListener) {
+        this.sources.state.removeListener(this.stateListener)
+      }
 
       if (this.storeReducerListener) {
         this.sinks.storeReducer!.removeListener(this.storeReducerListener)
+      }
+
+      if (this.sideEffectListener) {
+        this.sinks.sideEffect!.removeListener(this.sideEffectListener)
       }
 
       this.sources.lifecycle.shamefullySendNext(
