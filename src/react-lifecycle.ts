@@ -7,7 +7,7 @@ export type ReactLifecycleName =
   'componentDidUpdate' |
   'componentWillUnmount'
 
-const ReactLifecycle: {[key: string]: ReactLifecycleName} = {
+const ReactLifecycle: {[key in ReactLifecycleName]: ReactLifecycleName} = {
   componentDidMount: 'componentDidMount',
   componentWillUnmount: 'componentWillUnmount',
   componentWillMount: 'componentWillMount',
