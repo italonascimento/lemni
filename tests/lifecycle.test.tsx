@@ -1,65 +1,58 @@
 import { mount } from 'enzyme'
-import 'jest'
 import * as React from 'react'
+import { spy } from 'sinon'
 import ReactLifecycle from '../src/react-lifecycle'
 import reuse from '../src/reuse'
 
-interface Props {
-  breakLine?: boolean
+const spies = {
+  [ReactLifecycle.componentWillMount]: spy(),
+  [ReactLifecycle.componentDidMount]: spy(),
+  [ReactLifecycle.componentWillReceiveProps]: spy(),
+  [ReactLifecycle.componentWillUpdate]: spy(),
+  [ReactLifecycle.componentDidUpdate]: spy(),
+  [ReactLifecycle.componentWillUnmount]: spy(),
 }
 
-interface State {
-  triggeredLifecycle?: string
-}
+const LifecycleComp = reuse(sources => ({
+  sideEffect: sources.lifecycle
+    .map(lifecycle =>
+      () => {
+        if (spies[lifecycle]) {
+          spies[lifecycle]()
+        }
+      }
+    ),
 
-const createComponent = (lifecycleName: string) => reuse<Props, State>(sources => ({
-  stateReducer: sources.lifecycle
-    .filter(lifecycle => lifecycle === lifecycleName)
-    .take(1)
-    .map(triggeredLifecycle => (state: State) => ({
-      triggeredLifecycle,
-    })),
-
-  view: (props, state) => (
-    <div>
-      {(
-        props.breakLine
-      ) && (
-        <br />
-      )}
-      {state.triggeredLifecycle}
-    </div>
-  )
+  view: () => null
 }))
 
-const WillMount = createComponent(ReactLifecycle.componentWillMount)
-const DidMount = createComponent(ReactLifecycle.componentDidMount)
-const WillReceiveProps = createComponent(ReactLifecycle.componentWillReceiveProps)
-const WillUpdate = createComponent(ReactLifecycle.componentWillUpdate)
-const DidUpdate = createComponent(ReactLifecycle.componentDidUpdate)
-
 test('Lifecycle', () => {
-  const willMount = mount((<WillMount />))
-  expect(willMount.text()).toContain(ReactLifecycle.componentWillMount)
+  const wrapper = mount((<LifecycleComp />))
 
-  const didMount = mount((<DidMount />))
-  expect(didMount.text()).toContain(ReactLifecycle.componentDidMount)
+  expect(spies[ReactLifecycle.componentWillMount].callCount).toBe(1)
+  expect(spies[ReactLifecycle.componentDidMount].callCount).toBe(1)
+  expect(spies[ReactLifecycle.componentWillReceiveProps].callCount).toBe(0)
+  expect(spies[ReactLifecycle.componentWillUpdate].callCount).toBe(0)
+  expect(spies[ReactLifecycle.componentDidUpdate].callCount).toBe(0)
+  expect(spies[ReactLifecycle.componentWillUnmount].callCount).toBe(0)
 
-  const willReceiveProps = mount((<WillReceiveProps />))
-  willReceiveProps.setProps({
-    breakLine: true
+  wrapper.setProps({
+    test: true
   })
-  expect(willReceiveProps.text()).toContain(ReactLifecycle.componentWillReceiveProps)
 
-  const willUpdate = mount((<WillUpdate />))
-  willUpdate.setProps({
-    breakLine: true
-  })
-  expect(willUpdate.text()).toContain(ReactLifecycle.componentWillUpdate)
+  expect(spies[ReactLifecycle.componentWillMount].callCount).toBe(1)
+  expect(spies[ReactLifecycle.componentDidMount].callCount).toBe(1)
+  expect(spies[ReactLifecycle.componentWillReceiveProps].callCount).toBe(1)
+  expect(spies[ReactLifecycle.componentWillUpdate].callCount).toBe(1)
+  expect(spies[ReactLifecycle.componentDidUpdate].callCount).toBe(1)
+  expect(spies[ReactLifecycle.componentWillUnmount].callCount).toBe(0)
 
-  const didUpdate = mount((<DidUpdate />))
-  didUpdate.setProps({
-    breakLine: true
-  })
-  expect(didUpdate.text()).toContain(ReactLifecycle.componentDidUpdate)
+  wrapper.unmount()
+
+  expect(spies[ReactLifecycle.componentWillMount].callCount).toBe(1)
+  expect(spies[ReactLifecycle.componentDidMount].callCount).toBe(1)
+  expect(spies[ReactLifecycle.componentWillReceiveProps].callCount).toBe(1)
+  expect(spies[ReactLifecycle.componentWillUpdate].callCount).toBe(1)
+  expect(spies[ReactLifecycle.componentDidUpdate].callCount).toBe(1)
+  expect(spies[ReactLifecycle.componentWillUnmount].callCount).toBe(1)
 })
