@@ -5,19 +5,6 @@ import { Stream } from 'xstream'
 import xs from 'xstream'
 import reuse from '../src/reuse'
 
-// function emit<T>(stream: Stream<T>) {
-//   return (value: T) => stream.shamefullySendNext(value)
-// }
-
-function emitValue<T>(value: T) {
-  return (stream: Stream<T>) =>
-    () => stream.shamefullySendNext(value)
-}
-
-function signal(stream: Stream<undefined>) {
-  return () => stream.shamefullySendNext(undefined)
-}
-
 interface State {
   count: number
 }
@@ -46,11 +33,11 @@ const EventsComp = reuse<{}, State>(sources => {
         )
     ),
 
-    view: (props, state) => (
+    view: (props, state, emitter) => (
       <div>
         <p>Counter: {state.count}</p>
-        <button className='increment' onClick={signal(increment)}>Increment</button>
-        <button className='incrementBy2' onClick={emitValue(2)(incrementBy)}>Increment by 2</button>
+        <button className='increment' onClick={emitter.signal(increment)}>Increment</button>
+        <button className='incrementBy2' onClick={emitter.emitValue(2)(incrementBy)}>Increment by 2</button>
       </div>
     )
   }

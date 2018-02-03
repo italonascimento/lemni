@@ -1,6 +1,7 @@
 import * as PropTypes from 'prop-types'
 import { Component, ComponentClass } from 'react'
 import { Listener, Stream } from 'xstream'
+import Emitter from './emitter'
 import ReactLifecycle, { ReactLifecycleName } from './react-lifecycle'
 
 export type ReuseMainFn<P, S, St> =
@@ -19,7 +20,7 @@ export interface ReuseSinks<P, S, St> {
   initialState?: S
   stateReducer?: Stream<ReducerFn<S>>
   storeReducer?: Stream<ReducerFn<St>>
-  view: (p: P, s: S) => JSX.Element | null | false
+  view: (p: P, s: S, e: typeof Emitter) => JSX.Element | null | false
   sideEffect?: Stream<() => void>
 }
 
@@ -137,7 +138,7 @@ const reuse = <P = {}, S = {}, St = {}>(mainFn: ReuseMainFn<P, S, St>) => {
     }
 
     render() {
-      return this.sinks.view(this.props, this.state)
+      return this.sinks.view(this.props, this.state, Emitter)
     }
   }
 
