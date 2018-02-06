@@ -1,5 +1,6 @@
 import { Stream } from 'xstream'
 
+
 const Emitter = {
   emit: <T>(stream: Stream<T>) =>
     (value: T) => stream.shamefullySendNext(value),

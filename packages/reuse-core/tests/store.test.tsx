@@ -2,18 +2,20 @@ import { mount } from 'enzyme'
 import 'jest'
 import * as React from 'react'
 import { Stream } from 'xstream'
-import xs from 'xstream'
 import createStore from '../src/createStore'
 import reuse from '../src/reuse'
 import withStoreProvider from '../src/withStoreProvider'
+
 
 interface Store {
   count: number
 }
 
+
 interface State {
   count: number
 }
+
 
 const Comp = reuse<{}, State, Store>(sources => {
   const increment = Stream.create<undefined>()
@@ -35,18 +37,23 @@ const Comp = reuse<{}, State, Store>(sources => {
 
     view: (props, state, emitter) => (
       <div>
-        <p>Counter: {state.count}</p>
-        <button className='increment' onClick={emitter.signal(increment)}>Increment</button>
+        <p>Counter: { state.count }</p>
+        <button
+          className='increment'
+          onClick={ emitter.signal(increment) }
+        >
+          Increment
+        </button>
       </div>
     )
   }
 })
 
-const globslStore = createStore<Store>({count: 0})
-const CompWithStore = withStoreProvider(globslStore)(Comp)
+const globalStore = createStore<Store>({ count: 0 })
+const CompWithStore = withStoreProvider(globalStore)(Comp)
 
 test('Events', () => {
-  const wrapper = mount((<CompWithStore />))
+  const wrapper = mount((<CompWithStore/>))
   expect(wrapper.find('p').text()).toBe('Counter: 0')
 
   wrapper.find('.increment').simulate('click')

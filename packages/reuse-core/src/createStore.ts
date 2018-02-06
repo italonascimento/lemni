@@ -1,23 +1,38 @@
 import { Stream } from 'xstream'
 
-export type ReducerFn<T> = (value: T) => T
+
+export type Reducer<T> =
+  (value: T) =>
+    T
+
 
 export interface Store<T> {
-  getStoreStream: () => Stream<T>
-  sendNextReducer: (reducerFn: ReducerFn<T>) => void
+  getStoreStream:
+    () =>
+      Stream<T>
+
+  sendNextReducer:
+    (reducer: Reducer<T>) =>
+      void
 }
 
-function createStore <T>(initialStore: T): Store<T> {
-  const reducer: Stream<ReducerFn<T>> = Stream.create()
-  const store = reducer.fold(
-    (lastStore: T, reduce: ReducerFn<T>) =>
-      reduce(lastStore),
-    initialStore,
-  )
+
+function createStore<T>(initialStore: T): Store<T> {
+  const reducer = Stream.create<Reducer<T>>()
+
+  const accumulate =
+    (lastStore: T, reduce: Reducer<T>) =>
+      reduce(lastStore)
+
+  const store =
+    reducer.fold(
+      accumulate,
+      initialStore,
+    )
 
   return {
     getStoreStream: () => store,
-    sendNextReducer: (reducerFn) => { reducer.shamefullySendNext(reducerFn) }
+    sendNextReducer: next => reducer.shamefullySendNext(next),
   }
 }
 
