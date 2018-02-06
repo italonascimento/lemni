@@ -1,0 +1,11 @@
+{
+  "extends": "./node_modules/reuse-tsconfig/tsconfig.json",
+  "compilerOptions": {
+    "outDir": "lib",
+    "rootDir": "src"
+  },
+  "exclude": [
+    "node_modules",
+    "tests"
+  ]
+}
