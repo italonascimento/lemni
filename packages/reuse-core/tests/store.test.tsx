@@ -2,9 +2,9 @@ import { mount } from 'enzyme'
 import 'jest'
 import * as React from 'react'
 import { Stream } from 'xstream'
+import { reuse } from '../src'
 import { createStore } from '../src/createStore'
-import reuse from '../src/reuse'
-import withStoreProvider from '../src/withStoreProvider'
+import { withStoreProvider } from '../src/withStoreProvider'
 
 
 interface Store {
@@ -26,7 +26,7 @@ const Comp = reuse<{}, State, Store>(sources => {
     },
 
     stateReducer: sources.store
-      .map(store => (state: State) => ({
+      .map(store => () => ({
         count: store.count
       })),
 
@@ -53,7 +53,7 @@ const globalStore = createStore<Store>({ count: 0 })
 const CompWithStore = withStoreProvider(globalStore)(Comp)
 
 test('Events', () => {
-  const wrapper = mount((<CompWithStore/>))
+  const wrapper = mount((<CompWithStore />))
   expect(wrapper.find('p').text()).toBe('Counter: 0')
 
   wrapper.find('.increment').simulate('click')

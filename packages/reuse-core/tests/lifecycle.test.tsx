@@ -1,8 +1,9 @@
 import { mount } from 'enzyme'
 import * as React from 'react'
 import { spy } from 'sinon'
+import { reuse } from '../src'
 import { ReactLifecycle } from '../src/react-lifecycle'
-import reuse from '../src/reuse'
+
 
 const spies = {
   [ReactLifecycle.componentWillMount]: spy(),

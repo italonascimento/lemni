@@ -1,2 +1,1 @@
-import reuse from './reuse'
-export default reuse
+export { reuse } from './reuse'

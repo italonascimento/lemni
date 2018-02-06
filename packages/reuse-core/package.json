@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "A reactive framework based on React",
   "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "author": "Denis Ikeda, Ítalo Nascimento",
   "license": "MIT",
   "scripts": {

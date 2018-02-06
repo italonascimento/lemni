@@ -3,12 +3,14 @@ import 'jest'
 import * as React from 'react'
 import { spy } from 'sinon'
 import sampleCombine from 'xstream/extra/sampleCombine'
-import reuse from '../src/reuse'
+import { reuse } from '../src'
+
 
 interface Props {
   onUpdate: () => void
   update?: number
 }
+
 
 const SideEffectsComp = reuse<Props>(sources => ({
   sideEffect: sources.props
@@ -20,7 +22,9 @@ const SideEffectsComp = reuse<Props>(sources => ({
     ))
     .map(([_1, _2]) => _2)
     .map(onUpdate =>
-      () => { onUpdate() }
+      () => {
+        onUpdate()
+      }
     ),
 
   view: () => null
@@ -29,7 +33,7 @@ const SideEffectsComp = reuse<Props>(sources => ({
 const onUpdateSpy = spy()
 
 test('Side Effect', () => {
-  const wrapper = mount(<SideEffectsComp onUpdate={onUpdateSpy} />)
+  const wrapper = mount(<SideEffectsComp onUpdate={ onUpdateSpy } />)
   expect(onUpdateSpy.callCount).toBe(0)
 
   wrapper.setProps({

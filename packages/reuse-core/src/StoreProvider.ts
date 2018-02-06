@@ -1,12 +1,18 @@
 import * as PropTypes from 'prop-types'
-import { Children, Component, ReactElement } from 'react'
+import {
+  Children,
+  Component,
+  ReactElement
+} from 'react'
+
 
 export interface Props {
   store: any
   children: JSX.Element
 }
 
-class StoreProvider extends Component<Props> {
+
+export class StoreProvider extends Component<Props> {
   static childContextTypes = {
     store: PropTypes.object
   }
@@ -21,5 +27,3 @@ class StoreProvider extends Component<Props> {
     return Children.only(this.props.children)
   }
 }
-
-export default StoreProvider

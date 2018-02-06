@@ -1,15 +1,17 @@
 import { shallow } from 'enzyme'
 import 'jest'
 import * as React from 'react'
-import reuse from '../src/reuse'
+import { reuse } from '../src'
+
 
 interface Props {
   to: string
 }
 
-const Hello = reuse<Props>(sources => ({
+
+const Hello = reuse<Props>(() => ({
   view: props => (
-    <div>Hello {props.to}</div>
+    <div>Hello { props.to }</div>
   )
 }))
 

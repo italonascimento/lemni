@@ -1,41 +1,53 @@
 import * as PropTypes from 'prop-types'
-import { Component, ComponentClass } from 'react'
-import { Listener, Stream } from 'xstream'
+import {
+  Component,
+  ComponentClass
+} from 'react'
+import {
+  Listener,
+  Stream
+} from 'xstream'
+import { Reducer } from './createStore'
 import { Emitter } from './emitter'
 import { ReactLifecycle } from './react-lifecycle'
 
-export type ReuseMainFn<P, S, St> =
-  (sources: ReuseSources<P, S, St>) => ReuseSinks<P, S, St>
 
-export interface ReuseSources<P, S, St> {
+export type ReuseMainFunction<P, L, S> =
+  (sources: ReuseSources<P, L, S>) =>
+    ReuseSinks<P, L, S>
+
+
+export interface ReuseSources<P, L, S> {
   props: Stream<P>
-  state: Stream<S>
-  store: Stream<St>
+  state: Stream<L>
+  store: Stream<S>
   lifecycle: Stream<ReactLifecycle>
 }
 
-export type ReducerFn<T> = (t: T) => T
 
-export interface ReuseSinks<P, S, St> {
-  initialState?: S
-  stateReducer?: Stream<ReducerFn<S>>
-  storeReducer?: Stream<ReducerFn<St>>
-  view: (p: P, s: S, e: typeof Emitter) => JSX.Element | null | false
+export interface ReuseSinks<P, L, S> {
+  initialState?: L
+  stateReducer?: Stream<Reducer<L>>
+  storeReducer?: Stream<Reducer<S>>
+  view:
+    (p: P, s: L, e: typeof Emitter) =>
+      JSX.Element | null | false
   sideEffect?: Stream<() => void>
 }
 
-const reuse = <P = {}, S = {}, St = {}>(mainFn: ReuseMainFn<P, S, St>) => {
-  class ReactComponent extends Component<P, S> {
+
+export const reuse = <P = {}, L = {}, S = {}>(mainFn: ReuseMainFunction<P, L, S>) => {
+  class ReactComponent extends Component<P, L> {
 
     static contextTypes = {
       store: PropTypes.object,
     }
 
-    private sources: ReuseSources<P, S, St>
-    private sinks: ReuseSinks<P, S, St>
+    private sources: ReuseSources<P, L, S>
+    private sinks: ReuseSinks<P, L, S>
 
-    private stateListener: Partial<Listener<S>>
-    private storeReducerListener: Partial<Listener<ReducerFn<St>>>
+    private stateListener: Partial<Listener<L>>
+    private storeReducerListener: Partial<Listener<Reducer<S>>>
     private sideEffectListener: Partial<Listener<() => void>>
 
     componentWillMount() {
@@ -53,7 +65,7 @@ const reuse = <P = {}, S = {}, St = {}>(mainFn: ReuseMainFn<P, S, St>) => {
         stateReducer,
         storeReducer,
         sideEffect,
-        initialState = {} as S
+        initialState = {} as L
       } = this.sinks
 
       this.setState(initialState)
@@ -67,13 +79,13 @@ const reuse = <P = {}, S = {}, St = {}>(mainFn: ReuseMainFn<P, S, St>) => {
 
         this.sources.state.imitate(state.filter(v => !!v))
 
-        this.stateListener = { next: (s: S) => this.setState(s) }
+        this.stateListener = { next: (s: L) => this.setState(s) }
         this.sources.state.addListener(this.stateListener)
       }
 
       if (storeReducer && hasStore) {
         this.storeReducerListener = {
-          next: (reducer: ReducerFn<St>) =>
+          next: (reducer: Reducer<S>) =>
             this.context.store.sendNextReducer(reducer)
         }
 
@@ -142,7 +154,6 @@ const reuse = <P = {}, S = {}, St = {}>(mainFn: ReuseMainFn<P, S, St>) => {
     }
   }
 
+
   return ReactComponent as ComponentClass<P>
 }
-
-export default reuse

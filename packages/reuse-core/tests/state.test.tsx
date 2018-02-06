@@ -3,13 +3,15 @@ import 'jest'
 import * as React from 'react'
 import { Stream } from 'xstream'
 import xs from 'xstream'
-import reuse from '../src/reuse'
+import { reuse } from '../src'
+
 
 interface State {
   count: number
 }
 
-const StateComp = reuse<{}, State>(sources => {
+
+const StateComp = reuse<{}, State>(() => {
   const increment = Stream.create<undefined>()
 
   return {
@@ -26,8 +28,8 @@ const StateComp = reuse<{}, State>(sources => {
 
     view: (props, state, emitter) => (
       <div>
-        <p>Counter: {state.count}</p>
-        <button className='increment' onClick={emitter.signal(increment)}>Increment</button>
+        <p>Counter: { state.count }</p>
+        <button className='increment' onClick={ emitter.signal(increment) }>Increment</button>
       </div>
     )
   }
