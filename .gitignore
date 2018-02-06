@@ -1,3 +1,19 @@
-node_modules
-lib
-demo
+**.*
+!.gitignore
+
+# IDEA
+!.idea/inspectionProfiles
+!.idea/misc.xml
+!.idea/reuse.iml
+!.idea/modules.xml
+
+# config
+!package.json
+!tsconfig.json
+!tslint.json
+!yarn.lock
+
+# code
+!src/**/*
+!tests/**/*
+!test-setup.js
