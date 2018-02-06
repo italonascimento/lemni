@@ -11,3 +11,6 @@ package-lock.json
 
 # project
 lib
+
+# docs
+docs/site
