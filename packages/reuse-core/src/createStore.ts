@@ -17,7 +17,7 @@ export interface Store<T> {
 }
 
 
-function createStore<T>(initialStore: T): Store<T> {
+export function createStore<T>(initialStore: T): Store<T> {
   const reducer = Stream.create<Reducer<T>>()
 
   const accumulate =
@@ -35,5 +35,3 @@ function createStore<T>(initialStore: T): Store<T> {
     sendNextReducer: next => reducer.shamefullySendNext(next),
   }
 }
-
-export default createStore

@@ -7,7 +7,6 @@
       <option name="USE_DOUBLE_QUOTES" value="false" />
       <option name="FORCE_QUOTE_STYlE" value="true" />
       <option name="IMPORTS_WRAP" value="2" />
-      <option name="UNION_TYPES_WRAP" value="2" />
       <option name="SPACES_WITHIN_OBJECT_LITERAL_BRACES" value="true" />
       <option name="SPACES_WITHIN_IMPORTS" value="true" />
       <option name="SPACES_WITHIN_INTERPOLATION_EXPRESSIONS" value="true" />
@@ -17,6 +16,7 @@
       <option name="KEEP_BLANK_LINES_IN_CODE" value="3" />
       <option name="BLANK_LINES_AFTER_IMPORTS" value="2" />
       <option name="BLANK_LINES_AROUND_CLASS" value="2" />
+      <option name="ALIGN_MULTILINE_PARAMETERS" value="false" />
       <option name="BINARY_OPERATION_SIGN_ON_NEXT_LINE" value="true" />
       <option name="TERNARY_OPERATION_SIGNS_ON_NEXT_LINE" value="true" />
       <option name="ARRAY_INITIALIZER_LBRACE_ON_NEXT_LINE" value="true" />

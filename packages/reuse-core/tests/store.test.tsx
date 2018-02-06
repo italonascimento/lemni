@@ -2,7 +2,7 @@ import { mount } from 'enzyme'
 import 'jest'
 import * as React from 'react'
 import { Stream } from 'xstream'
-import createStore from '../src/createStore'
+import { createStore } from '../src/createStore'
 import reuse from '../src/reuse'
 import withStoreProvider from '../src/withStoreProvider'
 
