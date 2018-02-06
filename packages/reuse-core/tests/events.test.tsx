@@ -36,7 +36,7 @@ const EventsComp = reuse<{}, State>(sources => {
         )
     ),
 
-    view: (props, state, emitter) => (
+    view: ({props, state, emitter}) => (
       <div>
         <p>Counter: { state.count }</p>
         <button className='increment' onClick={ emitter.signal(increment) }>Increment</button>
@@ -69,7 +69,7 @@ const IncrementButton = reuse<IncrementProps>(sources => {
         }
       ),
 
-    view: (props, state, emitter) => (
+    view: ({props, state, emitter}) => (
       <button onClick={ emitter.signal(onClickEvent) } />
     )
   }

@@ -35,7 +35,7 @@ const Comp = reuse<{}, State, Store>(sources => {
         count: store.count + 1
       })),
 
-    view: (props, state, emitter) => (
+    view: ({props, state, emitter}) => (
       <div>
         <p>Counter: { state.count }</p>
         <button

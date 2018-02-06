@@ -10,7 +10,7 @@ interface Props {
 
 
 const Hello = reuse<Props>(() => ({
-  view: props => (
+  view: ({props}) => (
     <div>Hello { props.to }</div>
   )
 }))

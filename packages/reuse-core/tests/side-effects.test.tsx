@@ -26,8 +26,6 @@ const SideEffectsComp = reuse<Props>(sources => ({
         onUpdate()
       }
     ),
-
-  view: () => null
 }))
 
 const onUpdateSpy = spy()

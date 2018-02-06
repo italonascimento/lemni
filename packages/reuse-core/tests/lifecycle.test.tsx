@@ -23,8 +23,6 @@ const LifecycleComp = reuse(sources => ({
         }
       }
     ),
-
-  view: () => null
 }))
 
 test('Lifecycle', () => {

@@ -13,24 +13,29 @@ import { ReactLifecycle } from './react-lifecycle'
 
 
 export type ReuseMainFunction<P, L, S> =
-  (sources: ReuseSources<P, L, S>) =>
-    ReuseSinks<P, L, S>
+  (sourceStreams: SourceStreams<P, L, S>) =>
+    Sinks<P, L, S>
 
 
-export interface ReuseSources<P, L, S> {
+export interface SourceStreams<P, L, S> {
   props: Stream<P>
   state: Stream<L>
   store: Stream<S>
   lifecycle: Stream<ReactLifecycle>
 }
 
+export interface ViewSources<P, L> {
+  props: P
+  state: L
+  emitter: typeof Emitter
+}
 
-export interface ReuseSinks<P, L, S> {
+export interface Sinks<P, L, S> {
   initialState?: L
   stateReducer?: Stream<Reducer<L>>
   storeReducer?: Stream<Reducer<S>>
-  view:
-    (p: P, s: L, e: typeof Emitter) =>
+  view?:
+    (viewSources: ViewSources<P, L>) =>
       JSX.Element | null | false
   sideEffect?: Stream<() => void>
 }
@@ -43,8 +48,8 @@ export const reuse = <P = {}, L = {}, S = {}>(mainFn: ReuseMainFunction<P, L, S>
       store: PropTypes.object,
     }
 
-    private sources: ReuseSources<P, L, S>
-    private sinks: ReuseSinks<P, L, S>
+    private sources: SourceStreams<P, L, S>
+    private sinks: Sinks<P, L, S>
 
     private stateListener: Partial<Listener<L>>
     private storeReducerListener: Partial<Listener<Reducer<S>>>
@@ -150,7 +155,13 @@ export const reuse = <P = {}, L = {}, S = {}>(mainFn: ReuseMainFunction<P, L, S>
     }
 
     render() {
-      return this.sinks.view(this.props, this.state, Emitter)
+      return this.sinks.view
+        ? this.sinks.view({
+            props: this.props,
+            state: this.state,
+            emitter: Emitter
+          })
+        : null
     }
   }
 
