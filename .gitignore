@@ -1,19 +1,12 @@
-**.*
-!.gitignore
+node_modules
 
 # IDEA
-!.idea/inspectionProfiles
-!.idea/misc.xml
-!.idea/reuse.iml
-!.idea/modules.xml
+.idea/workspace.xml
+.idea/dictionaries
 
 # config
-!package.json
-!tsconfig.json
-!tslint.json
-!yarn.lock
+yarn-error.log
+package-lock.json
 
-# code
-!src/**/*
-!tests/**/*
-!test-setup.js
+# project
+lib
