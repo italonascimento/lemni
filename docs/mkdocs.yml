@@ -1,3 +1,10 @@
-site_name: My Docs
+site_name: Reuse
+markdown_extensions:
+  - codehilite
 theme:
   name: 'material'
+pages:
+  - Hello World: index.md
+  - Props: props.md
+  - Interaction: interaction.md
+  - Component State: component-state.md

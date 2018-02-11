@@ -1,17 +1,23 @@
-# Welcome to MkDocs
+# Hello World
 
-For full documentation visit [mkdocs.org](http://mkdocs.org).
+The `reuse` function takes in a function which receives `sources` and return `sinks` (any similarity with Cycle.js is not just coincidence).
 
-## Commands
+```typescript
+const App = reuse(sources => {
+  // Component logic goes here
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs help` - Print this help message.
+  const sinks = {
+    view: () => (
+      <div>Hello World</div>
+    )
+  }
 
-## Project layout
+  return sinks
+})
+```
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+The value returned by `reuse` is a common React component which can be used just like any other React component:
+
+```typescript
+ReactDOM.render(<App />, document.getElementById('app'))
+```
