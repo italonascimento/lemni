@@ -9,7 +9,7 @@
     "clean": "rm -rf lib && mkdir lib",
     "install-mkdocs": "pip install mkdocs && pip install mkdocs-material && pip install pygments",
     "install": "npm run install-mkdocs",
-    "docs:build": "mkdocs build"
+    "docs:publish": "sh scripts/docs-publish.sh"
   },
   "devDependencies": {
     "lerna": "^2.8.0",
