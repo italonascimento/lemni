@@ -7,6 +7,8 @@ A `initialState` sink may be used to set the initial state when needed.
 The raw state is passed to the `view` sink for use in the rendering.
 
 ```typescript
+import reuse from 'reuse'
+
 interface State {
   count: number
 }

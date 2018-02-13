@@ -3,6 +3,9 @@
 A stream of props is available through the sources object. The raw props are also passed to the `view` sink, so it can be easely used on the rendering.
 
 ```typescript
+import reuse from 'reuse'
+import ReactDOM from 'react-dom'
+
 interface Props {
   name: string
 }

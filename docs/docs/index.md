@@ -5,6 +5,9 @@
 The `reuse` function takes in a function which receives `sources` and return `sinks` (any similarity with Cycle.js is not just coincidence).
 
 ```typescript
+import reuse from 'reuse'
+import ReactDOM from 'react-dom'
+
 const App = reuse(sources => {
   // Component logic goes here
 

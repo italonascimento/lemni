@@ -21,6 +21,8 @@ The `emitter` object has three methods: `emit`, `signal` and `emitValue`:
 * `emitValue` is used to create a lambda which emits a constant value to the stream.
 
 ```typescript
+import reuse from 'reuse'
+
 const App = reuse(sources => {
   const firstAction = Stream.create<SyntheticEvent>()
   const secondAction = Stream.create<undefined>()
