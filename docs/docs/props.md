@@ -18,7 +18,7 @@ const Hello = reuse<Props>(sources => {
       <div>Hello {props.name}</div>
     )
   }
-}
+})
 
 ReactDOM.render(
   <Hello name='World' />,

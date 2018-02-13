@@ -33,5 +33,5 @@ const App = reuse(sources => {
       <button onClick={emmiter.emitValue(2)(thirdAction)}>Third action</button>
     )
   }
-}
+})
 ```

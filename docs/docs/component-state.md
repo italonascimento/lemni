@@ -28,5 +28,5 @@ const Incrementer = reuse<{}, State>(sources => {
       <button onClick={emmiter.signal(increment)}>Increment</button>
     )
   }
-}
+})
 ``` 
