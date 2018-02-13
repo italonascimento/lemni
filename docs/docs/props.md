@@ -8,9 +8,6 @@ interface Props {
 }
 
 const Hello = reuse<Props>(sources => {
-  
-  // Important uses of the props' stream will
-  // be explored later on this documentation
   const props$ = sources.props
 
   return {
