@@ -8,3 +8,4 @@ pages:
   - Props: props.md
   - Interaction: interaction.md
   - Component State: component-state.md
+  - Lifecycle: lifecycle.md
