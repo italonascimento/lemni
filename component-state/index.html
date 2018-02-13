@@ -166,8 +166,8 @@
 
 
   <li class="md-nav__item">
-    <a href=".." title="Hello World" class="md-nav__link">
-      Hello World
+    <a href=".." title="Get Started" class="md-nav__link">
+      Get Started
     </a>
   </li>
 
@@ -217,6 +217,18 @@
   </li>
 
     
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../lifecycle/" title="Lifecycle" class="md-nav__link">
+      Lifecycle
+    </a>
+  </li>
+
+    
   </ul>
 </nav>
                   </div>
@@ -249,7 +261,9 @@
 <p>The state management is made through the <code>stateReducer</code> sink, which is a stream of reducer functions. Each reducer function must receive the latest state as argument and return a new one.</p>
 <p>A <code>initialState</code> sink may be used to set the initial state when needed.</p>
 <p>The raw state is passed to the <code>view</code> sink for use in the rendering.</p>
-<div class="codehilite"><pre><span></span><span class="kr">interface</span> <span class="nx">State</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="nx">reuse</span> <span class="nx">from</span> <span class="s1">&#39;reuse&#39;</span>
+
+<span class="kr">interface</span> <span class="nx">State</span> <span class="p">{</span>
   <span class="nx">count</span>: <span class="kt">number</span>
 <span class="p">}</span>
 
@@ -270,7 +284,7 @@
       <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">emmiter</span><span class="p">.</span><span class="nx">signal</span><span class="p">(</span><span class="nx">increment</span><span class="p">)}</span><span class="o">&gt;</span><span class="nx">Increment</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
     <span class="p">)</span>
   <span class="p">}</span>
-<span class="p">}</span>
+<span class="p">})</span>
 </pre></div>
                 
                   
@@ -304,6 +318,20 @@
             </div>
           </a>
         
+        
+          <a href="../lifecycle/" title="Lifecycle" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Lifecycle
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
         
       </nav>
     </div>
