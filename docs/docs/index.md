@@ -1,4 +1,6 @@
-# Hello World
+# Get Started
+
+## Hello World
 
 The `reuse` function takes in a function which receives `sources` and return `sinks` (any similarity with Cycle.js is not just coincidence).
 

@@ -4,7 +4,7 @@ markdown_extensions:
 theme:
   name: 'material'
 pages:
-  - Hello World: index.md
+  - Get Started: index.md
   - Props: props.md
   - Interaction: interaction.md
   - Component State: component-state.md
