@@ -5,7 +5,7 @@ git checkout master -- docs &&
 cd docs &&
 mkdocs build &&
 cd .. &&
-mv -f docs/site/* ./ &&
+rsync -a docs/site/* ./ --remove-sent-files --whole-file &&
 rm -rf docs &&
 git add . -A &&
 git commit -m "$1" &&
