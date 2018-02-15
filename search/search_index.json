@@ -2,7 +2,7 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Get Started\n\n\nHello World\n\n\nThe \nreuse\n function takes in a function which receives \nsources\n and return \nsinks\n (any similarity with Cycle.js is not just coincidence).\n\n\nimport\n \nreuse\n \nfrom\n \nreuse\n\n\nimport\n \nReactDOM\n \nfrom\n \nreact-dom\n\n\n\nconst\n \nApp\n \n=\n \nreuse\n(\nsources\n \n=\n \n{\n\n  \n// Component logic goes here\n\n\n  \nconst\n \nsinks\n \n=\n \n{\n\n    \nview\n:\n \n()\n \n=\n \n(\n\n      \ndiv\nHello\n \nWorld\n/div\n\n    \n)\n\n  \n}\n\n\n  \nreturn\n \nsinks\n\n\n})\n\n\n\n\n\n\nThe value returned by \nreuse\n is a common React component which can be used just like any other React component:\n\n\nReactDOM\n.\nrender\n(\nApp\n \n/\n,\n \ndocument\n.\ngetElementById\n(\napp\n))", 
+            "text": "Get Started\n\n\nIntroduction\n\n\nReuse exports a \nreuse\n function, which expects a \nmain\n component function as it's only argument and returns a traditional React component - \nReact.ComponentClass\n.\n\n\nThe \nmain\n function is how the Reuse component is actually defined. It receives a \nsources\n object, which provides the component with the information it needs, and returns a \nsinks\n object, which specifies how the component should behaviour.\n\n\nconst\n \nmain\n \n=\n \n(\nsources\n)\n \n=\n \n{\n\n  \nconst\n \nsinks\n \n=\n \n{}\n\n  \nreturn\n \nsinks\n\n\n}\n\n\n\nconst\n \ncomponent\n \n=\n \nreuse\n(\nmain\n)\n\n\n\n\n\n\nHello World\n\n\nThe \nreuse\n function takes in a function which receives \nsources\n and return \nsinks\n (any similarity with Cycle.js is not just coincidence).\n\n\nimport\n \nreuse\n \nfrom\n \nreuse\n\n\nimport\n \nReactDOM\n \nfrom\n \nreact-dom\n\n\n\nconst\n \nApp\n \n=\n \nreuse\n(\n\n  \nsources\n \n=\n \n({\n\n    \nview\n:\n \n()\n \n=\n \n(\n\n      \ndiv\nHello\n \nWorld\n/div\n\n    \n)\n\n  \n})\n\n\n)\n\n\n\nReactDOM\n.\nrender\n(\nApp\n \n/\n,\n \ndocument\n.\ngetElementById\n(\napp\n))", 
             "title": "Get Started"
         }, 
         {
@@ -11,8 +11,13 @@
             "title": "Get Started"
         }, 
         {
+            "location": "/#introduction", 
+            "text": "Reuse exports a  reuse  function, which expects a  main  component function as it's only argument and returns a traditional React component -  React.ComponentClass .  The  main  function is how the Reuse component is actually defined. It receives a  sources  object, which provides the component with the information it needs, and returns a  sinks  object, which specifies how the component should behaviour.  const   main   =   ( sources )   =   { \n   const   sinks   =   {} \n   return   sinks  }  const   component   =   reuse ( main )", 
+            "title": "Introduction"
+        }, 
+        {
             "location": "/#hello-world", 
-            "text": "The  reuse  function takes in a function which receives  sources  and return  sinks  (any similarity with Cycle.js is not just coincidence).  import   reuse   from   reuse  import   ReactDOM   from   react-dom  const   App   =   reuse ( sources   =   { \n   // Component logic goes here \n\n   const   sinks   =   { \n     view :   ()   =   ( \n       div Hello   World /div \n     ) \n   } \n\n   return   sinks  })   The value returned by  reuse  is a common React component which can be used just like any other React component:  ReactDOM . render ( App   / ,   document . getElementById ( app ))", 
+            "text": "The  reuse  function takes in a function which receives  sources  and return  sinks  (any similarity with Cycle.js is not just coincidence).  import   reuse   from   reuse  import   ReactDOM   from   react-dom  const   App   =   reuse ( \n   sources   =   ({ \n     view :   ()   =   ( \n       div Hello   World /div \n     ) \n   })  )  ReactDOM . render ( App   / ,   document . getElementById ( app ))", 
             "title": "Hello World"
         }, 
         {
@@ -37,13 +42,13 @@
         }, 
         {
             "location": "/component-state/", 
-            "text": "Component state\n\n\nThe state management is made through the \nstateReducer\n sink, which is a stream of reducer functions. Each reducer function must receive the latest state as argument and return a new one.\n\n\nA \ninitialState\n sink may be used to set the initial state when needed.\n\n\nThe raw state is passed to the \nview\n sink for use in the rendering.\n\n\nimport\n \nreuse\n \nfrom\n \nreuse\n\n\n\ninterface\n \nState\n \n{\n\n  \ncount\n: \nnumber\n\n\n}\n\n\n\nconst\n \nIncrementer\n \n=\n \nreuse\n{},\n \nState\n(\nsources\n \n=\n \n{\n\n  \nconst\n \nincrement\n \n=\n \nStream\n.\ncreate\nundefined\n()\n\n\n  \nreturn\n \n{\n\n    \ninitialState\n:\n \n{\n\n      \ncount\n: \n0\n,\n\n    \n},\n\n\n    \nstateReducer\n: \nincrement.mapTo\n((\nstate\n: \nState\n)\n \n=\n \n({\n\n      \ncount\n: \nstate.count\n \n+\n \n1\n,\n\n    \n})),\n\n\n    \nview\n:\n \n({\n \nstate\n,\n \nemitter\n \n})\n \n=\n \n(\n\n      \np\nCount\n:\n \n{\nstate\n.\ncount\n}\n/p\n\n      \nbutton\n \nonClick\n=\n{\nemmiter\n.\nsignal\n(\nincrement\n)}\nIncrement\n/button\n\n    \n)\n\n  \n}\n\n\n})", 
+            "text": "Component State\n\n\nThe state management is made through the \nstateReducer\n sink, which is a stream of reducer functions. Each reducer function must receive the latest state as argument and return a new one.\n\n\nA \ninitialState\n sink may be used to set the initial state when needed.\n\n\nThe raw state is passed to the \nview\n sink for use in the rendering.\n\n\nimport\n \nreuse\n \nfrom\n \nreuse\n\n\n\ninterface\n \nState\n \n{\n\n  \ncount\n: \nnumber\n\n\n}\n\n\n\nconst\n \nIncrementer\n \n=\n \nreuse\n{},\n \nState\n(\nsources\n \n=\n \n{\n\n  \nconst\n \nincrement\n \n=\n \nStream\n.\ncreate\nundefined\n()\n\n\n  \nreturn\n \n{\n\n    \ninitialState\n:\n \n{\n\n      \ncount\n: \n0\n,\n\n    \n},\n\n\n    \nstateReducer\n: \nincrement.mapTo\n((\nstate\n: \nState\n)\n \n=\n \n({\n\n      \ncount\n: \nstate.count\n \n+\n \n1\n,\n\n    \n})),\n\n\n    \nview\n:\n \n({\n \nstate\n,\n \nemitter\n \n})\n \n=\n \n(\n\n      \np\nCount\n:\n \n{\nstate\n.\ncount\n}\n/p\n\n      \nbutton\n \nonClick\n=\n{\nemmiter\n.\nsignal\n(\nincrement\n)}\nIncrement\n/button\n\n    \n)\n\n  \n}\n\n\n})", 
             "title": "Component State"
         }, 
         {
             "location": "/component-state/#component-state", 
             "text": "The state management is made through the  stateReducer  sink, which is a stream of reducer functions. Each reducer function must receive the latest state as argument and return a new one.  A  initialState  sink may be used to set the initial state when needed.  The raw state is passed to the  view  sink for use in the rendering.  import   reuse   from   reuse  interface   State   { \n   count :  number  }  const   Incrementer   =   reuse {},   State ( sources   =   { \n   const   increment   =   Stream . create undefined () \n\n   return   { \n     initialState :   { \n       count :  0 , \n     }, \n\n     stateReducer :  increment.mapTo (( state :  State )   =   ({ \n       count :  state.count   +   1 , \n     })), \n\n     view :   ({   state ,   emitter   })   =   ( \n       p Count :   { state . count } /p \n       button   onClick = { emmiter . signal ( increment )} Increment /button \n     ) \n   }  })", 
-            "title": "Component state"
+            "title": "Component State"
         }, 
         {
             "location": "/lifecycle/", 
