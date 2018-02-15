@@ -1,4 +1,4 @@
-# Component state
+# Component State
 
 The state management is made through the `stateReducer` sink, which is a stream of reducer functions. Each reducer function must receive the latest state as argument and return a new one.
 
