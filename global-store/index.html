@@ -36,7 +36,7 @@
     
     
       
-        <title>Props - Reuse</title>
+        <title>Global Store - Reuse</title>
       
     
     
@@ -69,7 +69,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
-      <a href="#props" tabindex="1" class="md-skip">
+      <a href="#global-store" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -95,7 +95,7 @@
                 Reuse
               </span>
               <span class="md-header-nav__topic">
-                Props
+                Global Store
               </span>
             
           
@@ -176,20 +176,11 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-      
-    
-    
-    <a href="./" title="Props" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../props/" title="Props" class="md-nav__link">
       Props
     </a>
-    
   </li>
 
     
@@ -233,11 +224,54 @@
       
       
 
+  
 
-  <li class="md-nav__item">
-    <a href="../global-store/" title="Global Store" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Global Store
+      </label>
+    
+    <a href="./" title="Global Store" class="md-nav__link md-nav__link--active">
       Global Store
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-store" title="Creating a Store" class="md-nav__link">
+    Creating a Store
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#making-the-store-available" title="Making the store available" class="md-nav__link">
+    Making the store available
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
     
@@ -258,6 +292,27 @@
     
   
   
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-store" title="Creating a Store" class="md-nav__link">
+    Creating a Store
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#making-the-store-available" title="Making the store available" class="md-nav__link">
+    Making the store available
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -269,29 +324,33 @@
               
                 
                 
-                <h1 id="props">Props</h1>
-<p>A stream of props is available through the sources object. The raw props are also passed to the <code>view</code> sink, so it can be easely used on the rendering.</p>
-<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="nx">reuse</span> <span class="nx">from</span> <span class="s1">&#39;reuse&#39;</span>
-<span class="kr">import</span> <span class="nx">ReactDOM</span> <span class="nx">from</span> <span class="s1">&#39;react-dom&#39;</span>
+                <h1 id="global-store">Global Store</h1>
+<p>Reuse - unlike most frontend frameworks - has it's own way of managing application's global store, which is much similar to how we manage a component's local state: the store is updated using the <code>storeReducer</code> sink, and is available to the component through the <code>sources.store</code> stream.</p>
+<p>Unlike the local state, though, we must first create the store and make it available to the whole application through the React context.</p>
+<h2 id="creating-a-store">Creating a Store</h2>
+<p>To create a global store, use the helper function <code>createStore</code>.</p>
+<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">createStore</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;reuse&#39;</span>
 
-<span class="kr">interface</span> <span class="nx">Props</span> <span class="p">{</span>
-  <span class="nx">name</span>: <span class="kt">string</span>
+<span class="kr">interface</span> <span class="nx">Store</span> <span class="p">{</span>
+  <span class="nx">foo</span>: <span class="kt">string</span>
 <span class="p">}</span>
 
-<span class="kr">const</span> <span class="nx">Hello</span> <span class="o">=</span> <span class="nx">reuse</span><span class="o">&lt;</span><span class="nx">Props</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">sources</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kr">const</span> <span class="nx">props$</span> <span class="o">=</span> <span class="nx">sources</span><span class="p">.</span><span class="nx">props</span>
+<span class="kr">const</span> <span class="nx">initialStore</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">foo</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span>
+<span class="p">}</span>
 
-  <span class="k">return</span> <span class="p">{</span>
-    <span class="nx">view</span><span class="o">:</span> <span class="p">({</span> <span class="nx">props</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">(</span>
-      <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">Hello</span> <span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/div&gt;</span>
-    <span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">})</span>
+<span class="kr">const</span> <span class="nx">globalStore</span> <span class="o">=</span> <span class="nx">createStore</span><span class="o">&lt;</span><span class="nx">Store</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">initialStore</span><span class="p">)</span>
+</pre></div>
 
-<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
-  <span class="o">&lt;</span><span class="nx">Hello</span> <span class="nx">name</span><span class="o">=</span><span class="s1">&#39;World&#39;</span> <span class="o">/&gt;</span><span class="p">,</span>
-  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;app&#39;</span><span class="p">)</span>
-<span class="p">)</span>
+
+<h2 id="making-the-store-available">Making the store available</h2>
+<p>To make the global store available, use the High Order Component <code>withStoreProvider</code>.</p>
+<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="nx">App</span> <span class="nx">from</span> <span class="s1">&#39;./app&#39;</span>
+<span class="kr">import</span> <span class="nx">store</span> <span class="nx">from</span> <span class="s1">&#39;./store&#39;</span>
+
+<span class="kr">const</span> <span class="nx">AppWithGlobalStore</span> <span class="o">=</span> <span class="nx">withStoreProvider</span><span class="p">(</span><span class="nx">store</span><span class="p">)(</span><span class="nx">App</span><span class="p">)</span>
+
+<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">AppWithGlobalStore</span> <span class="o">/&gt;</span><span class="p">,</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;app&#39;</span><span class="p">))</span>
 </pre></div>
                 
                   
@@ -311,7 +370,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href=".." title="Get Started" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../lifecycle/" title="Lifecycle" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -320,25 +379,11 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Get Started
+                Lifecycle
               </span>
             </div>
           </a>
         
-        
-          <a href="../interaction/" title="Interaction" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Interaction
-              </span>
-            </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-            </div>
-          </a>
         
       </nav>
     </div>

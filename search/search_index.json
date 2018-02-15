@@ -59,6 +59,26 @@
             "location": "/lifecycle/#lifecycle", 
             "text": "Every React lifecycle event is emitted in the  sources.lifecycle  stream.  import   reuse ,   {   ReactLifecycle   }   from   reuse  interface   State   { \n   isMounted :  boolean  }  const   Incrementer   =   reuse {},   State ( sources   =   ({ \n     initialState :   { \n       isMounted :  false , \n     }, \n\n     stateReducer :  sources.lifecycle \n       . filter ( event   =   event   ===   ReactLifecycle . componentDidMount ) \n       . mapTo (( state :  State )   =   ({ \n         isMounted :  true , \n       })), \n   })  )", 
             "title": "Lifecycle"
+        }, 
+        {
+            "location": "/global-store/", 
+            "text": "Global Store\n\n\nReuse - unlike most frontend frameworks - has it's own way of managing application's global store, which is much similar to how we manage a component's local state: the store is updated using the \nstoreReducer\n sink, and is available to the component through the \nsources.store\n stream.\n\n\nUnlike the local state, though, we must first create the store and make it available to the whole application through the React context.\n\n\nCreating a Store\n\n\nTo create a global store, use the helper function \ncreateStore\n.\n\n\nimport\n \n{\n \ncreateStore\n \n}\n \nfrom\n \nreuse\n\n\n\ninterface\n \nStore\n \n{\n\n  \nfoo\n: \nstring\n\n\n}\n\n\n\nconst\n \ninitialStore\n \n=\n \n{\n\n  \nfoo\n:\n \nbar\n\n\n}\n\n\n\nconst\n \nglobalStore\n \n=\n \ncreateStore\nStore\n(\ninitialStore\n)\n\n\n\n\n\n\nMaking the store available\n\n\nTo make the global store available, use the High Order Component \nwithStoreProvider\n.\n\n\nimport\n \nApp\n \nfrom\n \n./app\n\n\nimport\n \nstore\n \nfrom\n \n./store\n\n\n\nconst\n \nAppWithGlobalStore\n \n=\n \nwithStoreProvider\n(\nstore\n)(\nApp\n)\n\n\n\nReactDOM\n.\nrender\n(\nAppWithGlobalStore\n \n/\n,\n \ndocument\n.\ngetElementById\n(\napp\n))", 
+            "title": "Global Store"
+        }, 
+        {
+            "location": "/global-store/#global-store", 
+            "text": "Reuse - unlike most frontend frameworks - has it's own way of managing application's global store, which is much similar to how we manage a component's local state: the store is updated using the  storeReducer  sink, and is available to the component through the  sources.store  stream.  Unlike the local state, though, we must first create the store and make it available to the whole application through the React context.", 
+            "title": "Global Store"
+        }, 
+        {
+            "location": "/global-store/#creating-a-store", 
+            "text": "To create a global store, use the helper function  createStore .  import   {   createStore   }   from   reuse  interface   Store   { \n   foo :  string  }  const   initialStore   =   { \n   foo :   bar  }  const   globalStore   =   createStore Store ( initialStore )", 
+            "title": "Creating a Store"
+        }, 
+        {
+            "location": "/global-store/#making-the-store-available", 
+            "text": "To make the global store available, use the High Order Component  withStoreProvider .  import   App   from   ./app  import   store   from   ./store  const   AppWithGlobalStore   =   withStoreProvider ( store )( App )  ReactDOM . render ( AppWithGlobalStore   / ,   document . getElementById ( app ))", 
+            "title": "Making the store available"
         }
     ]
 }
