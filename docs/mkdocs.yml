@@ -9,3 +9,4 @@ pages:
   - Interaction: interaction.md
   - Component State: component-state.md
   - Lifecycle: lifecycle.md
+  - Global Store: global-store.md
