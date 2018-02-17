@@ -1,8 +1,30 @@
 # Props and State
 
+The `props` and `state` objects are the two main sources of truth in a React component. In Reuse, streams of props and state are available through the `sources` object, what enables us to combine or compose them with other asynchronous data, such as lifecycle events or user interaction.
+
+However, as two particularly important sources of truth, they are also passed as plain objects to the `view` sink, so we can easely use them in the rendering.
+
+```typescript
+const Component = reuse(
+  (sources) => {
+    const props$ = sources.props
+    const state$ = sources.state
+
+    return {
+      view: ({ props, state }) => (
+        <div>
+          <p>{props.foo}<p/>
+          <p>{state.bar}<p/>
+        </div>
+      )
+    }
+  }
+)
+```
+
 ## Props
 
-A stream of props is available through the sources object. The raw props are also passed to the `view` sink, so it can be easely used on the rendering.
+The stream of props is available through the `sources.props` parameter. The raw props are also passed to the `view` sink, so it can be easely used on the rendering.
 
 ```typescript
 import reuse from 'reuse'
