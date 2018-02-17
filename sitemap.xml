@@ -2,51 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     
+        
     <url>
      <loc>/</loc>
-     <lastmod>2018-02-15</lastmod>
+     <lastmod>2018-02-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
-    
-
-    
+        
     <url>
-     <loc>/props/</loc>
-     <lastmod>2018-02-15</lastmod>
+     <loc>/quick-start/props-and-state/</loc>
+     <lastmod>2018-02-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
-    
-
-    
+        
     <url>
-     <loc>/interaction/</loc>
-     <lastmod>2018-02-15</lastmod>
+     <loc>/quick-start/handling-events/</loc>
+     <lastmod>2018-02-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
-    
-
-    
+        
     <url>
-     <loc>/component-state/</loc>
-     <lastmod>2018-02-15</lastmod>
+     <loc>/quick-start/lifecycle/</loc>
+     <lastmod>2018-02-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
-    
-
-    
+        
     <url>
-     <loc>/lifecycle/</loc>
-     <lastmod>2018-02-15</lastmod>
+     <loc>/quick-start/global-state/</loc>
+     <lastmod>2018-02-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
-    
-
-    
-    <url>
-     <loc>/global-store/</loc>
-     <lastmod>2018-02-15</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
+        
     
 
 </urlset>

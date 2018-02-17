@@ -31,20 +31,20 @@
       
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
-      <link rel="shortcut icon" href="./assets/images/favicon.png">
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-0.17.2, mkdocs-material-2.6.0">
     
     
       
-        <title>Reuse</title>
+        <title>Global State - Reuse</title>
       
     
     
-      <link rel="stylesheet" href="./assets/stylesheets/application.aa3de92b.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.aa3de92b.css">
       
     
     
-      <script src="./assets/javascripts/modernizr.1aa3b519.js"></script>
+      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
     
     
       
@@ -69,7 +69,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
-      <a href="#introduction" tabindex="1" class="md-skip">
+      <a href="#global-state" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -78,7 +78,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="." title="Reuse" class="md-header-nav__button md-logo">
+        <a href="../.." title="Reuse" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -95,7 +95,7 @@
                 Reuse
               </span>
               <span class="md-header-nav__topic">
-                Introduction
+                Global State
               </span>
             
           
@@ -185,6 +185,54 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../.." title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../props-and-state/" title="Props and State" class="md-nav__link">
+      Props and State
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../handling-events/" title="Handling Events" class="md-nav__link">
+      Handling Events
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../lifecycle/" title="Lifecycle" class="md-nav__link">
+      Lifecycle
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -196,11 +244,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="toc">
-        Introduction
+        Global State
       </label>
     
-    <a href="." title="Introduction" class="md-nav__link md-nav__link--active">
-      Introduction
+    <a href="./" title="Global State" class="md-nav__link md-nav__link--active">
+      Global State
     </a>
     
       
@@ -214,15 +262,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#components-structure" title="Component's Structure" class="md-nav__link">
-    Component's Structure
+  <a href="#creating-a-store" title="Creating a Store" class="md-nav__link">
+    Creating a Store
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#hello-world" title="Hello World" class="md-nav__link">
-    Hello World
+  <a href="#making-the-store-available" title="Making the store available" class="md-nav__link">
+    Making the store available
   </a>
   
 </li>
@@ -233,54 +281,6 @@
   
 </nav>
     
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="quick-start/props-and-state/" title="Props and State" class="md-nav__link">
-      Props and State
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="quick-start/handling-events/" title="Handling Events" class="md-nav__link">
-      Handling Events
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="quick-start/lifecycle/" title="Lifecycle" class="md-nav__link">
-      Lifecycle
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="quick-start/global-state/" title="Global State" class="md-nav__link">
-      Global State
-    </a>
   </li>
 
         
@@ -310,15 +310,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#components-structure" title="Component's Structure" class="md-nav__link">
-    Component's Structure
+  <a href="#creating-a-store" title="Creating a Store" class="md-nav__link">
+    Creating a Store
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#hello-world" title="Hello World" class="md-nav__link">
-    Hello World
+  <a href="#making-the-store-available" title="Making the store available" class="md-nav__link">
+    Making the store available
   </a>
   
 </li>
@@ -338,46 +338,33 @@
               
                 
                 
-                <h1 id="introduction">Introduction</h1>
-<p>Reuse allows us to implement React components and aplications in a functional/reactive way, making it much more natural to deal with the asynchronicity of interfaces.</p>
-<p>Think of all the data and events you're used to work with in React, such as props, state, lifecycle, user interaction, etc. These are all asynchronous by nature, the data change and the events emit along time, more than often triggered by previous events and producing new ones. Basicaly what Reuse does is to turn all of this data and events into reactive streams, completely embracing the asynchronicity and allowing us to take advantage of it.</p>
-<h2 id="components-structure">Component's Structure</h2>
-<p>A Reuse component is a function which receives a <code>sources</code> object and returns a <code>sinks</code> object. The <code>sources</code> is how we access the streams from the React side - props, state, lifecycle, etc. The <code>sinks</code> is how we describe our component behaviour.</p>
-<div class="codehilite"><pre><span></span><span class="kr">const</span> <span class="nx">component</span> <span class="o">=</span> <span class="p">(</span><span class="nx">sources</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kr">const</span> <span class="nx">sinks</span> <span class="o">=</span> <span class="p">{}</span>
-  <span class="k">return</span> <span class="nx">sinks</span>
+                <h1 id="global-state">Global State</h1>
+<p>Reuse - unlike most frontend frameworks - has it's own way of managing application's global state, which is much similar to how we manage a component's local state: the global state is updated using the <code>storeReducer</code> sink, and is available to the component through the <code>sources.store</code> stream.</p>
+<p>Unlike the local state, though, we must first create the store and make it available to the whole application through the React context.</p>
+<h2 id="creating-a-store">Creating a Store</h2>
+<p>To create a global store, use the helper function <code>createStore</code>.</p>
+<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">createStore</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;reuse&#39;</span>
+
+<span class="kr">interface</span> <span class="nx">Store</span> <span class="p">{</span>
+  <span class="nx">foo</span>: <span class="kt">string</span>
 <span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">initialStore</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">foo</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">globalStore</span> <span class="o">=</span> <span class="nx">createStore</span><span class="o">&lt;</span><span class="nx">Store</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">initialStore</span><span class="p">)</span>
 </pre></div>
 
 
-<h2 id="hello-world">Hello World</h2>
-<p>A simple component may return a <code>sinks</code> object containing only a <code>view</code> property, which is responsible for describing how the component should render.</p>
-<div class="codehilite"><pre><span></span><span class="kr">const</span> <span class="nx">HelloWorld</span> <span class="o">=</span> <span class="p">(</span><span class="nx">sources</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span>
-  <span class="nx">view</span><span class="o">:</span> <span class="p">(</span><span class="nx">viewArgs</span><span class="p">)</span> <span class="o">=&gt;</span>
-    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
-      <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">Hello</span> <span class="nx">World</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
-    <span class="o">&lt;</span><span class="err">/div&gt;</span>
-<span class="p">})</span>
-</pre></div>
+<h2 id="making-the-store-available">Making the store available</h2>
+<p>To make the global store available, use the High Order Component <code>withStoreProvider</code>.</p>
+<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="nx">App</span> <span class="nx">from</span> <span class="s1">&#39;./app&#39;</span>
+<span class="kr">import</span> <span class="nx">store</span> <span class="nx">from</span> <span class="s1">&#39;./store&#39;</span>
 
+<span class="kr">const</span> <span class="nx">AppWithGlobalStore</span> <span class="o">=</span> <span class="nx">withStoreProvider</span><span class="p">(</span><span class="nx">store</span><span class="p">)(</span><span class="nx">App</span><span class="p">)</span>
 
-<p>Now our component is implemented, we must use Reuse to convert it to a conventional React component:</p>
-<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="nx">ReactDOM</span> <span class="nx">from</span> <span class="s1">&#39;react-dom&#39;</span>
-<span class="kr">import</span> <span class="nx">reuse</span> <span class="nx">from</span> <span class="s1">&#39;reuse&#39;</span>
-
-<span class="kr">const</span> <span class="nx">main</span> <span class="o">=</span> <span class="p">(</span><span class="nx">sources</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span>
-  <span class="nx">view</span><span class="o">:</span> <span class="p">(</span><span class="nx">viewArgs</span><span class="p">)</span> <span class="o">=&gt;</span>
-    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
-      <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">Hello</span> <span class="nx">World</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
-    <span class="o">&lt;</span><span class="err">/div&gt;</span>
-<span class="p">})</span>
-
-<span class="kr">const</span> <span class="nx">HelloWorld</span> <span class="o">=</span> <span class="nx">reuse</span><span class="p">(</span><span class="nx">main</span><span class="p">)</span>
-
-<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
-  <span class="o">&lt;</span><span class="nx">HelloWorld</span> <span class="o">/&gt;</span><span class="p">,</span>
-  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;app&#39;</span><span class="p">)</span>
-<span class="p">)</span>
+<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">AppWithGlobalStore</span> <span class="o">/&gt;</span><span class="p">,</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;app&#39;</span><span class="p">))</span>
 </pre></div>
                 
                   
@@ -397,20 +384,20 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-        
-          <a href="quick-start/props-and-state/" title="Props and State" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../lifecycle/" title="Lifecycle" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
-                  Next
+                  Previous
                 </span>
-                Props and State
+                Lifecycle
               </span>
             </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-            </div>
           </a>
+        
         
       </nav>
     </div>
@@ -434,9 +421,9 @@
       
     </div>
     
-      <script src="./assets/javascripts/application.9fb73e57.js"></script>
+      <script src="../../assets/javascripts/application.9fb73e57.js"></script>
       
-      <script>app.initialize({version:"0.17.2",url:{base:"."}})</script>
+      <script>app.initialize({version:"0.17.2",url:{base:"../.."}})</script>
       
     
     
