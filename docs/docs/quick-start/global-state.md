@@ -1,6 +1,6 @@
-# Global Store
+# Global State
 
-Reuse - unlike most frontend frameworks - has it's own way of managing application's global store, which is much similar to how we manage a component's local state: the store is updated using the `storeReducer` sink, and is available to the component through the `sources.store` stream.
+Reuse - unlike most frontend frameworks - has it's own way of managing application's global state, which is much similar to how we manage a component's local state: the global state is updated using the `storeReducer` sink, and is available to the component through the `sources.store` stream.
 
 Unlike the local state, though, we must first create the store and make it available to the whole application through the React context.
 

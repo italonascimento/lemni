@@ -1,35 +1,50 @@
-# Get Started
+# Introduction
 
-## Introduction
+Reuse allows us to implement React components and aplications in a functional/reactive way, making it much more natural to deal with the asynchronicity of interfaces.
 
-Reuse exports a `reuse` function, which expects a `main` component function as it's only argument and returns a traditional React component - `React.ComponentClass`.
+Think of all the data and events you're used to work with in React, such as props, state, lifecycle, user interaction, etc. These are all asynchronous by nature, the data change and the events emit along time, more than often triggered by previous events and producing new ones. Basicaly what Reuse does is to turn all of this data and events into reactive streams, completely embracing the asynchronicity and allowing us to take advantage of it.
 
-The `main` function is how the Reuse component is actually defined. It receives a `sources` object, which provides the component with the information it needs, and returns a `sinks` object, which specifies how the component should behaviour.
+## Component's Structure
+
+A Reuse component is a function which receives a `sources` object and returns a `sinks` object. The `sources` is how we access the streams from the React side - props, state, lifecycle, etc. The `sinks` is how we describe our component behaviour.
 
 ```typescript
-const main = (sources) => {
+const component = (sources) => {
   const sinks = {}
   return sinks
 }
-
-const component = reuse(main)
 ```
 
 ## Hello World
 
-The `reuse` function takes in a function which receives `sources` and return `sinks` (any similarity with Cycle.js is not just coincidence).
+A simple component may return a `sinks` object containing only a `view` property, which is responsible for describing how the component should render.
 
 ```typescript
-import reuse from 'reuse'
+const HelloWorld = (sources) => ({
+  view: (viewArgs) =>
+    <div>
+      <p>Hello World</p>
+    </div>
+})
+```
+
+Now our component is implemented, we must use Reuse to convert it to a conventional React component:
+
+```typescript
 import ReactDOM from 'react-dom'
+import reuse from 'reuse'
 
-const App = reuse(
-  sources => ({
-    view: () => (
-      <div>Hello World</div>
-    )
-  })
+const main = (sources) => ({
+  view: (viewArgs) =>
+    <div>
+      <p>Hello World</p>
+    </div>
+})
+
+const HelloWorld = reuse(main)
+
+ReactDOM.render(
+  <HelloWorld />,
+  document.getElementById('app')
 )
-
-ReactDOM.render(<App />, document.getElementById('app'))
 ```

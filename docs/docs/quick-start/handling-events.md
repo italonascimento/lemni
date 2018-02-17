@@ -1,4 +1,4 @@
-# Interaction
+# Handling Events
 
 All interaction in Reuse is managed through event streams. The events are defined inside the component function and emited inside the `view` sink. To easely emit events, use the `emitter` helper passed to `view`.
 

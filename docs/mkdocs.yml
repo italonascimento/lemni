@@ -4,9 +4,9 @@ markdown_extensions:
 theme:
   name: 'material'
 pages:
-  - Get Started: index.md
-  - Props: props.md
-  - Interaction: interaction.md
-  - Component State: component-state.md
-  - Lifecycle: lifecycle.md
-  - Global Store: global-store.md
+  - QUICK START:
+    - Introduction: index.md
+    - Props and State: quick-start/props-and-state.md
+    - Handling Events: quick-start/handling-events.md
+    - Lifecycle: quick-start/lifecycle.md
+    - Global State: quick-start/global-state.md
