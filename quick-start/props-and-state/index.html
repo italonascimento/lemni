@@ -343,8 +343,7 @@
 <p>However, as two particularly important sources of truth, they are also passed as plain objects to the <code>view</code> sink, so we can easely use them in the rendering.</p>
 <div class="codehilite"><pre><span></span><span class="kr">const</span> <span class="nx">Component</span> <span class="o">=</span> <span class="nx">reuse</span><span class="p">(</span>
   <span class="p">(</span><span class="nx">sources</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="kr">const</span> <span class="nx">props$</span> <span class="o">=</span> <span class="nx">sources</span><span class="p">.</span><span class="nx">props</span>
-    <span class="kr">const</span> <span class="nx">state$</span> <span class="o">=</span> <span class="nx">sources</span><span class="p">.</span><span class="nx">state</span>
+    <span class="kr">const</span> <span class="p">{</span> <span class="nx">props</span><span class="p">,</span> <span class="nx">state</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">sources</span>
 
     <span class="k">return</span> <span class="p">{</span>
       <span class="c1">// pay atention to the destructuring of the argument</span>
@@ -366,7 +365,6 @@
 <li>through the argument of the <code>view</code> function, for rendering prposes;</li>
 <li>through the <code>sources.props</code> stream, generaly used for composition of streams - as shown on the <a href="#state">State</a> topic bellow. </li>
 </ul>
-<p>The stream of props is available at <code>sources.props</code>. Any changes on the props passed to the component will trigger a new emission on the stream, and will also cause a new call to the <code>view</code> sink with the updated props.</p>
 <p>Any changes on a component's props will cause the <code>view</code> sink function to be called again with the updated value, as well as trigger a new emission on the <code>sources.props</code> stream.</p>
 <h2 id="state">State</h2>
 <p>The state management is made through the <code>stateReducer</code> sink, which is a stream of reducer functions. Each reducer function must receive the latest state as argument and return a new one.</p>
