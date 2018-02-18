@@ -339,10 +339,12 @@
                 
                 
                 <h1 id="introduction">Introduction</h1>
-<p>Reuse allows us to implement React components and aplications in a functional/reactive way, making it much more natural to deal with the asynchronicity of interfaces.</p>
+<p>Reuse allows us to implement React components and aplications in a <strong>functional and reactive</strong> way, making it much more natural to deal with the asynchronicity of interfaces, as well as isolating side effects away from the actual implementation.</p>
 <p>Think of all the data and events you're used to work with in React, such as props, state, lifecycle, user interaction, etc. These are all asynchronous by nature, the data change and the events emit along time, more than often triggered by previous events and producing new ones. Basicaly what Reuse does is to turn all of this data and events into reactive streams, completely embracing the asynchronicity and allowing us to take advantage of it.</p>
 <h2 id="components-structure">Component's Structure</h2>
-<p>A Reuse component is a function which receives a <code>sources</code> object and returns a <code>sinks</code> object. The <code>sources</code> is how we access the streams from the React side - props, state, lifecycle, etc. The <code>sinks</code> is how we describe our component behaviour.</p>
+<p>A Reuse component is a function which receives a <code>sources</code> object and returns a <code>sinks</code> object.</p>
+<p>The <code>sources</code> is how we access - as streams - all the data from the React side, such as props, state, lifecycle, etc.</p>
+<p>The <code>sinks</code> is how we describe our component's behaviour and side effecs, in a declarative way. In other words, <strong>side effects are never executed imperatively inside a component implementation; they are instead described in the sinks, to be isolated executed on the Reuse side</strong>.</p>
 <div class="codehilite"><pre><span></span><span class="kr">const</span> <span class="nx">component</span> <span class="o">=</span> <span class="p">(</span><span class="nx">sources</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="kr">const</span> <span class="nx">sinks</span> <span class="o">=</span> <span class="p">{}</span>
   <span class="k">return</span> <span class="nx">sinks</span>
