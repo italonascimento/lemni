@@ -7,10 +7,12 @@ However, as two particularly important sources of truth, they are also passed as
 ```typescript
 const Component = reuse(
   (sources) => {
+    // streams of props and state
     const { props, state } = sources
 
     return {
-      // pay atention to the destructuring of the argument
+      // plain props and state objects
+      // (pay atention to the destructuring of the argument)
       view: ({ props, state }) => (
         <div>
           <p>{props.foo}<p/>
@@ -24,7 +26,18 @@ const Component = reuse(
 
 ## Props
 
-There are two ways of using a component's props:
+As in React, a component receives it's props from the JSX arguments:
+
+```typescript
+<MyComponent foo='bar' />
+
+// the resulting props are:
+// {
+//   foo: 'bar'
+// }
+```
+
+There are two ways of using a component's props in Reuse:
 
 * through the argument of the `view` function, for rendering prposes;
 * through the `sources.props` stream, generaly used for composition of streams - as shown on the [State](#state) topic bellow. 
