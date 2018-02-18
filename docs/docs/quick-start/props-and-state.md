@@ -7,10 +7,10 @@ However, as two particularly important sources of truth, they are also passed as
 ```typescript
 const Component = reuse(
   (sources) => {
-    const props$ = sources.props
-    const state$ = sources.state
+    const { props, state } = sources
 
     return {
+      // pay atention to the destructuring of the argument
       view: ({ props, state }) => (
         <div>
           <p>{props.foo}<p/>
@@ -24,33 +24,14 @@ const Component = reuse(
 
 ## Props
 
-The stream of props is available through the `sources.props` parameter. The raw props are also passed to the `view` sink, so it can be easely used on the rendering.
+There are two ways of using a component's props:
 
-```typescript
-import reuse from 'reuse'
-import ReactDOM from 'react-dom'
+* through the argument of the `view` function, for rendering prposes;
+* through the `sources.props` stream, generaly used for composition of streams - as shown on the [State](#state) topic bellow. 
 
-interface Props {
-  name: string
-}
+Any changes on a component's props will cause the `view` sink function to be called again with the updated value, as well as trigger a new emission on the `sources.props` stream.
 
-const Hello = reuse<Props>(sources => {
-  const props$ = sources.props
-
-  return {
-    view: ({ props }) => (
-      <div>Hello {props.name}</div>
-    )
-  }
-})
-
-ReactDOM.render(
-  <Hello name='World' />,
-  document.getElementById('app')
-)
-```
-
-## Component State
+## State
 
 The state management is made through the `stateReducer` sink, which is a stream of reducer functions. Each reducer function must receive the latest state as argument and return a new one.
 
