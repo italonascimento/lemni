@@ -219,9 +219,36 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Handling Events
+      </label>
+    
     <a href="./" title="Handling Events" class="md-nav__link md-nav__link--active">
       Handling Events
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-emitter" title="The emitter" class="md-nav__link">
+    The emitter
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -272,6 +299,20 @@
     
   
   
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-emitter" title="The emitter" class="md-nav__link">
+    The emitter
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -284,41 +325,59 @@
                 
                 
                 <h1 id="handling-events">Handling Events</h1>
-<p>All interaction in Reuse is managed through event streams. The events are defined inside the component function and emited inside the <code>view</code> sink. To easely emit events, use the <code>emitter</code> helper passed to <code>view</code>.</p>
-<div class="codehilite"><pre><span></span><span class="kr">const</span> <span class="nx">App</span> <span class="o">=</span> <span class="nx">reuse</span><span class="p">(</span><span class="nx">sources</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kr">const</span> <span class="nx">someAction</span> <span class="o">=</span> <span class="nx">Stream</span><span class="p">.</span><span class="nx">create</span><span class="o">&lt;</span><span class="nx">SyntheticEvent</span><span class="o">&gt;</span><span class="p">()</span>
+<p>As everything else, user interaction in Reuse is managed through streams. When an interface event occurs, instead of calling a function (the traditional React way), we emit the event to a stream.</p>
+<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="nx">reuse</span> <span class="nx">from</span> <span class="s1">&#39;reuse&#39;</span>
+<span class="kr">import</span> <span class="nx">xs</span> <span class="nx">from</span> <span class="s1">&#39;xstream&#39;</span>
 
-  <span class="k">return</span> <span class="p">{</span>
-    <span class="nx">view</span><span class="o">:</span> <span class="p">({</span> <span class="nx">emitter</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">(</span>
-      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">emmiter</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="nx">someAction</span><span class="p">)}</span><span class="o">&gt;</span><span class="nx">Do</span> <span class="nx">some</span> <span class="nx">action</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
-    <span class="p">)</span>
+<span class="kr">const</span> <span class="nx">App</span> <span class="o">=</span> <span class="nx">reuse</span><span class="p">(</span>
+  <span class="nx">sources</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">someAction</span> <span class="o">=</span> <span class="nx">xs</span><span class="p">.</span><span class="nx">Stream</span><span class="p">.</span><span class="nx">create</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="nx">view</span><span class="o">:</span> <span class="p">({</span> <span class="nx">emitter</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">(</span>
+        <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">emitter</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="nx">someAction</span><span class="p">)}</span><span class="o">&gt;</span>
+          <span class="nx">Do</span> <span class="nx">some</span> <span class="nx">action</span>
+        <span class="o">&lt;</span><span class="err">/button&gt;</span>
+      <span class="p">)</span>
+    <span class="p">}</span>
   <span class="p">}</span>
-<span class="p">}</span>
+<span class="p">)</span>
 </pre></div>
 
 
-<p>The <code>emitter</code> object has three methods: <code>emit</code>, <code>signal</code> and <code>emitValue</code>:</p>
+<p>Note the <code>emitter</code> object, extracted from the <code>view</code> argument. This helper allows us to easely forward an event's parameter directly to a stream, but not only that - it also lets us send arbitrary values or no value at all (a.k.a. <code>undefined</code>).</p>
+<h2 id="the-emitter">The <code>emitter</code></h2>
+<p>The <code>emitter</code> has three methods: <code>emit</code>, <code>signal</code> and <code>emitValue</code>. The three of them return functions that we can pass to event props in JSX.</p>
 <ul>
-<li><code>emit</code> is used to create a lambda which emits to the stream de received argument;</li>
-<li><code>signal</code> is used to create a lambda which emits <code>undefined</code> to the stream. You may use it when the value doesn't metter;</li>
-<li><code>emitValue</code> is used to create a lambda which emits a constant value to the stream.</li>
+<li><code>emit</code> will forward the event parameter to a specified stream;</li>
+<li><code>signal</code> will emit <code>undefined</code> to a specified stream, which is pretty helpful when the parameter doesn't metter;</li>
+<li><code>emitValue</code> will emit an arbitrary value to the stream.</li>
 </ul>
 <div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="nx">reuse</span> <span class="nx">from</span> <span class="s1">&#39;reuse&#39;</span>
+<span class="kr">import</span> <span class="nx">xs</span> <span class="nx">from</span> <span class="s1">&#39;xstream&#39;</span>
 
-<span class="kr">const</span> <span class="nx">App</span> <span class="o">=</span> <span class="nx">reuse</span><span class="p">(</span><span class="nx">sources</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kr">const</span> <span class="nx">firstAction</span> <span class="o">=</span> <span class="nx">Stream</span><span class="p">.</span><span class="nx">create</span><span class="o">&lt;</span><span class="nx">SyntheticEvent</span><span class="o">&gt;</span><span class="p">()</span>
-  <span class="kr">const</span> <span class="nx">secondAction</span> <span class="o">=</span> <span class="nx">Stream</span><span class="p">.</span><span class="nx">create</span><span class="o">&lt;</span><span class="kc">undefined</span><span class="o">&gt;</span><span class="p">()</span>
-  <span class="kr">const</span> <span class="nx">thirdAction</span> <span class="o">=</span> <span class="nx">Stream</span><span class="p">.</span><span class="nx">create</span><span class="o">&lt;</span><span class="kt">number</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="kr">const</span> <span class="nx">App</span> <span class="o">=</span> <span class="nx">reuse</span><span class="p">(</span>
+    <span class="nx">sources</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">firstAction</span> <span class="o">=</span> <span class="nx">xs</span><span class="p">.</span><span class="nx">Stream</span><span class="p">.</span><span class="nx">create</span><span class="o">&lt;</span><span class="nx">SyntheticEvent</span><span class="o">&gt;</span><span class="p">()</span>
+    <span class="kr">const</span> <span class="nx">secondAction</span> <span class="o">=</span> <span class="nx">xs</span><span class="p">.</span><span class="nx">Stream</span><span class="p">.</span><span class="nx">create</span><span class="o">&lt;</span><span class="kc">undefined</span><span class="o">&gt;</span><span class="p">()</span>
+    <span class="kr">const</span> <span class="nx">thirdAction</span> <span class="o">=</span> <span class="nx">xs</span><span class="p">.</span><span class="nx">Stream</span><span class="p">.</span><span class="nx">create</span><span class="o">&lt;</span><span class="kt">number</span><span class="o">&gt;</span><span class="p">()</span>
 
-  <span class="k">return</span> <span class="p">{</span>
-    <span class="nx">view</span><span class="o">:</span> <span class="p">({</span> <span class="nx">emitter</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">(</span>
-      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">emmiter</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="nx">firstAction</span><span class="p">)}</span><span class="o">&gt;</span><span class="nx">First</span> <span class="nx">action</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
-      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">emmiter</span><span class="p">.</span><span class="nx">signal</span><span class="p">(</span><span class="nx">secondAction</span><span class="p">)}</span><span class="o">&gt;</span><span class="nx">Second</span> <span class="nx">action</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
-      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">emmiter</span><span class="p">.</span><span class="nx">emitValue</span><span class="p">(</span><span class="mi">2</span><span class="p">)(</span><span class="nx">thirdAction</span><span class="p">)}</span><span class="o">&gt;</span><span class="nx">Third</span> <span class="nx">action</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
-    <span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="nx">view</span><span class="o">:</span> <span class="p">({</span> <span class="nx">emitter</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">(</span>
+        <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">emitter</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="nx">firstAction</span><span class="p">)}</span><span class="o">&gt;</span><span class="nx">First</span> <span class="nx">action</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+        <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">emitter</span><span class="p">.</span><span class="nx">signal</span><span class="p">(</span><span class="nx">secondAction</span><span class="p">)}</span><span class="o">&gt;</span><span class="nx">Second</span> <span class="nx">action</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+        <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">emitter</span><span class="p">.</span><span class="nx">emitValue</span><span class="p">(</span><span class="nx">thirdAction</span><span class="p">,</span> <span class="mi">2</span><span class="p">)}</span><span class="o">&gt;</span><span class="nx">Third</span> <span class="nx">action</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+      <span class="p">)</span>
+    <span class="p">}</span>
   <span class="p">}</span>
-<span class="p">})</span>
+<span class="p">)</span>
 </pre></div>
+
+
+<p>The <code>onClick</code> prop of a button receives a function as argument. Once we click on the button, an object of type <code>SyntheticEvent</code> is passed to the function.</p>
+<p>In the above exemple, if we click on the first button, the <code>SynteticEvent</code> will be emited by the <code>firstAction</code> stream, as we're using <code>emitter.emit</code>.</p>
+<p>If we click on the second button, though, the <code>SynteticEvent</code> will be discarted and <code>secondAction</code> will emit <code>undefined</code>.</p>
+<p>Then, if we click on the third button, the <code>SynteticEvent</code> will be discarted and <code>thirdAction</code> will emit the constant value <code>2</code>.</p>
                 
                   
                 
