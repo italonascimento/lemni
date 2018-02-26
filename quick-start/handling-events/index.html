@@ -335,7 +335,7 @@
 
     <span class="k">return</span> <span class="p">{</span>
       <span class="nx">view</span><span class="o">:</span> <span class="p">({</span> <span class="nx">emitter</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">(</span>
-        <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">emitter</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="nx">someAction</span><span class="p">)}</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">emitter</span><span class="p">(</span><span class="nx">someAction</span><span class="p">).</span><span class="nx">emit</span><span class="p">}</span><span class="o">&gt;</span>
           <span class="nx">Do</span> <span class="nx">some</span> <span class="nx">action</span>
         <span class="o">&lt;</span><span class="err">/button&gt;</span>
       <span class="p">)</span>
@@ -345,9 +345,9 @@
 </pre></div>
 
 
-<p>Note the <code>emitter</code> object, extracted from the <code>view</code> argument. This helper allows us to easely forward an event's parameter directly to a stream, but not only that - it also lets us send arbitrary values or no value at all (a.k.a. <code>undefined</code>).</p>
+<p>Note the <code>emitter</code> constructor, extracted from the <code>view</code> argument. This helper allows us to easely forward an event's parameter directly to a stream, but not only that - it also lets us send arbitrary values or no value at all (a.k.a. <code>undefined</code>).</p>
 <h2 id="the-emitter">The <code>emitter</code></h2>
-<p>The <code>emitter</code> has three methods: <code>emit</code>, <code>signal</code> and <code>emitValue</code>. The three of them return functions that we can pass to event props in JSX.</p>
+<p>The <code>emitter</code> constructor receives a stream and returns an object containing three methods: <code>emit</code>, <code>signal</code> and <code>emitValue</code>. The three of them return functions that we can be passed to event props in JSX.</p>
 <ul>
 <li><code>emit</code> will forward the event parameter to a specified stream;</li>
 <li><code>signal</code> will emit <code>undefined</code> to a specified stream, which is pretty helpful when the parameter doesn't metter;</li>
@@ -364,9 +364,9 @@
 
     <span class="k">return</span> <span class="p">{</span>
       <span class="nx">view</span><span class="o">:</span> <span class="p">({</span> <span class="nx">emitter</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">(</span>
-        <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">emitter</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="nx">firstAction</span><span class="p">)}</span><span class="o">&gt;</span><span class="nx">First</span> <span class="nx">action</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
-        <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">emitter</span><span class="p">.</span><span class="nx">signal</span><span class="p">(</span><span class="nx">secondAction</span><span class="p">)}</span><span class="o">&gt;</span><span class="nx">Second</span> <span class="nx">action</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
-        <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">emitter</span><span class="p">.</span><span class="nx">emitValue</span><span class="p">(</span><span class="nx">thirdAction</span><span class="p">,</span> <span class="mi">2</span><span class="p">)}</span><span class="o">&gt;</span><span class="nx">Third</span> <span class="nx">action</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+        <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">emitter</span><span class="p">(</span><span class="nx">firstAction</span><span class="p">).</span><span class="nx">emit</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">First</span> <span class="nx">action</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+        <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">emitter</span><span class="p">(</span><span class="nx">secondAction</span><span class="p">).</span><span class="nx">signal</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">Second</span> <span class="nx">action</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+        <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">emitter</span><span class="p">(</span><span class="nx">thirdAction</span><span class="p">).</span><span class="nx">emitValue</span><span class="p">(</span><span class="mi">2</span><span class="p">)}</span><span class="o">&gt;</span><span class="nx">Third</span> <span class="nx">action</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
       <span class="p">)</span>
     <span class="p">}</span>
   <span class="p">}</span>
@@ -376,8 +376,8 @@
 
 <p>The <code>onClick</code> prop of a button receives a function as argument. Once we click on the button, an object of type <code>SyntheticEvent</code> is passed to the function.</p>
 <p>In the above exemple, if we click on the first button, the <code>SynteticEvent</code> will be emited by the <code>firstAction</code> stream, as we're using <code>emitter.emit</code>.</p>
-<p>If we click on the second button, though, the <code>SynteticEvent</code> will be discarted and <code>secondAction</code> will emit <code>undefined</code>.</p>
-<p>Then, if we click on the third button, the <code>SynteticEvent</code> will be discarted and <code>thirdAction</code> will emit the constant value <code>2</code>.</p>
+<p>If we click on the second button, though, the <code>SynteticEvent</code> will be discarted and <code>secondAction</code> will emit <code>undefined</code>, as <code>emitter.signal</code> just <em>signals</em> an event occurred.</p>
+<p>Then, if we click on the third button, the <code>SynteticEvent</code> will be discarted and <code>thirdAction</code> will emit the constant value <code>2</code>, as passed to <code>emitter.emitValue</code>.</p>
                 
                   
                 

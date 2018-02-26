@@ -284,21 +284,18 @@
                 
                 
                 <h1 id="lifecycle">Lifecycle</h1>
-<p>Every React lifecycle event is emitted in the <code>sources.lifecycle</code> stream.</p>
-<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="nx">reuse</span><span class="p">,</span> <span class="p">{</span> <span class="nx">ReactLifecycle</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;reuse&#39;</span>
+<p>Lifecycle streams may be accessed through <code>sources.lifecycle</code> object, under the same names of React's lifecycle functions.</p>
+<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="nx">reuse</span> <span class="nx">from</span> <span class="s1">&#39;reuse&#39;</span>
 
-<span class="kr">interface</span> <span class="nx">State</span> <span class="p">{</span>
-  <span class="nx">isMounted</span>: <span class="kt">boolean</span>
-<span class="p">}</span>
-
-<span class="kr">const</span> <span class="nx">Incrementer</span> <span class="o">=</span> <span class="nx">reuse</span><span class="o">&lt;</span><span class="p">{},</span> <span class="nx">State</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">sources</span> <span class="o">=&gt;</span> <span class="p">({</span>
+<span class="kr">const</span> <span class="nx">Incrementer</span> <span class="o">=</span> <span class="nx">reuse</span><span class="p">(</span>
+  <span class="nx">sources</span> <span class="o">=&gt;</span> <span class="p">({</span>
     <span class="nx">initialState</span><span class="o">:</span> <span class="p">{</span>
       <span class="nx">isMounted</span>: <span class="kt">false</span><span class="p">,</span>
     <span class="p">},</span>
 
     <span class="nx">stateReducer</span>: <span class="kt">sources.lifecycle</span>
-      <span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">event</span> <span class="o">=&gt;</span> <span class="nx">event</span> <span class="o">===</span> <span class="nx">ReactLifecycle</span><span class="p">.</span><span class="nx">componentDidMount</span><span class="p">)</span>
-      <span class="p">.</span><span class="nx">mapTo</span><span class="p">((</span><span class="nx">state</span>: <span class="kt">State</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span>
+      <span class="p">.</span><span class="nx">componentDidMount</span>
+      <span class="p">.</span><span class="nx">mapTo</span><span class="p">(</span><span class="nx">state</span> <span class="o">=&gt;</span> <span class="p">({</span>
         <span class="nx">isMounted</span>: <span class="kt">true</span><span class="p">,</span>
       <span class="p">})),</span>
   <span class="p">})</span>
