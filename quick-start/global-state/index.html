@@ -268,6 +268,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#updating-and-consuming-the-store" title="Updating And Consuming The Store" class="md-nav__link">
+    Updating And Consuming The Store
+  </a>
+  
+</li>
+      
       
       
     </ul>
@@ -309,6 +316,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#updating-and-consuming-the-store" title="Updating And Consuming The Store" class="md-nav__link">
+    Updating And Consuming The Store
+  </a>
+  
+</li>
+      
       
       
     </ul>
@@ -325,8 +339,8 @@
                 
                 
                 <h1 id="global-state-store">Global State (Store)</h1>
-<p>Reuse - unlike most frontend frameworks - has it's own way of managing an application's global state, and it is much similar to how we manage a component's local state, with only a slightly different terminology: it is updated using the <code>storeReducer</code> sink, and is available through the <code>sources.store</code> stream.</p>
-<p>Unlike the local state, though, we must first create the store and make it available to the whole application through the React context.</p>
+<p>Reuse - unlike most frontend frameworks - has it's own way of managing an application's global state, which is in fact much similar to how it manages a component's local state.</p>
+<p>Unlike the local state, though, for the global state to work we must first create a central data repository - the <em>store</em> - and make it available through the whole application by using React context.</p>
 <h2 id="creating-the-store">Creating The Store</h2>
 <p>To create the store, use the helper function <code>createStore</code>.</p>
 <div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">createStore</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;reuse&#39;</span>
@@ -350,8 +364,44 @@
 </pre></div>
 
 
-<h1 id="consuming-data-from-store">Consuming Data From Store</h1>
-<p><em>TODO</em></p>
+<h2 id="updating-and-consuming-the-store">Updating And Consuming The Store</h2>
+<p>As mentioned above, global state in Reuse is managed almost in the same way as a component's local state, with only a slightly different terminology: it is updated using the <code>storeReducer</code> sink, and is available through the <code>sources.store</code> stream.</p>
+<p>It's important to notice, though, that unlike the local state, the store is not available inside the <code>view</code> sink function. This means that instead of directly accessing the global app's state inside our rendering function, we must first copy to the local state the pieces of data of our interest.</p>
+<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="nx">reuse</span> <span class="nx">from</span> <span class="s1">&#39;reuse&#39;</span>
+<span class="kr">import</span> <span class="nx">xs</span> <span class="nx">from</span> <span class="s1">&#39;xstream&#39;</span>
+
+<span class="kr">const</span> <span class="nx">GlobalIncrementer</span> <span class="o">=</span> <span class="nx">reuse</span><span class="p">(</span><span class="nx">sources</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">onIncrement</span> <span class="o">=</span> <span class="nx">xs</span><span class="p">.</span><span class="nx">Stream</span><span class="p">.</span><span class="nx">create</span><span class="p">()</span>
+
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="nx">initialState</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">count</span>: <span class="kt">0</span><span class="p">,</span>
+    <span class="p">},</span>
+
+    <span class="c1">// copy store.count to local state</span>
+    <span class="nx">stateReducer</span>: <span class="kt">sources.store</span>
+      <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">store</span> <span class="o">=&gt;</span> <span class="nx">store</span><span class="p">.</span><span class="nx">count</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">count</span> <span class="o">=&gt;</span> <span class="p">({</span>
+        <span class="nx">count</span><span class="p">,</span>
+      <span class="p">}))</span>
+    <span class="p">,</span>
+
+    <span class="c1">// update store on click</span>
+    <span class="nx">storeReducer</span>: <span class="kt">increment.mapTo</span><span class="p">(</span>
+      <span class="nx">store</span> <span class="o">=&gt;</span> <span class="p">({</span>
+        <span class="nx">count</span>: <span class="kt">store.count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="p">})</span>
+    <span class="p">),</span>
+
+    <span class="nx">view</span><span class="o">:</span> <span class="p">({</span> <span class="nx">state</span><span class="p">,</span> <span class="nx">emitter</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">Count</span><span class="o">:</span> <span class="p">{</span><span class="nx">state</span><span class="p">.</span><span class="nx">count</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">emmiter</span><span class="p">(</span><span class="nx">onIncrement</span><span class="p">).</span><span class="nx">signal</span><span class="p">}</span><span class="o">&gt;</span>
+        <span class="nx">Increment</span>
+      <span class="o">&lt;</span><span class="err">/button&gt;</span>
+    <span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+</pre></div>
                 
                   
                 
