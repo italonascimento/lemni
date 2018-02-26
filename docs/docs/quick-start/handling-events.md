@@ -12,7 +12,7 @@ const App = reuse(
 
     return {
       view: ({ emitter }) => (
-        <button onClick={emitter.emit(someAction)}>
+        <button onClick={emitter(someAction).emit}>
           Do some action
         </button>
       )
@@ -21,11 +21,11 @@ const App = reuse(
 )
 ```
 
-Note the `emitter` object, extracted from the `view` argument. This helper allows us to easely forward an event's parameter directly to a stream, but not only that - it also lets us send arbitrary values or no value at all (a.k.a. `undefined`).
+Note the `emitter` constructor, extracted from the `view` argument. This helper allows us to easely forward an event's parameter directly to a stream, but not only that - it also lets us send arbitrary values or no value at all (a.k.a. `undefined`).
 
 ## The `emitter`
 
-The `emitter` has three methods: `emit`, `signal` and `emitValue`. The three of them return functions that we can pass to event props in JSX.
+The `emitter` constructor receives a stream and returns an object containing three methods: `emit`, `signal` and `emitValue`. The three of them return functions that we can be passed to event props in JSX.
 
 * `emit` will forward the event parameter to a specified stream;
 * `signal` will emit `undefined` to a specified stream, which is pretty helpful when the parameter doesn't metter;
@@ -43,9 +43,9 @@ const App = reuse(
 
     return {
       view: ({ emitter }) => (
-        <button onClick={emitter.emit(firstAction)}>First action</button>
-        <button onClick={emitter.signal(secondAction)}>Second action</button>
-        <button onClick={emitter.emitValue(thirdAction, 2)}>Third action</button>
+        <button onClick={emitter(firstAction).emit}>First action</button>
+        <button onClick={emitter(secondAction).signal}>Second action</button>
+        <button onClick={emitter(thirdAction).emitValue(2)}>Third action</button>
       )
     }
   }
@@ -56,6 +56,6 @@ The `onClick` prop of a button receives a function as argument. Once we click on
 
 In the above exemple, if we click on the first button, the `SynteticEvent` will be emited by the `firstAction` stream, as we're using `emitter.emit`.
 
-If we click on the second button, though, the `SynteticEvent` will be discarted and `secondAction` will emit `undefined`.
+If we click on the second button, though, the `SynteticEvent` will be discarted and `secondAction` will emit `undefined`, as `emitter.signal` just *signals* an event occurred.
 
-Then, if we click on the third button, the `SynteticEvent` will be discarted and `thirdAction` will emit the constant value `2`.
+Then, if we click on the third button, the `SynteticEvent` will be discarted and `thirdAction` will emit the constant value `2`, as passed to `emitter.emitValue`.
