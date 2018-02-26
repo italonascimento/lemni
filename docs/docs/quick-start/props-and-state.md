@@ -64,7 +64,7 @@ const Incrementer = reuse(sources => {
     // see more about the emitter in Handling Events section
     view: ({ state, emitter }) => (
       <p>Count: {state.count}</p>
-      <button onClick={emmiter.emit(onIncrement)}>
+      <button onClick={emmiter(onIncrement).emit}>
         Increment
       </button>
     )
