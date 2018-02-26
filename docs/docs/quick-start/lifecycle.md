@@ -1,22 +1,19 @@
 # Lifecycle
 
-Every React lifecycle event is emitted in the `sources.lifecycle` stream.
+Lifecycle streams may be accessed through `sources.lifecycle` object, under the same names of React's lifecycle functions.
 
 ```typescript
-import reuse, { ReactLifecycle } from 'reuse'
+import reuse from 'reuse'
 
-interface State {
-  isMounted: boolean
-}
-
-const Incrementer = reuse<{}, State>(sources => ({
+const Incrementer = reuse(
+  sources => ({
     initialState: {
       isMounted: false,
     },
 
     stateReducer: sources.lifecycle
-      .filter(event => event === ReactLifecycle.componentDidMount)
-      .mapTo((state: State) => ({
+      .componentDidMount
+      .mapTo(state => ({
         isMounted: true,
       })),
   })
