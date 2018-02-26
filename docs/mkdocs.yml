@@ -9,4 +9,4 @@ pages:
     - Props and State: quick-start/props-and-state.md
     - Handling Events: quick-start/handling-events.md
     - Lifecycle: quick-start/lifecycle.md
-    - Global State: quick-start/global-state.md
+    - Global State (Store): quick-start/global-state.md
