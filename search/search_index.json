@@ -67,23 +67,23 @@
         }, 
         {
             "location": "/quick-start/global-state/", 
-            "text": "Global State\n\n\nReuse - unlike most frontend frameworks - has it's own way of managing application's global state, which is much similar to how we manage a component's local state: the global state is updated using the \nstoreReducer\n sink, and is available to the component through the \nsources.store\n stream.\n\n\nUnlike the local state, though, we must first create the store and make it available to the whole application through the React context.\n\n\nCreating a Store\n\n\nTo create a global store, use the helper function \ncreateStore\n.\n\n\nimport\n \n{\n \ncreateStore\n \n}\n \nfrom\n \nreuse\n\n\n\ninterface\n \nStore\n \n{\n\n  \nfoo\n: \nstring\n\n\n}\n\n\n\nconst\n \ninitialStore\n \n=\n \n{\n\n  \nfoo\n:\n \nbar\n\n\n}\n\n\n\nconst\n \nglobalStore\n \n=\n \ncreateStore\nStore\n(\ninitialStore\n)\n\n\n\n\n\n\nMaking the store available\n\n\nTo make the global store available, use the High Order Component \nwithStoreProvider\n.\n\n\nimport\n \nApp\n \nfrom\n \n./app\n\n\nimport\n \nstore\n \nfrom\n \n./store\n\n\n\nconst\n \nAppWithGlobalStore\n \n=\n \nwithStoreProvider\n(\nstore\n)(\nApp\n)\n\n\n\nReactDOM\n.\nrender\n(\nAppWithGlobalStore\n \n/\n,\n \ndocument\n.\ngetElementById\n(\napp\n))", 
-            "title": "Global State"
+            "text": "Global State (Store)\n\n\nReuse - unlike most frontend frameworks - has it's own way of managing an application's global state, and it is much similar to how we manage a component's local state, with only a slightly different terminology: it is updated using the \nstoreReducer\n sink, and is available through the \nsources.store\n stream.\n\n\nUnlike the local state, though, we must first create the store and make it available to the whole application through the React context.\n\n\nCreating The Store\n\n\nTo create the store, use the helper function \ncreateStore\n.\n\n\nimport\n \n{\n \ncreateStore\n \n}\n \nfrom\n \nreuse\n\n\n\nconst\n \ninitialStore\n \n=\n \n{\n\n  \nfoo\n:\n \nbar\n,\n\n\n}\n\n\n\nconst\n \nglobalStore\n \n=\n \ncreateStore\n(\ninitialStore\n)\n\n\n\n\n\n\nNow, to make it available through the whole app, use the High Order Component \nwithStoreProvider\n.\n\n\nimport\n \nApp\n \nfrom\n \n./app\n\n\nimport\n \nstore\n \nfrom\n \n./store\n\n\nimport\n \n{\n \nwithStoreProvider\n \n}\n \nfrom\n \nreuse\n\n\n\nconst\n \nAppWithGlobalStore\n \n=\n \nwithStoreProvider\n(\nstore\n)(\nApp\n)\n\n\n\nReactDOM\n.\nrender\n(\nAppWithGlobalStore\n \n/\n,\n \ndocument\n.\ngetElementById\n(\napp\n))\n\n\n\n\n\n\nConsuming Data From Store\n\n\nTODO", 
+            "title": "Global State (Store)"
         }, 
         {
-            "location": "/quick-start/global-state/#global-state", 
-            "text": "Reuse - unlike most frontend frameworks - has it's own way of managing application's global state, which is much similar to how we manage a component's local state: the global state is updated using the  storeReducer  sink, and is available to the component through the  sources.store  stream.  Unlike the local state, though, we must first create the store and make it available to the whole application through the React context.", 
-            "title": "Global State"
+            "location": "/quick-start/global-state/#global-state-store", 
+            "text": "Reuse - unlike most frontend frameworks - has it's own way of managing an application's global state, and it is much similar to how we manage a component's local state, with only a slightly different terminology: it is updated using the  storeReducer  sink, and is available through the  sources.store  stream.  Unlike the local state, though, we must first create the store and make it available to the whole application through the React context.", 
+            "title": "Global State (Store)"
         }, 
         {
-            "location": "/quick-start/global-state/#creating-a-store", 
-            "text": "To create a global store, use the helper function  createStore .  import   {   createStore   }   from   reuse  interface   Store   { \n   foo :  string  }  const   initialStore   =   { \n   foo :   bar  }  const   globalStore   =   createStore Store ( initialStore )", 
-            "title": "Creating a Store"
+            "location": "/quick-start/global-state/#creating-the-store", 
+            "text": "To create the store, use the helper function  createStore .  import   {   createStore   }   from   reuse  const   initialStore   =   { \n   foo :   bar ,  }  const   globalStore   =   createStore ( initialStore )   Now, to make it available through the whole app, use the High Order Component  withStoreProvider .  import   App   from   ./app  import   store   from   ./store  import   {   withStoreProvider   }   from   reuse  const   AppWithGlobalStore   =   withStoreProvider ( store )( App )  ReactDOM . render ( AppWithGlobalStore   / ,   document . getElementById ( app ))", 
+            "title": "Creating The Store"
         }, 
         {
-            "location": "/quick-start/global-state/#making-the-store-available", 
-            "text": "To make the global store available, use the High Order Component  withStoreProvider .  import   App   from   ./app  import   store   from   ./store  const   AppWithGlobalStore   =   withStoreProvider ( store )( App )  ReactDOM . render ( AppWithGlobalStore   / ,   document . getElementById ( app ))", 
-            "title": "Making the store available"
+            "location": "/quick-start/global-state/#consuming-data-from-store", 
+            "text": "TODO", 
+            "title": "Consuming Data From Store"
         }
     ]
 }
