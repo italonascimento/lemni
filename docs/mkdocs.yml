@@ -4,8 +4,10 @@ markdown_extensions:
 theme:
   name: 'material'
 pages:
+  - INTRODUCTION:
+    - What is Reuse?: index.md
   - QUICK START:
-    - Introduction: index.md
+    - Component's Structure: quick-start/components-structure.md
     - Props and State: quick-start/props-and-state.md
     - Handling Events: quick-start/handling-events.md
     - Lifecycle: quick-start/lifecycle.md
