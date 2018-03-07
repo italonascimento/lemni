@@ -16,6 +16,16 @@
             "title": "Embracing Asynchronicity"
         }, 
         {
+            "location": "/quick-start/installation/", 
+            "text": "Installation\n\n\nYou may install Reuse through npm or Yarn:\n\n\nnpm i reuse\n\n\n# or\n\n\nyarn add reuse", 
+            "title": "Installation"
+        }, 
+        {
+            "location": "/quick-start/installation/#installation", 
+            "text": "You may install Reuse through npm or Yarn:  npm i reuse # or \n\nyarn add reuse", 
+            "title": "Installation"
+        }, 
+        {
             "location": "/quick-start/components-structure/", 
             "text": "Component's Structure\n\n\nA Reuse component is a function which receives a \nsources\n object and returns a \nsinks\n object.\n\n\nThe \nsources\n is how we access - as streams - all the data from the React side, such as props, state, lifecycle, etc.\n\n\nThe \nsinks\n is how we describe our component's behaviour and side effecs, in a declarative way. In other words, \nside effects are never executed imperatively inside a component implementation; they are instead described in the sinks, to be isolated executed on the Reuse side\n.\n\n\nconst\n \ncomponent\n \n=\n \n(\nsources\n)\n \n=\n \n{\n\n  \nconst\n \nsinks\n \n=\n \n{}\n\n  \nreturn\n \nsinks\n\n\n}\n\n\n\n\n\n\nHello World\n\n\nA simple component may return a \nsinks\n object containing only a \nview\n property, which is responsible for describing how the component should render.\n\n\nconst\n \nHelloWorld\n \n=\n \n(\nsources\n)\n \n=\n \n({\n\n  \nview\n:\n \n(\nviewArgs\n)\n \n=\n\n    \ndiv\n\n      \np\nHello\n \nWorld\n/p\n\n    \n/div\n\n\n})\n\n\n\n\n\n\nNow our component is implemented, we must use Reuse to convert it to a conventional React component:\n\n\nimport\n \nReactDOM\n \nfrom\n \nreact-dom\n\n\nimport\n \nreuse\n \nfrom\n \nreuse\n\n\n\nconst\n \nmain\n \n=\n \n(\nsources\n)\n \n=\n \n({\n\n  \nview\n:\n \n(\nviewArgs\n)\n \n=\n\n    \ndiv\n\n      \np\nHello\n \nWorld\n/p\n\n    \n/div\n\n\n})\n\n\n\nconst\n \nHelloWorld\n \n=\n \nreuse\n(\nmain\n)\n\n\n\nReactDOM\n.\nrender\n(\n\n  \nHelloWorld\n \n/\n,\n\n  \ndocument\n.\ngetElementById\n(\napp\n)\n\n\n)", 
             "title": "Component's Structure"
