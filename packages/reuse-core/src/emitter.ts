@@ -1,40 +1,34 @@
 import { Stream } from 'xstream'
 
 
-export interface Emitter {
+export type Emitter = <T>(stream: Stream<T | undefined>) => {
   emit:
-    <T>(stream: Stream<T>) =>
-      (value: T) =>
-        void
+    (value: T) =>
+      void
 
   emitValue:
-    <T>(value: T) =>
-      (stream: Stream<T>) =>
-        () =>
-          void
-
-  signal:
-    (stream: Stream<undefined>) =>
+    (value: T) =>
       () =>
         void
+
+  signal:
+    () =>
+      void
 }
 
 
-export const Emitter: Emitter = {
+export const Emitter: Emitter = stream => ({
   emit:
-    stream =>
-      value =>
-        stream.shamefullySendNext(value)
+    value =>
+      stream.shamefullySendNext(value)
   ,
   emitValue:
     value =>
-      stream =>
-        () =>
-          stream.shamefullySendNext(value)
+      () =>
+        stream.shamefullySendNext(value)
   ,
   signal:
-    stream =>
-      () =>
-        stream.shamefullySendNext(undefined)
+    () =>
+      stream.shamefullySendNext(undefined)
   ,
-}
+})
