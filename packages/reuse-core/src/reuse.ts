@@ -16,12 +16,21 @@ export type ReuseMainFunction<P, L, S> =
   (sourceStreams: SourceStreams<P, L, S>) =>
     Sinks<P, L, S>
 
+export interface LifecycleSource {
+  componentDidMount: Stream<undefined>
+  componentWillUnmount: Stream<undefined>
+  componentWillMount: Stream<undefined>
+  componentWillReceiveProps: Stream<undefined>
+  shouldComponentUpdate: Stream<undefined>
+  componentWillUpdate: Stream<undefined>
+  componentDidUpdate: Stream<undefined>
+}
 
 export interface SourceStreams<P, L, S> {
   props: Stream<P>
   state: Stream<L>
   store: Stream<S>
-  lifecycle: Stream<ReactLifecycle>
+  lifecycle: LifecycleSource
 }
 
 export interface ViewSources<P, L> {
@@ -62,7 +71,15 @@ export const reuse = <P = {}, L = {}, S = {}>(mainFn: ReuseMainFunction<P, L, S>
         props: Stream.create(),
         state: Stream.create(),
         store: hasStore ? this.context.store.getStoreStream() : Stream.never(),
-        lifecycle: Stream.create(),
+        lifecycle: {
+          componentDidMount: Stream.create(),
+          componentWillUnmount: Stream.create(),
+          componentWillMount: Stream.create(),
+          componentWillReceiveProps: Stream.create(),
+          shouldComponentUpdate: Stream.create(),
+          componentWillUpdate: Stream.create(),
+          componentDidUpdate: Stream.create(),
+        },
       }
 
       this.sinks = mainFn(this.sources)
@@ -105,41 +122,29 @@ export const reuse = <P = {}, L = {}, S = {}>(mainFn: ReuseMainFunction<P, L, S>
         sideEffect.addListener(this.sideEffectListener)
       }
 
-      this.sources.lifecycle.shamefullySendNext(
-        ReactLifecycle.componentWillMount
-      )
+      this.sources.lifecycle.componentWillMount.shamefullySendNext(undefined)
     }
 
     componentWillReceiveProps() {
-      this.sources.lifecycle.shamefullySendNext(
-        ReactLifecycle.componentWillReceiveProps
-      )
+      this.sources.lifecycle.componentWillReceiveProps.shamefullySendNext(undefined)
     }
 
     componentDidMount() {
-      this.sources.lifecycle.shamefullySendNext(
-        ReactLifecycle.componentDidMount
-      )
+      this.sources.lifecycle.componentDidMount.shamefullySendNext(undefined)
     }
 
     componentWillUpdate() {
-      this.sources.lifecycle.shamefullySendNext(
-        ReactLifecycle.componentWillUpdate
-      )
+      this.sources.lifecycle.componentWillUpdate.shamefullySendNext(undefined)
     }
 
     componentDidUpdate() {
       this.sources.props.shamefullySendNext(this.props)
 
-      this.sources.lifecycle.shamefullySendNext(
-        ReactLifecycle.componentDidUpdate
-      )
+      this.sources.lifecycle.componentDidUpdate.shamefullySendNext(undefined)
     }
 
     componentWillUnmount() {
-      this.sources.lifecycle.shamefullySendNext(
-        ReactLifecycle.componentWillUnmount
-      )
+      this.sources.lifecycle.componentWillUnmount.shamefullySendNext(undefined)
 
       if (this.stateListener) {
         this.sources.state.removeListener(this.stateListener)
