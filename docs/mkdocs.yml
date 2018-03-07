@@ -12,3 +12,4 @@ pages:
     - Handling Events: quick-start/handling-events.md
     - Lifecycle: quick-start/lifecycle.md
     - Global State (Store): quick-start/global-state.md
+    - Side Effects: quick-start/side-effects.md
