@@ -1,57 +1,63 @@
 import { mount } from 'enzyme'
+import 'jest'
 import * as React from 'react'
 import { spy } from 'sinon'
+import xs from 'xstream'
 import { reuse } from '../src'
 import { ReactLifecycle } from '../src/react-lifecycle'
 
 
-const spies = {
-  [ReactLifecycle.componentWillMount]: spy(),
-  [ReactLifecycle.componentDidMount]: spy(),
-  [ReactLifecycle.componentWillReceiveProps]: spy(),
-  [ReactLifecycle.componentWillUpdate]: spy(),
-  [ReactLifecycle.componentDidUpdate]: spy(),
-  [ReactLifecycle.componentWillUnmount]: spy(),
-}
+const componentWillMount = spy()
+const componentDidMount = spy()
+const componentWillReceiveProps = spy()
+const componentWillUpdate = spy()
+const componentDidUpdate = spy()
+const componentWillUnmount = spy()
 
 const LifecycleComp = reuse(sources => ({
-  sideEffect: sources.lifecycle
-    .map(lifecycle =>
-      () => {
-        if (spies[lifecycle]) {
-          spies[lifecycle]()
-        }
-      }
-    ),
+  sideEffect: xs.merge(
+    sources.lifecycle.componentWillMount
+      .mapTo(() => componentWillMount()),
+    sources.lifecycle.componentDidMount
+      .mapTo(() => componentDidMount()),
+    sources.lifecycle.componentWillReceiveProps
+      .mapTo(() => componentWillReceiveProps()),
+    sources.lifecycle.componentWillUpdate
+      .mapTo(() => componentWillUpdate()),
+    sources.lifecycle.componentDidUpdate
+      .mapTo(() => componentDidUpdate()),
+    sources.lifecycle.componentWillUnmount
+      .mapTo(() => componentWillUnmount()),
+  )
 }))
 
 test('Lifecycle', () => {
   const wrapper = mount((<LifecycleComp />))
 
-  expect(spies[ReactLifecycle.componentWillMount].callCount).toBe(1)
-  expect(spies[ReactLifecycle.componentDidMount].callCount).toBe(1)
-  expect(spies[ReactLifecycle.componentWillReceiveProps].callCount).toBe(0)
-  expect(spies[ReactLifecycle.componentWillUpdate].callCount).toBe(0)
-  expect(spies[ReactLifecycle.componentDidUpdate].callCount).toBe(0)
-  expect(spies[ReactLifecycle.componentWillUnmount].callCount).toBe(0)
+  expect(componentWillMount.callCount).toBe(1)
+  expect(componentDidMount.callCount).toBe(1)
+  expect(componentWillReceiveProps.callCount).toBe(0)
+  expect(componentWillUpdate.callCount).toBe(0)
+  expect(componentDidUpdate.callCount).toBe(0)
+  expect(componentWillUnmount.callCount).toBe(0)
 
   wrapper.setProps({
     test: true
   })
 
-  expect(spies[ReactLifecycle.componentWillMount].callCount).toBe(1)
-  expect(spies[ReactLifecycle.componentDidMount].callCount).toBe(1)
-  expect(spies[ReactLifecycle.componentWillReceiveProps].callCount).toBe(1)
-  expect(spies[ReactLifecycle.componentWillUpdate].callCount).toBe(1)
-  expect(spies[ReactLifecycle.componentDidUpdate].callCount).toBe(1)
-  expect(spies[ReactLifecycle.componentWillUnmount].callCount).toBe(0)
+  expect(componentWillMount.callCount).toBe(1)
+  expect(componentDidMount.callCount).toBe(1)
+  expect(componentWillReceiveProps.callCount).toBe(1)
+  expect(componentWillUpdate.callCount).toBe(1)
+  expect(componentDidUpdate.callCount).toBe(1)
+  expect(componentWillUnmount.callCount).toBe(0)
 
   wrapper.unmount()
 
-  expect(spies[ReactLifecycle.componentWillMount].callCount).toBe(1)
-  expect(spies[ReactLifecycle.componentDidMount].callCount).toBe(1)
-  expect(spies[ReactLifecycle.componentWillReceiveProps].callCount).toBe(1)
-  expect(spies[ReactLifecycle.componentWillUpdate].callCount).toBe(1)
-  expect(spies[ReactLifecycle.componentDidUpdate].callCount).toBe(1)
-  expect(spies[ReactLifecycle.componentWillUnmount].callCount).toBe(1)
+  expect(componentWillMount.callCount).toBe(1)
+  expect(componentDidMount.callCount).toBe(1)
+  expect(componentWillReceiveProps.callCount).toBe(1)
+  expect(componentWillUpdate.callCount).toBe(1)
+  expect(componentDidUpdate.callCount).toBe(1)
+  expect(componentWillUnmount.callCount).toBe(1)
 })

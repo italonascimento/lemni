@@ -29,7 +29,7 @@ const StateComp = reuse<{}, State>(() => {
     view: ({props, state, emitter}) => (
       <div>
         <p>Counter: { state.count }</p>
-        <button className='increment' onClick={ emitter.signal(increment) }>Increment</button>
+        <button className='increment' onClick={ emitter(increment).signal }>Increment</button>
       </div>
     )
   }

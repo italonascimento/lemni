@@ -40,7 +40,7 @@ const Comp = reuse<{}, State, Store>(sources => {
         <p>Counter: { state.count }</p>
         <button
           className='increment'
-          onClick={ emitter.signal(increment) }
+          onClick={ emitter(increment).signal }
         >
           Increment
         </button>
