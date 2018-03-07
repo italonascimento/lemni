@@ -1,7 +1,7 @@
 {
   "name": "reuse",
   "version": "0.0.1",
-  "description": "A reactive framework based on React",
+  "description": "A functional reactive framework on top of React",
   "main": "lib/index.js",
   "author": "Denis Ikeda, Ítalo Nascimento",
   "license": "MIT",
