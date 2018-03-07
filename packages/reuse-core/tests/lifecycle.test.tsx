@@ -4,7 +4,6 @@ import * as React from 'react'
 import { spy } from 'sinon'
 import xs from 'xstream'
 import { reuse } from '../src'
-import { ReactLifecycle } from '../src/react-lifecycle'
 
 
 const componentWillMount = spy()

@@ -9,7 +9,6 @@ import {
 } from 'xstream'
 import { Reducer } from './createStore'
 import { Emitter } from './emitter'
-import { ReactLifecycle } from './react-lifecycle'
 
 
 export type ReuseMainFunction<P, L, S> =
