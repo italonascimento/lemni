@@ -7,11 +7,11 @@ Reuse allows us to implement React components and aplications in a **functional 
 You may install Reuse through npm or Yarn:
 
 ```bash
-npm i reuse
+npm i @reuse/core
 
 # or
 
-yarn add reuse
+yarn add @reuse/core
 ```
 
 ## Hello World
