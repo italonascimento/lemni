@@ -1,5 +1,5 @@
 {
-  "name": "reuse-core",
+  "name": "@reuse/core",
   "version": "0.0.1",
   "description": "A reactive framework based on React",
   "main": "lib/index.js",

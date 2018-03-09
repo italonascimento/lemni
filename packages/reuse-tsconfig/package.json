@@ -3,5 +3,6 @@
   "version": "0.0.1",
   "description": "Typescript configuration for whole project",
   "author": "Denis Ikeda, Ítalo Nascimento",
-  "license": "MIT"
+  "license": "MIT",
+  "private": true
 }

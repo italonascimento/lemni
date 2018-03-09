@@ -4,5 +4,6 @@
   "description": "Lint configuration for whole project",
   "main": "tslint.json",
   "author": "Denis Ikeda, Ítalo Nascimento",
-  "license": "MIT"
+  "license": "MIT",
+  "private": true
 }
