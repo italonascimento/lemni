@@ -17,12 +17,12 @@
         }, 
         {
             "location": "/quick-start/installation/", 
-            "text": "Installation\n\n\nYou may install Reuse through npm or Yarn:\n\n\nnpm i reuse\n\n\n# or\n\n\nyarn add reuse", 
+            "text": "Installation\n\n\nYou may install Reuse through npm or Yarn:\n\n\nnpm i @reuse/core\n\n\n# or\n\n\nyarn add @reuse/core", 
             "title": "Installation"
         }, 
         {
             "location": "/quick-start/installation/#installation", 
-            "text": "You may install Reuse through npm or Yarn:  npm i reuse # or \n\nyarn add reuse", 
+            "text": "You may install Reuse through npm or Yarn:  npm i @reuse/core # or \n\nyarn add @reuse/core", 
             "title": "Installation"
         }, 
         {
