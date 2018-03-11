@@ -74,7 +74,7 @@ const Incrementer = reuse(sources => {
 
 The `stateReducer` sink is a stream of state reducers: functions which receive the latest state as argument and return a new one.
 
-For a more complex exemple, we may compose state and props streams to achieve a more generic incrementer, whose step size are specified via props:
+For a more complex example, we may compose state and props streams to achieve a more generic incrementer, whose step size are specified via props:
 
 ```typescript
 import reuse from 'reuse'
