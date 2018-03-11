@@ -55,7 +55,7 @@ const Incrementer = reuse(sources => {
       count: 0,
     },
 
-    stateReducer: increment.mapTo(
+    stateReducer: onIncrement.mapTo(
       state => ({
         count: state.count + 1,
       })

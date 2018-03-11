@@ -57,7 +57,7 @@ const GlobalIncrementer = reuse(sources => {
     ,
 
     // update store on click
-    storeReducer: increment.mapTo(
+    storeReducer: onIncrement.mapTo(
       store => ({
         count: store.count + 1,
       })
