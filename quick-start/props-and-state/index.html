@@ -445,7 +445,7 @@
       <span class="nx">count</span>: <span class="kt">0</span><span class="p">,</span>
     <span class="p">},</span>
 
-    <span class="nx">stateReducer</span>: <span class="kt">increment.mapTo</span><span class="p">(</span>
+    <span class="nx">stateReducer</span>: <span class="kt">onIncrement.mapTo</span><span class="p">(</span>
       <span class="nx">state</span> <span class="o">=&gt;</span> <span class="p">({</span>
         <span class="nx">count</span>: <span class="kt">state.count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
       <span class="p">})</span>
@@ -464,7 +464,7 @@
 
 
 <p>The <code>stateReducer</code> sink is a stream of state reducers: functions which receive the latest state as argument and return a new one.</p>
-<p>For a more complex exemple, we may compose state and props streams to achieve a more generic incrementer, whose step size are specified via props:</p>
+<p>For a more complex example, we may compose state and props streams to achieve a more generic incrementer, whose step size are specified via props:</p>
 <div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="nx">reuse</span> <span class="nx">from</span> <span class="s1">&#39;reuse&#39;</span>
 <span class="kr">import</span> <span class="nx">sampleCombine</span> <span class="nx">from</span> <span class="s1">&#39;xstream/extra/sampleCombine&#39;</span>
 <span class="kr">import</span> <span class="nx">xs</span> <span class="nx">from</span> <span class="s1">&#39;xstream&#39;</span>

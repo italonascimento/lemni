@@ -410,7 +410,7 @@
 <p>The <code>emitter</code> constructor receives a stream and returns an object containing three methods: <code>emit</code>, <code>signal</code> and <code>emitValue</code>. The three of them return functions that we can be passed to event props in JSX.</p>
 <ul>
 <li><code>emit</code> will forward the event parameter to a specified stream;</li>
-<li><code>signal</code> will emit <code>undefined</code> to a specified stream, which is pretty helpful when the parameter doesn't metter;</li>
+<li><code>signal</code> will emit <code>undefined</code> to a specified stream, which is pretty helpful when the parameter doesn't matter;</li>
 <li><code>emitValue</code> will emit an arbitrary value to the stream.</li>
 </ul>
 <div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="nx">reuse</span> <span class="nx">from</span> <span class="s1">&#39;reuse&#39;</span>
@@ -435,7 +435,7 @@
 
 
 <p>The <code>onClick</code> prop of a button receives a function as argument. Once we click on the button, an object of type <code>SyntheticEvent</code> is passed to the function.</p>
-<p>In the above exemple, if we click on the first button, the <code>SynteticEvent</code> will be emited by the <code>firstAction</code> stream, as we're using <code>emitter.emit</code>.</p>
+<p>In the above example, if we click on the first button, the <code>SynteticEvent</code> will be emited by the <code>firstAction</code> stream, as we're using <code>emitter.emit</code>.</p>
 <p>If we click on the second button, though, the <code>SynteticEvent</code> will be discarted and <code>secondAction</code> will emit <code>undefined</code>, as <code>emitter.signal</code> just <em>signals</em> an event occurred.</p>
 <p>Then, if we click on the third button, the <code>SynteticEvent</code> will be discarted and <code>thirdAction</code> will emit the constant value <code>2</code>, as passed to <code>emitter.emitValue</code>.</p>
                 
