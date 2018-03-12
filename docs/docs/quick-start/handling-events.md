@@ -28,7 +28,7 @@ Note the `emitter` constructor, extracted from the `view` argument. This helper 
 The `emitter` constructor receives a stream and returns an object containing three methods: `emit`, `signal` and `emitValue`. The three of them return functions that we can be passed to event props in JSX.
 
 * `emit` will forward the event parameter to a specified stream;
-* `signal` will emit `undefined` to a specified stream, which is pretty helpful when the parameter doesn't metter;
+* `signal` will emit `undefined` to a specified stream, which is pretty helpful when the parameter doesn't matter;
 * `emitValue` will emit an arbitrary value to the stream.
 
 ```typescript
@@ -54,7 +54,7 @@ const App = reuse(
 
 The `onClick` prop of a button receives a function as argument. Once we click on the button, an object of type `SyntheticEvent` is passed to the function.
 
-In the above exemple, if we click on the first button, the `SynteticEvent` will be emited by the `firstAction` stream, as we're using `emitter.emit`.
+In the above example, if we click on the first button, the `SynteticEvent` will be emited by the `firstAction` stream, as we're using `emitter.emit`.
 
 If we click on the second button, though, the `SynteticEvent` will be discarted and `secondAction` will emit `undefined`, as `emitter.signal` just *signals* an event occurred.
 
