@@ -1,6 +1,6 @@
 {
   "name": "@lemni/core",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A reactive framework based on React",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -35,8 +35,8 @@
     "testRegex": "./tests/.*\\.test\\.(ts|tsx|js)$"
   },
   "devDependencies": {
-    "@lemni/tsconfig": "^0.0.1",
-    "@lemni/tslint": "^0.0.1",
+    "@lemni/tsconfig": "^0.0.2",
+    "@lemni/tslint": "^0.0.2",
     "@types/enzyme": "^3.1.8",
     "@types/jest": "^22.0.1",
     "@types/prop-types": "^15.5.2",

@@ -1,6 +1,6 @@
 {
   "name": "@lemni/tslint",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Lint configuration for whole project",
   "main": "tslint.json",
   "author": "Denis Ikeda, Ítalo Nascimento",
