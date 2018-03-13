@@ -1,1 +1,0 @@
-export { lemni } from './lemni';
