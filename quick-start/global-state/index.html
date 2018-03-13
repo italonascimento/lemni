@@ -36,7 +36,7 @@
     
     
       
-        <title>Global State (Store) - Reuse</title>
+        <title>Global State (Store) - Lemni</title>
       
     
     
@@ -78,7 +78,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../.." title="Reuse" class="md-header-nav__button md-logo">
+        <a href="../.." title="Lemni" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -92,7 +92,7 @@
           
             
               <span class="md-header-nav__topic">
-                Reuse
+                Lemni
               </span>
               <span class="md-header-nav__topic">
                 Global State (Store)
@@ -155,7 +155,7 @@
         <i class="md-icon"></i>
       
     </span>
-    Reuse
+    Lemni
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -185,8 +185,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../.." title="What is Reuse?" class="md-nav__link">
-      What is Reuse?
+    <a href="../.." title="What is Lemni?" class="md-nav__link">
+      What is Lemni?
     </a>
   </li>
 
@@ -399,11 +399,11 @@
                 
                 
                 <h1 id="global-state-store">Global State (Store)</h1>
-<p>Reuse - unlike most frontend frameworks - has it's own way of managing an application's global state, which is in fact much similar to how it manages a component's local state.</p>
+<p>Lemni - unlike most frontend frameworks - has it's own way of managing an application's global state, which is in fact much similar to how it manages a component's local state.</p>
 <p>Unlike the local state, though, for the global state to work we must first create a central data repository - the <em>store</em> - and make it available through the whole application by using React context.</p>
 <h2 id="creating-the-store">Creating The Store</h2>
 <p>To create the store, use the helper function <code>createStore</code>.</p>
-<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">createStore</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;reuse&#39;</span>
+<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">createStore</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;lemni&#39;</span>
 
 <span class="kr">const</span> <span class="nx">initialStore</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">foo</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span>
@@ -416,7 +416,7 @@
 <p>Now, to make it available through the whole app, use the High Order Component <code>withStoreProvider</code>.</p>
 <div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="nx">App</span> <span class="nx">from</span> <span class="s1">&#39;./app&#39;</span>
 <span class="kr">import</span> <span class="nx">store</span> <span class="nx">from</span> <span class="s1">&#39;./store&#39;</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">withStoreProvider</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;reuse&#39;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">withStoreProvider</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;lemni&#39;</span>
 
 <span class="kr">const</span> <span class="nx">AppWithGlobalStore</span> <span class="o">=</span> <span class="nx">withStoreProvider</span><span class="p">(</span><span class="nx">store</span><span class="p">)(</span><span class="nx">App</span><span class="p">)</span>
 
@@ -425,12 +425,12 @@
 
 
 <h2 id="updating-and-consuming-the-store">Updating And Consuming The Store</h2>
-<p>As mentioned above, global state in Reuse is managed almost in the same way as a component's local state, with only a slightly different terminology: it is updated using the <code>storeReducer</code> sink, and is available through the <code>sources.store</code> stream.</p>
+<p>As mentioned above, global state in Lemni is managed almost in the same way as a component's local state, with only a slightly different terminology: it is updated using the <code>storeReducer</code> sink, and is available through the <code>sources.store</code> stream.</p>
 <p>It's important to notice, though, that unlike the local state, the store is not available inside the <code>view</code> sink function. This means that instead of directly accessing the global app's state inside our rendering function, we must first copy to the local state the pieces of data of our interest.</p>
-<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="nx">reuse</span> <span class="nx">from</span> <span class="s1">&#39;reuse&#39;</span>
+<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="nx">lemni</span> <span class="nx">from</span> <span class="s1">&#39;lemni&#39;</span>
 <span class="kr">import</span> <span class="nx">xs</span> <span class="nx">from</span> <span class="s1">&#39;xstream&#39;</span>
 
-<span class="kr">const</span> <span class="nx">GlobalIncrementer</span> <span class="o">=</span> <span class="nx">reuse</span><span class="p">(</span><span class="nx">sources</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="kr">const</span> <span class="nx">GlobalIncrementer</span> <span class="o">=</span> <span class="nx">lemni</span><span class="p">(</span><span class="nx">sources</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="kr">const</span> <span class="nx">onIncrement</span> <span class="o">=</span> <span class="nx">xs</span><span class="p">.</span><span class="nx">Stream</span><span class="p">.</span><span class="nx">create</span><span class="p">()</span>
 
   <span class="k">return</span> <span class="p">{</span>
