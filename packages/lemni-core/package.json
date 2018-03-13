@@ -6,6 +6,11 @@
   "typings": "lib/index.d.ts",
   "author": "Denis Ikeda, Ítalo Nascimento",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/italonascimento/lemni"
+  },
+  "readme": "README.md",
   "publishConfig": {
     "access": "public"
   },
