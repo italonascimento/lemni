@@ -6,6 +6,9 @@
   "typings": "lib/index.d.ts",
   "author": "Denis Ikeda, Ítalo Nascimento",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "clean": "rm -rf lib && mkdir lib",
     "build": "npm run clean && tsc",
