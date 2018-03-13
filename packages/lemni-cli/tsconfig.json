@@ -1,0 +1,11 @@
+{
+  "extends": "./node_modules/@lemni/tsconfig/tsconfig.json",
+  "compilerOptions": {
+    "outDir": "bin",
+    "rootDir": "src",
+    "module": "commonjs"
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

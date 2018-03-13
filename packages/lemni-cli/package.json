@@ -1,0 +1,26 @@
+{
+  "name": "@lemni/cli",
+  "version": "0.0.3",
+  "description": "Lemni CLI",
+  "main": "bin/lemni.js",
+  "author": "Ítalo Nascimento",
+  "license": "MIT",
+  "private": false,
+  "readme": "README.md",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "clean": "rm -rf bin && mkdir bin",
+    "build": "npm run clean && tsc"
+  },
+  "devDependencies": {
+    "@lemni/tsconfig": "^0.0.2",
+    "@lemni/tslint": "^0.0.2",
+    "@types/node": "^9.4.7",
+    "typescript": "^2.7.2"
+  },
+  "dependencies": {
+    "commander": "^2.15.0"
+  }
+}
