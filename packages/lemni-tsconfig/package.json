@@ -1,8 +1,7 @@
 {
-  "name": "reuse-tslint",
+  "name": "@lemni/tsconfig",
   "version": "0.0.1",
-  "description": "Lint configuration for whole project",
-  "main": "tslint.json",
+  "description": "Typescript configuration for whole project",
   "author": "Denis Ikeda, Ítalo Nascimento",
   "license": "MIT",
   "private": true

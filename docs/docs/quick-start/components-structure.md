@@ -1,10 +1,10 @@
 # Component's Structure
 
-A Reuse component is a function which receives a `sources` object and returns a `sinks` object.
+A Lemni component is a function which receives a `sources` object and returns a `sinks` object.
 
 The `sources` is how we access - as streams - all the data from the React side, such as props, state, lifecycle, etc.
 
-The `sinks` is how we describe our component's behaviour and side effecs, in a declarative way. In other words, **side effects are never executed imperatively inside a component implementation; they are instead described in the sinks, to be isolated executed on the Reuse side**.
+The `sinks` is how we describe our component's behaviour and side effecs, in a declarative way. In other words, **side effects are never executed imperatively inside a component implementation; they are instead described in the sinks, to be isolated executed on the Lemni side**.
 
 ```typescript
 const component = (sources) => {
@@ -26,11 +26,11 @@ const HelloWorld = (sources) => ({
 })
 ```
 
-Now our component is implemented, we must use Reuse to convert it to a conventional React component:
+Now our component is implemented, we must use Lemni to convert it to a conventional React component:
 
 ```typescript
 import ReactDOM from 'react-dom'
-import reuse from 'reuse'
+import lemni from 'lemni'
 
 const main = (sources) => ({
   view: (viewArgs) =>
@@ -39,7 +39,7 @@ const main = (sources) => ({
     </div>
 })
 
-const HelloWorld = reuse(main)
+const HelloWorld = lemni(main)
 
 ReactDOM.render(
   <HelloWorld />,

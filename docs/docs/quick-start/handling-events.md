@@ -1,12 +1,12 @@
 # Handling Events
 
-As everything else, user interaction in Reuse is managed through streams. When an interface event occurs, instead of calling a function (the traditional React way), we emit the event to a stream.
+As everything else, user interaction in Lemni is managed through streams. When an interface event occurs, instead of calling a function (the traditional React way), we emit the event to a stream.
 
 ```typescript
-import reuse from 'reuse'
+import lemni from 'lemni'
 import xs from 'xstream'
 
-const App = reuse(
+const App = lemni(
   sources => {
     const someAction = xs.Stream.create()
 
@@ -32,10 +32,10 @@ The `emitter` constructor receives a stream and returns an object containing thr
 * `emitValue` will emit an arbitrary value to the stream.
 
 ```typescript
-import reuse from 'reuse'
+import lemni from 'lemni'
 import xs from 'xstream'
 
-const App = reuse(
+const App = lemni(
     sources => {
     const firstAction = xs.Stream.create<SyntheticEvent>()
     const secondAction = xs.Stream.create<undefined>()

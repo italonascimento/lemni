@@ -1,5 +1,5 @@
 {
-  "name": "reuse",
+  "name": "lemni",
   "version": "0.0.1",
   "description": "A functional reactive framework on top of React",
   "main": "lib/index.js",

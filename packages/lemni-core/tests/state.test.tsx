@@ -3,7 +3,7 @@ import 'jest'
 import * as React from 'react'
 import { Stream } from 'xstream'
 import xs from 'xstream'
-import { reuse } from '../src'
+import { lemni } from '../src'
 
 
 interface State {
@@ -11,7 +11,7 @@ interface State {
 }
 
 
-const StateComp = reuse<{}, State>(() => {
+const StateComp = lemni<{}, State>(() => {
   const increment = Stream.create<undefined>()
 
   return {

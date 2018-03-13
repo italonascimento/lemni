@@ -4,7 +4,7 @@ import * as React from 'react'
 import { Stream } from 'xstream'
 import xs from 'xstream'
 import sampleCombine from 'xstream/extra/sampleCombine'
-import { reuse } from '../src'
+import { lemni } from '../src'
 
 
 interface State {
@@ -12,7 +12,7 @@ interface State {
 }
 
 
-const EventsComp = reuse<{}, State>(sources => {
+const EventsComp = lemni<{}, State>(sources => {
   const increment = Stream.create<undefined>()
   const incrementBy = Stream.create<number>()
 
@@ -54,7 +54,7 @@ interface IncrementProps {
 }
 
 
-const IncrementButton = reuse<IncrementProps>(sources => {
+const IncrementButton = lemni<IncrementProps>(sources => {
   const onClickEvent = Stream.create<undefined>()
 
   return {

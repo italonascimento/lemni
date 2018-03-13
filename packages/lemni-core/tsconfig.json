@@ -1,5 +1,5 @@
 {
-  "extends": "./node_modules/reuse-tsconfig/tsconfig.json",
+  "extends": "./node_modules/@lemni/tsconfig/tsconfig.json",
   "compilerOptions": {
     "outDir": "lib",
     "rootDir": "src"

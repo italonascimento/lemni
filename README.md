@@ -1,28 +1,28 @@
-# Reuse
+# Lemni
 
-Reuse allows us to implement React components and aplications in a **functional and reactive** way, making it much more natural to deal with the asynchronicity of interfaces, as well as isolating side effects away from the actual implementation.
+Lemni allows us to implement React components and aplications in a **functional and reactive** way, making it much more natural to deal with the asynchronicity of interfaces, as well as isolating side effects away from the actual implementation.
 
 ## Installation
 
-You may install Reuse through npm or Yarn:
+You may install Lemni through npm or Yarn:
 
 ```bash
-npm i @reuse/core
+npm i @lemni/core
 
 # or
 
-yarn add @reuse/core
+yarn add @lemni/core
 ```
 
 ## Hello World
 
-Reuse creates conventional React components, fully compatible with the entire React ecosystem, including **React Native**.
+Lemni creates conventional React components, fully compatible with the entire React ecosystem, including **React Native**.
 
 ```typescript
 import ReactDOM from 'react-dom'
-import reuse from 'reuse'
+import lemni from 'lemni'
 
-const HelloWorld = reuse(
+const HelloWorld = lemni(
   sources => ({
     view: (viewArgs) =>
       <div>
@@ -39,7 +39,7 @@ ReactDOM.render(
 
 ## Docs
 
-https://italonascimento.github.io/reuse/
+https://italonascimento.github.io/lemni/
 
 Also available on dat protocol for [Beaker Browser](https://beakerbrowser.com) enthusiasts (as we all should be):
 

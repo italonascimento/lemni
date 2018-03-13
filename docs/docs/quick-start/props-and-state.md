@@ -1,13 +1,13 @@
 # Props and State
 
-Props and state are the two main sources of truth in a React component. In Reuse, streams of props and state are available through the `sources` object, what enables us to combine or compose them with other asynchronous data, such as lifecycle events or user interaction.
+Props and state are the two main sources of truth in a React component. In Lemni, streams of props and state are available through the `sources` object, what enables us to combine or compose them with other asynchronous data, such as lifecycle events or user interaction.
 
 However, as two particularly important sources of truth, they are also passed as plain objects to the `view` sink, so we can easely use them in the rendering.
 
 ```typescript
-import reuse from 'reuse'
+import lemni from 'lemni'
 
-const Component = reuse(
+const Component = lemni(
   (sources) => {
     // streams of props and state
     const { props, state } = sources
@@ -28,7 +28,7 @@ const Component = reuse(
 
 ## Props
 
-As showed above, there are two ways of using a component's props in Reuse:
+As showed above, there are two ways of using a component's props in Lemni:
 
 * through the argument of the `view` function, as a plain object for rendering purposes;
 * through the `sources.props` stream, generaly used for composition of streams - as shown on the [State](#state) topic bellow. 
@@ -44,10 +44,10 @@ Unlike props, though, the state can be updated from inside the component who own
 A `initialState` sink may also be used to set the initial state when needed.
 
 ```typescript
-import reuse from 'reuse'
+import lemni from 'lemni'
 import xs from 'xstream'
 
-const Incrementer = reuse(sources => {
+const Incrementer = lemni(sources => {
   const onIncrement = xs.Stream.create()
 
   return {
@@ -77,11 +77,11 @@ The `stateReducer` sink is a stream of state reducers: functions which receive t
 For a more complex example, we may compose state and props streams to achieve a more generic incrementer, whose step size are specified via props:
 
 ```typescript
-import reuse from 'reuse'
+import lemni from 'lemni'
 import sampleCombine from 'xstream/extra/sampleCombine'
 import xs from 'xstream'
 
-const Incrementer = reuse(
+const Incrementer = lemni(
   (sources) => {
     const onIncrement = xs.Stream.create()
 

@@ -1,11 +1,11 @@
 # Installation
 
-You may install Reuse through npm or Yarn:
+You may install Lemni through npm or Yarn:
 
 ```bash
-npm i @reuse/core
+npm i @lemni/core
 
 # or
 
-yarn add @reuse/core
+yarn add @lemni/core
 ```

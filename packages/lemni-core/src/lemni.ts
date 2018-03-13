@@ -11,7 +11,7 @@ import { Reducer } from './createStore'
 import { Emitter } from './emitter'
 
 
-export type ReuseMainFunction<P, L, S> =
+export type LemniMainFunction<P, L, S> =
   (sourceStreams: SourceStreams<P, L, S>) =>
     Sinks<P, L, S>
 
@@ -49,7 +49,7 @@ export interface Sinks<P, L, S> {
 }
 
 
-export const reuse = <P = {}, L = {}, S = {}>(mainFn: ReuseMainFunction<P, L, S>) => {
+export const lemni = <P = {}, L = {}, S = {}>(mainFn: LemniMainFunction<P, L, S>) => {
   class ReactComponent extends Component<P, L> {
 
     static contextTypes = {

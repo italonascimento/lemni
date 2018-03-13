@@ -2,7 +2,7 @@ import { mount } from 'enzyme'
 import 'jest'
 import * as React from 'react'
 import { Stream } from 'xstream'
-import { reuse } from '../src'
+import { lemni } from '../src'
 import { createStore } from '../src/createStore'
 import { withStoreProvider } from '../src/withStoreProvider'
 
@@ -17,7 +17,7 @@ interface State {
 }
 
 
-const Comp = reuse<{}, State, Store>(sources => {
+const Comp = lemni<{}, State, Store>(sources => {
   const increment = Stream.create<undefined>()
 
   return {

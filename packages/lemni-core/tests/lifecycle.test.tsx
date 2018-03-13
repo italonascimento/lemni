@@ -3,7 +3,7 @@ import 'jest'
 import * as React from 'react'
 import { spy } from 'sinon'
 import xs from 'xstream'
-import { reuse } from '../src'
+import { lemni } from '../src'
 
 
 const componentWillMount = spy()
@@ -13,7 +13,7 @@ const componentWillUpdate = spy()
 const componentDidUpdate = spy()
 const componentWillUnmount = spy()
 
-const LifecycleComp = reuse(sources => ({
+const LifecycleComp = lemni(sources => ({
   sideEffect: xs.merge(
     sources.lifecycle.componentWillMount
       .mapTo(() => componentWillMount()),

@@ -3,7 +3,7 @@ import 'jest'
 import * as React from 'react'
 import { spy } from 'sinon'
 import sampleCombine from 'xstream/extra/sampleCombine'
-import { reuse } from '../src'
+import { lemni } from '../src'
 
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
 }
 
 
-const SideEffectsComp = reuse<Props>(sources => ({
+const SideEffectsComp = lemni<Props>(sources => ({
   sideEffect: sources.props
     .map(p => p.update)
     .filter(Boolean)

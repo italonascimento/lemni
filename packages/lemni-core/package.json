@@ -1,5 +1,5 @@
 {
-  "name": "@reuse/core",
+  "name": "@lemni/core",
   "version": "0.0.1",
   "description": "A reactive framework based on React",
   "main": "lib/index.js",
@@ -36,8 +36,8 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "jest": "^22.1.4",
     "react-dom": "^16.2.0",
-    "reuse-tsconfig": "^0.0.1",
-    "reuse-tslint": "^0.0.1",
+    "@lemni/tsconfig": "^0.0.1",
+    "@lemni/tslint": "^0.0.1",
     "sinon": "^4.2.2",
     "ts-jest": "^22.0.3"
   },

@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme'
 import 'jest'
 import * as React from 'react'
-import { reuse } from '../src'
+import { lemni } from '../src'
 
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 }
 
 
-const Hello = reuse<Props>(() => ({
+const Hello = lemni<Props>(() => ({
   view: ({props}) => (
     <div>Hello { props.to }</div>
   )

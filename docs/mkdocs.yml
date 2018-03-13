@@ -1,11 +1,11 @@
-site_name: Reuse
+site_name: Lemni
 markdown_extensions:
   - codehilite
 theme:
   name: 'material'
 pages:
   - INTRODUCTION:
-    - What is Reuse?: index.md
+    - What is Lemni?: index.md
   - QUICK START:
     - Installation: quick-start/installation.md
     - Component's Structure: quick-start/components-structure.md
