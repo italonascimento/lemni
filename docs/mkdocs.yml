@@ -1,8 +1,11 @@
 site_name: Lemni
+site_description: A functional and reactive framework on top of React. Embrace asynchronicity!
+repo_url: https://github.com/italonascimento/lemni
 markdown_extensions:
   - codehilite
 theme:
   name: 'material'
+google_analytics: ['UA-115771307-1', 'italonascimento.github.io/lemni/']
 pages:
   - INTRODUCTION:
     - What is Lemni?: index.md
