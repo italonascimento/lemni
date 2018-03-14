@@ -1,6 +1,7 @@
 site_name: Lemni
 site_description: A functional and reactive framework on top of React. Embrace asynchronicity!
 repo_url: https://github.com/italonascimento/lemni
+edit_uri: edit/master/docs/docs/
 markdown_extensions:
   - codehilite
 theme:
