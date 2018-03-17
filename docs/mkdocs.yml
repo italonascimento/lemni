@@ -6,7 +6,7 @@ markdown_extensions:
   - codehilite
 theme:
   name: 'material'
-google_analytics: ['UA-115771307-1', 'italonascimento.github.io/lemni/']
+google_analytics: ['UA-115771307-1', 'italonascimento.github.io']
 pages:
   - INTRODUCTION:
     - What is Lemni?: index.md
