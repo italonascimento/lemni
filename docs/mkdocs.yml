@@ -8,7 +8,7 @@ theme:
   name: 'material'
 google_analytics:
   - 'UA-115771307-1'
-  - 'italonascimento.github.io/lemni/'
+  - 'auto'
 pages:
   - INTRODUCTION:
     - What is Lemni?: index.md
