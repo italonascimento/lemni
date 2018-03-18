@@ -7,8 +7,6 @@ markdown_extensions:
 theme:
   name: 'material'
 google_analytics: ['UA-115771307-1', 'italonascimento.github.io']
-google_analytics:
-  - 'UA-115771307-1'
 pages:
   - INTRODUCTION:
     - What is Lemni?: index.md
