@@ -1,34 +1,55 @@
+import { execSync, exec } from 'child_process'
+import { promisify } from 'util'
 import * as commander from 'commander'
-import * as fs from 'fs'
+import * as fs from 'fs';
 import { join } from 'path'
+import { ncp } from 'ncp'
+
 
 const { version } = require('../package.json')
 
-commander
-  .action((project: string) => {
-    const projectDir = join(process.cwd(), project)
-    
-    fs.mkdirSync(projectDir)
-    fs.mkdirSync(join(projectDir, 'src'))
-    fs.mkdirSync(join(projectDir, 'src/components'))
-    fs.mkdirSync(join(projectDir, 'dist'))
+interface PackageTemplateParams {
+  project: string
+  version: string
+}
 
-    const pkgTemplate = fs.readFileSync(
-      join(__dirname, '../templates/pkg.json'),
+const copyFolder = promisify(ncp)
+
+commander
+  .action(async (project: string) => {
+    const targetDir = join(process.cwd(), project)
+    const templateFolder = join(__dirname, '../templates/typescript')
+    
+    await copyFolder(templateFolder, targetDir)
+    writePackageJson(
+      join(templateFolder, 'pkg.json'),
+      join(targetDir, 'package.json'),
+      {version, project}
     )
     
-    fs.writeFileSync(
-      join(projectDir, 'package.json'),
-      buildTemplate(pkgTemplate.toString(), {
-        project,
-        version,
-      })
-    )
+    const installation = exec(`cd ${project} && npm i`)
+    installation.stdout.pipe(process.stdout)
+    installation.stderr.pipe(process.stderr)
+    execSync('cd ..')
   })
   .parse(process.argv)
 
-function buildTemplate(template: string, params: any): string {
-  return template
-    .replace('{{project}}', params.project)
-    .replace('{{version}}', params.version)
-}
+const writePackageJson: (
+  filePath: string,
+  targetPath: string,
+  params: PackageTemplateParams
+) => void =
+  (filePath, targetPath, params) => {
+    const pkgTemplate = fs.readFileSync(filePath)
+
+    fs.writeFileSync(
+      targetPath,
+      buildTemplate(pkgTemplate.toString(), params)
+    )
+  }
+
+const buildTemplate: (template: string, params: any) => string =
+  (template, params) =>
+    template
+      .replace('{{project}}', params.project)
+      .replace('{{version}}', params.version)

@@ -1,15 +1,13 @@
 {
   "name": "{{project}}",
   "version": "0.0.1",
-  "main": "dist/index.js",
+  "main": "dist/app.js",
   "private": false,
   "scripts": {
-    "clean": "rm -rf bin && mkdir bin",
+    "clean": "rm -rf dist && mkdir dist",
     "build": "npm run clean && tsc"
   },
   "devDependencies": {
-    "@lemni/tsconfig": "^0.0.2",
-    "@lemni/tslint": "^0.0.2",
     "typescript": "^2.7.2"
   },
   "dependencies": {

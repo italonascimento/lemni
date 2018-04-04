@@ -17,10 +17,12 @@
   "devDependencies": {
     "@lemni/tsconfig": "^0.0.2",
     "@lemni/tslint": "^0.0.2",
+    "@types/ncp": "^2.0.1",
     "@types/node": "^9.4.7",
     "typescript": "^2.7.2"
   },
   "dependencies": {
-    "commander": "^2.15.0"
+    "commander": "^2.15.0",
+    "ncp": "^2.0.0"
   }
 }
