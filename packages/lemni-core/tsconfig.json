@@ -2,7 +2,10 @@
   "extends": "./node_modules/@lemni/tsconfig/tsconfig.json",
   "compilerOptions": {
     "outDir": "lib",
-    "rootDir": "src"
+    "rootDir": "src",
+    "types": [
+      "react"
+    ],
   },
   "exclude": [
     "node_modules",
