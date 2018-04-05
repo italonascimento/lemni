@@ -52,7 +52,7 @@ const Comp = lemni<{}, State, Store>(sources => {
 const globalStore = createStore<Store>({ count: 0 })
 const CompWithStore = withStoreProvider(globalStore)(Comp)
 
-test('Events', () => {
+test('Store', () => {
   const wrapper = mount((<CompWithStore />))
   expect(wrapper.find('p').text()).toBe('Counter: 0')
 

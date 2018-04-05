@@ -17,7 +17,7 @@
   "scripts": {
     "clean": "rm -rf lib && mkdir lib",
     "build": "npm run clean && tsc",
-    "test": "jest",
+    "test": "jest --verbose",
     "prepublishOnly": "npm run build"
   },
   "jest": {

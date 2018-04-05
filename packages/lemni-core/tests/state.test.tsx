@@ -35,7 +35,7 @@ const StateComp = lemni<{}, State>(() => {
   }
 })
 
-test('Events', () => {
+test('State', () => {
   const wrapper = mount((<StateComp />))
   expect(wrapper.find('p').text()).toBe('Counter: 0')
 
