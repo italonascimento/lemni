@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "author": "Denis Ikeda, Ítalo Nascimento",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "clean": "rm -rf lib && mkdir lib",
     "install-mkdocs": "pip install mkdocs && pip install mkdocs-material && pip install pygments",
