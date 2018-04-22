@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from "react"
 
 declare module "react" {
   type Provider<T> = React.ComponentType<{
@@ -16,5 +16,5 @@ declare module "react" {
     Consumer: Consumer<T>;
   }
 
-  function createContext<T>(defaultValue: T, calculateChangedBits?: (prev: T, next: T) => number): Context<T>;
+  function createContext<T>(defaultValue?: T, calculateChangedBits?: (prev: T, next: T) => number): Context<T>;
 }

@@ -1,4 +1,3 @@
-import * as PropTypes from 'prop-types'
 import {
   Component,
   ComponentClass
@@ -7,7 +6,7 @@ import {
   Listener,
   Stream
 } from 'xstream'
-import { Reducer } from './createStore'
+import { Reducer, Store } from './createStore'
 import { Emitter } from './emitter'
 
 
@@ -48,14 +47,24 @@ export interface Sinks<P, L, S> {
   sideEffect?: Stream<() => void>
 }
 
+export type WithStore<T> = {
+  store: Store<T>
+}
+
 
 export const lemni = <P = {}, L = {}, S = {}>(mainFn: LemniMainFunction<P, L, S>) => {
-  class ReactComponent extends Component<P, L> {
+  type PropsWithStore = WithStore<S> & P
 
-    static contextTypes = {
-      store: PropTypes.object,
-    }
+  const propsWithoutStore = (propsWithStore: PropsWithStore) => {
+    const {store, ...props} = propsWithStore as any
+    return props as P
+  }
 
+  class ReactComponent extends Component<PropsWithStore, L> {
+
+    private store: Store<S>
+    private componentProps: P
+    
     private sources: SourceStreams<P, L, S>
     private sinks: Sinks<P, L, S>
 
@@ -63,13 +72,22 @@ export const lemni = <P = {}, L = {}, S = {}>(mainFn: LemniMainFunction<P, L, S>
     private storeReducerListener: Partial<Listener<Reducer<S>>>
     private sideEffectListener: Partial<Listener<() => void>>
 
+
     componentWillMount() {
-      const hasStore = this.context && this.context.store
+      // FIX ME: remove "as any"
+      // Generic types can't be spread
+      // https://github.com/Microsoft/TypeScript/issues/16780
+      // https://github.com/Microsoft/TypeScript/issues/10727
+      const { store, ...props } = this.props as any
+      this.store = store as Store<S>
+      this.componentProps = props as P
+
+      const hasStore = Boolean(this.store)
 
       this.sources = {
         props: Stream.create(),
         state: Stream.create(),
-        store: hasStore ? this.context.store.getStoreStream() : Stream.never(),
+        store: hasStore ? this.store.getStoreStream() : Stream.never(),
         lifecycle: {
           componentDidMount: Stream.create(),
           componentWillUnmount: Stream.create(),
@@ -107,7 +125,7 @@ export const lemni = <P = {}, L = {}, S = {}>(mainFn: LemniMainFunction<P, L, S>
       if (storeReducer && hasStore) {
         this.storeReducerListener = {
           next: (reducer: Reducer<S>) =>
-            this.context.store.sendNextReducer(reducer)
+            this.store.sendNextReducer(reducer)
         }
 
         storeReducer.addListener(this.storeReducerListener)
@@ -137,8 +155,6 @@ export const lemni = <P = {}, L = {}, S = {}>(mainFn: LemniMainFunction<P, L, S>
     }
 
     componentDidUpdate() {
-      this.sources.props.shamefullySendNext(this.props)
-
       this.sources.lifecycle.componentDidUpdate.shamefullySendNext(undefined)
     }
 
@@ -159,9 +175,12 @@ export const lemni = <P = {}, L = {}, S = {}>(mainFn: LemniMainFunction<P, L, S>
     }
 
     render() {
+      this.componentProps = propsWithoutStore(this.props as PropsWithStore)
+      this.sources.props.shamefullySendNext(this.componentProps)
+
       return this.sinks.view
         ? this.sinks.view({
-            props: this.props,
+            props: this.componentProps,
             state: this.state,
             emitter: Emitter
           })
