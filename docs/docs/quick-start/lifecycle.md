@@ -3,7 +3,7 @@
 Lifecycle streams may be accessed through `sources.lifecycle` object, under the same names of React's lifecycle functions.
 
 ```typescript
-import lemni from 'lemni'
+import { lemni } from 'lemni'
 
 const Incrementer = lemni(
   sources => ({

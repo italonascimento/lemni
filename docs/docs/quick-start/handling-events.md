@@ -3,7 +3,7 @@
 As everything else, user interaction in Lemni is managed through streams. When an interface event occurs, instead of calling a function (the traditional React way), we emit the event to a stream.
 
 ```typescript
-import lemni from 'lemni'
+import { lemni } from 'lemni'
 import xs from 'xstream'
 
 const App = lemni(
@@ -32,7 +32,7 @@ The `emitter` constructor receives a stream and returns an object containing thr
 * `emitValue` will emit an arbitrary value to the stream.
 
 ```typescript
-import lemni from 'lemni'
+import { lemni } from 'lemni'
 import xs from 'xstream'
 
 const App = lemni(

@@ -5,7 +5,7 @@ Lemni provides us with a `sideEffects` sink, which is a default way to produce s
 To produce a side effect, just emit an impure function through this sink and it will be executed on the Lemni side.
 
 ```typescript
-import lemni from 'lemni'
+import { lemni } from 'lemni'
 import xs from 'xstream'
 
 const MyButton = lemni(

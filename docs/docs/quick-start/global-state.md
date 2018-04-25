@@ -37,7 +37,7 @@ As mentioned above, global state in Lemni is managed almost in the same way as a
 It's important to notice, though, that unlike the local state, the store is not available inside the `view` sink function. This means that instead of directly accessing the global app's state inside our rendering function, we must first copy to the local state the pieces of data of our interest.
 
 ```typescript
-import lemni from 'lemni'
+import { lemni } from 'lemni'
 import xs from 'xstream'
 
 const GlobalIncrementer = lemni(sources => {

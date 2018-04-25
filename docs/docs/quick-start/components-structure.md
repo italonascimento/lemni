@@ -18,6 +18,8 @@ const component = (sources) => {
 A simple component may return a `sinks` object containing only a `view` property, which is responsible for describing how the component should render.
 
 ```typescript
+import { lemni } from 'lemni'
+
 const HelloWorld = (sources) => ({
   view: (viewArgs) =>
     <div>
@@ -29,8 +31,9 @@ const HelloWorld = (sources) => ({
 Now our component is implemented, we must use Lemni to convert it to a conventional React component:
 
 ```typescript
-import ReactDOM from 'react-dom'
-import lemni from 'lemni'
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
+import { lemni } from 'lemni'
 
 const main = (sources) => ({
   view: (viewArgs) =>

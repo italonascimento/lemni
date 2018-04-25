@@ -5,7 +5,7 @@ Props and state are the two main sources of truth in a React component. In Lemni
 However, as two particularly important sources of truth, they are also passed as plain objects to the `view` sink, so we can easely use them in the rendering.
 
 ```typescript
-import lemni from 'lemni'
+import { lemni } from 'lemni'
 
 const Component = lemni(
   (sources) => {
@@ -44,7 +44,7 @@ Unlike props, though, the state can be updated from inside the component who own
 A `initialState` sink may also be used to set the initial state when needed.
 
 ```typescript
-import lemni from 'lemni'
+import { lemni } from 'lemni'
 import xs from 'xstream'
 
 const Incrementer = lemni(sources => {
@@ -77,7 +77,7 @@ The `stateReducer` sink is a stream of state reducers: functions which receive t
 For a more complex example, we may compose state and props streams to achieve a more generic incrementer, whose step size are specified via props:
 
 ```typescript
-import lemni from 'lemni'
+import { lemni } from 'lemni'
 import sampleCombine from 'xstream/extra/sampleCombine'
 import xs from 'xstream'
 
