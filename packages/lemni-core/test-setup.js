@@ -1,11 +1,7 @@
-/**
- * Defines the React 16 Adapter for Enzyme. 
- *
- * @link http://airbnb.io/enzyme/docs/installation/#working-with-react-16
- * @copyright 2017 Airbnb, Inc.
- */
-
 const enzyme = require('enzyme')
-const Adapter = require('enzyme-adapter-react-16')
+// FIX ME: remove when official fix is published
+// https://github.com/airbnb/enzyme/pull/1513
+// const Adapter = require('enzyme-adapter-react-16')
+const Adapter = require('./ReactSixteenAdapter')
 
 enzyme.configure({ adapter: new Adapter() })
