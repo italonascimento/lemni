@@ -466,7 +466,9 @@
 
 <h2 id="hello-world">Hello World</h2>
 <p>A simple component may return a <code>sinks</code> object containing only a <code>view</code> property, which is responsible for describing how the component should render.</p>
-<div class="codehilite"><pre><span></span><span class="kr">const</span> <span class="nx">HelloWorld</span> <span class="o">=</span> <span class="p">(</span><span class="nx">sources</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span>
+<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">lemni</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;lemni&#39;</span>
+
+<span class="kr">const</span> <span class="nx">HelloWorld</span> <span class="o">=</span> <span class="p">(</span><span class="nx">sources</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span>
   <span class="nx">view</span><span class="o">:</span> <span class="p">(</span><span class="nx">viewArgs</span><span class="p">)</span> <span class="o">=&gt;</span>
     <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
       <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">Hello</span> <span class="nx">World</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
@@ -476,8 +478,9 @@
 
 
 <p>Now our component is implemented, we must use Lemni to convert it to a conventional React component:</p>
-<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="nx">ReactDOM</span> <span class="nx">from</span> <span class="s1">&#39;react-dom&#39;</span>
-<span class="kr">import</span> <span class="nx">lemni</span> <span class="nx">from</span> <span class="s1">&#39;lemni&#39;</span>
+<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="o">*</span> <span class="kr">as</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
+<span class="kr">import</span> <span class="o">*</span> <span class="kr">as</span> <span class="nx">ReactDOM</span> <span class="nx">from</span> <span class="s1">&#39;react-dom&#39;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">lemni</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;lemni&#39;</span>
 
 <span class="kr">const</span> <span class="nx">main</span> <span class="o">=</span> <span class="p">(</span><span class="nx">sources</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span>
   <span class="nx">view</span><span class="o">:</span> <span class="p">(</span><span class="nx">viewArgs</span><span class="p">)</span> <span class="o">=&gt;</span>

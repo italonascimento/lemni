@@ -455,7 +455,7 @@
                 
                 <h1 id="handling-events">Handling Events</h1>
 <p>As everything else, user interaction in Lemni is managed through streams. When an interface event occurs, instead of calling a function (the traditional React way), we emit the event to a stream.</p>
-<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="nx">lemni</span> <span class="nx">from</span> <span class="s1">&#39;lemni&#39;</span>
+<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">lemni</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;lemni&#39;</span>
 <span class="kr">import</span> <span class="nx">xs</span> <span class="nx">from</span> <span class="s1">&#39;xstream&#39;</span>
 
 <span class="kr">const</span> <span class="nx">App</span> <span class="o">=</span> <span class="nx">lemni</span><span class="p">(</span>
@@ -482,7 +482,7 @@
 <li><code>signal</code> will emit <code>undefined</code> to a specified stream, which is pretty helpful when the parameter doesn't matter;</li>
 <li><code>emitValue</code> will emit an arbitrary value to the stream.</li>
 </ul>
-<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="nx">lemni</span> <span class="nx">from</span> <span class="s1">&#39;lemni&#39;</span>
+<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">lemni</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;lemni&#39;</span>
 <span class="kr">import</span> <span class="nx">xs</span> <span class="nx">from</span> <span class="s1">&#39;xstream&#39;</span>
 
 <span class="kr">const</span> <span class="nx">App</span> <span class="o">=</span> <span class="nx">lemni</span><span class="p">(</span>

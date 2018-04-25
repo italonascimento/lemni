@@ -470,7 +470,7 @@
                 <h1 id="props-and-state">Props and State</h1>
 <p>Props and state are the two main sources of truth in a React component. In Lemni, streams of props and state are available through the <code>sources</code> object, what enables us to combine or compose them with other asynchronous data, such as lifecycle events or user interaction.</p>
 <p>However, as two particularly important sources of truth, they are also passed as plain objects to the <code>view</code> sink, so we can easely use them in the rendering.</p>
-<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="nx">lemni</span> <span class="nx">from</span> <span class="s1">&#39;lemni&#39;</span>
+<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">lemni</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;lemni&#39;</span>
 
 <span class="kr">const</span> <span class="nx">Component</span> <span class="o">=</span> <span class="nx">lemni</span><span class="p">(</span>
   <span class="p">(</span><span class="nx">sources</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -503,7 +503,7 @@
 <p>As with props, the state of a component is assessible from the <code>sources.state</code> stream, as well as from the <code>view</code> sink argument.</p>
 <p>Unlike props, though, the state can be updated from inside the component who owns it. Since this is a side effect, it must be done through a sink. In this case, the <code>stateReducer</code> sink.</p>
 <p>A <code>initialState</code> sink may also be used to set the initial state when needed.</p>
-<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="nx">lemni</span> <span class="nx">from</span> <span class="s1">&#39;lemni&#39;</span>
+<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">lemni</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;lemni&#39;</span>
 <span class="kr">import</span> <span class="nx">xs</span> <span class="nx">from</span> <span class="s1">&#39;xstream&#39;</span>
 
 <span class="kr">const</span> <span class="nx">Incrementer</span> <span class="o">=</span> <span class="nx">lemni</span><span class="p">(</span><span class="nx">sources</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -534,7 +534,7 @@
 
 <p>The <code>stateReducer</code> sink is a stream of state reducers: functions which receive the latest state as argument and return a new one.</p>
 <p>For a more complex example, we may compose state and props streams to achieve a more generic incrementer, whose step size are specified via props:</p>
-<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="nx">lemni</span> <span class="nx">from</span> <span class="s1">&#39;lemni&#39;</span>
+<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">lemni</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;lemni&#39;</span>
 <span class="kr">import</span> <span class="nx">sampleCombine</span> <span class="nx">from</span> <span class="s1">&#39;xstream/extra/sampleCombine&#39;</span>
 <span class="kr">import</span> <span class="nx">xs</span> <span class="nx">from</span> <span class="s1">&#39;xstream&#39;</span>
 
