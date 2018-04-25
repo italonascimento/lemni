@@ -1,5 +1,5 @@
 {
   "extends": [
-    "lemni-tslint"
+    "@lemni/tslint"
   ]
 }
