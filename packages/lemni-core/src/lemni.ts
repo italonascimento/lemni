@@ -156,6 +156,7 @@ export const lemni = <P = {}, L = {}, S = {}>(mainFn: LemniMainFunction<P, L, S>
 
     componentDidUpdate() {
       this.sources.lifecycle.componentDidUpdate.shamefullySendNext(undefined)
+      this.sources.props.shamefullySendNext(this.componentProps)
     }
 
     componentWillUnmount() {
@@ -176,7 +177,6 @@ export const lemni = <P = {}, L = {}, S = {}>(mainFn: LemniMainFunction<P, L, S>
 
     render() {
       this.componentProps = propsWithoutStore(this.props as PropsWithStore)
-      this.sources.props.shamefullySendNext(this.componentProps)
 
       return this.sinks.view
         ? this.sinks.view({
