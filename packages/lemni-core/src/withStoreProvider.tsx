@@ -10,7 +10,7 @@ export const withStoreProvider = (store: any) => {
     (props: any) => (
       <Provider value={ store }>
         <Consumer>
-          {store => <WrappedComponent { ...props } store={store} />}
+          {storeObject => <WrappedComponent { ...props } store={storeObject} />}
         </Consumer>
       </Provider>
     )

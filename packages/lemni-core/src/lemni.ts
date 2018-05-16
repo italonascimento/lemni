@@ -47,8 +47,8 @@ export interface Sinks<P, L, S> {
   sideEffect?: Stream<() => void>
 }
 
-export type WithStore<T> = {
-  store: Store<T>
+export interface WithStore<T> {
+  store?: Store<T>
 }
 
 
@@ -64,7 +64,7 @@ export const lemni = <P = {}, L = {}, S = {}>(mainFn: LemniMainFunction<P, L, S>
 
     private store: Store<S>
     private componentProps: P
-    
+
     private sources: SourceStreams<P, L, S>
     private sinks: Sinks<P, L, S>
 
