@@ -20,7 +20,7 @@ Lemni creates conventional React components, fully compatible with the entire Re
 
 ```typescript
 import ReactDOM from 'react-dom'
-import lemni from 'lemni'
+import { lemni } from 'lemni'
 
 const HelloWorld = lemni(
   sources => ({
@@ -37,13 +37,41 @@ ReactDOM.render(
 )
 ```
 
+## Basic Component
+
+```typescript
+import { lemni } from 'lemni'
+import xs from 'xstream'
+
+const Incrementer = lemni(sources => {
+  const onIncrement = xs.Stream.create()
+
+  return {
+    initialState: {
+      count: 0,
+    },
+
+    stateReducer: onIncrement.mapTo(
+      state => ({
+        count: state.count + 1,
+      })
+    ),
+
+    view: ({ state, emitter }) => (
+      <p>Count: {state.count}</p>
+      <button onClick={emmiter(onIncrement).emit}>
+        Increment
+      </button>
+    )
+  }
+})
+```
+
 ## Docs
 
+To better understand the above example and to see what else Lemni is capable of, head to the docs:
+
 https://italonascimento.github.io/lemni/
-
-Also available on dat protocol for [Beaker Browser](https://beakerbrowser.com) enthusiasts (as we all should be):
-
-dat://761cafc1cf4964ddf8ae5c55af08d57ea99d5ba3cdd3da4ce3f802802c5597ac/
 
 ## License
 
