@@ -2,18 +2,23 @@
     "docs": [
         {
             "location": "/", 
-            "text": "What is Lemni?\n\n\nLemni allows us to implement React components and aplications in a \nfunctional and reactive\n way, making it much more natural to deal with the asynchronicity of interfaces, as well as isolating side effects away from the actual implementation.\n\n\nEmbracing Asynchronicity\n\n\nThink of all the data and events you're used to work with in React, such as props, state, lifecycle, user interaction, etc. These are all asynchronous by nature, the data change and the events emit along time, more than often triggered by previous events and producing new ones. Basicaly what Lemni does is to turn all of this data and events into reactive streams, completely embracing the asynchronicity and allowing us to take advantage of it.", 
+            "text": "What is Lemni?\n\n\nLemni allows us to implement React components and aplications in a \nfunctional and reactive\n way, making it much more natural to deal with the asynchronicity of interfaces, as well as isolating side effects away from the logic.\n\n\nEmbracing Asynchronicity\n\n\nThink of all the data and events you're used to work with in React, such as props, state, lifecycle, user interaction, etc. These are all asynchronous by nature, the data change and the events emit along time, more than often triggered by previous events and producing new ones. Basicaly what Lemni does is to turn all of this data and events into reactive streams, completely embracing the asynchronicity and allowing us to take advantage of it.\n\n\nReact Compatible\n\n\nLemni is out-of-the-box fully compatible with the entire React ecosistem, including React Native: Lemni components are actual React components.\n\n\nDoes it really work with React Native, though?\n\n\nGlad you asked: it does. :)", 
             "title": "What is Lemni?"
         }, 
         {
             "location": "/#what-is-lemni", 
-            "text": "Lemni allows us to implement React components and aplications in a  functional and reactive  way, making it much more natural to deal with the asynchronicity of interfaces, as well as isolating side effects away from the actual implementation.", 
+            "text": "Lemni allows us to implement React components and aplications in a  functional and reactive  way, making it much more natural to deal with the asynchronicity of interfaces, as well as isolating side effects away from the logic.", 
             "title": "What is Lemni?"
         }, 
         {
             "location": "/#embracing-asynchronicity", 
             "text": "Think of all the data and events you're used to work with in React, such as props, state, lifecycle, user interaction, etc. These are all asynchronous by nature, the data change and the events emit along time, more than often triggered by previous events and producing new ones. Basicaly what Lemni does is to turn all of this data and events into reactive streams, completely embracing the asynchronicity and allowing us to take advantage of it.", 
             "title": "Embracing Asynchronicity"
+        }, 
+        {
+            "location": "/#react-compatible", 
+            "text": "Lemni is out-of-the-box fully compatible with the entire React ecosistem, including React Native: Lemni components are actual React components.  Does it really work with React Native, though?  Glad you asked: it does. :)", 
+            "title": "React Compatible"
         }, 
         {
             "location": "/quick-start/installation/", 
