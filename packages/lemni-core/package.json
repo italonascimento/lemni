@@ -54,5 +54,6 @@
     "prop-types": "^15.6.2",
     "react": "^16.6.1",
     "xstream": "^11.7.0"
-  }
+  },
+  "gitHead": "8336a1e01b002a7f4120cca0fc10b97258f1ca21"
 }
