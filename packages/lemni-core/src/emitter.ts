@@ -1,19 +1,19 @@
 import { Stream } from 'xstream'
 
 
-export type Emitter = <T>(stream: Stream<T | undefined>) => {
+export type Emitter = <T>(stream: Stream<T>) => {
   emit:
-    (value: T) =>
-      void
+  (value: T) =>
+    void
 
   emitValue:
-    (value: T) =>
-      () =>
-        void
-
-  signal:
+  (value: T) =>
     () =>
       void
+
+  signal:
+  () =>
+    void
 }
 
 
@@ -29,6 +29,6 @@ export const Emitter: Emitter = stream => ({
   ,
   signal:
     () =>
-      stream.shamefullySendNext(undefined)
+      stream.shamefullySendNext(undefined!)
   ,
 })
