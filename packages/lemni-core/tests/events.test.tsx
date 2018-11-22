@@ -39,9 +39,9 @@ const EventsComp = lemni<{}, State>(sources => {
     view: ({ props, state, emitter }) => (
       <div>
         <p>Counter: {state.count}</p>
-        <button className='increment' onClick={emitter(increment).signal}>Increment</button>
+        <button className='increment' onClick={emitter(increment).emitValue(undefined)}>Increment</button>
         <button className='incrementBy2' onClick={emitter(incrementBy).emitValue(2)}>Increment by 2</button>
-        <IncrementButton by={3} onClick={emitter(incrementBy).emit} />
+        <IncrementButton by={3} onClick={emitter(incrementBy).emitValue} />
       </div>
     )
   }
@@ -70,7 +70,7 @@ const IncrementButton = lemni<IncrementProps>(sources => {
       ),
 
     view: ({ props, state, emitter }) => (
-      <button onClick={emitter(onClickEvent).signal} />
+      <button onClick={emitter(onClickEvent).emitValue(undefined)} />
     )
   }
 })

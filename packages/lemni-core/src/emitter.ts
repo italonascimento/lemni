@@ -10,10 +10,6 @@ export type Emitter = <T>(stream: Stream<T>) => {
   (value: T) =>
     () =>
       void
-
-  signal:
-  () =>
-    void
 }
 
 
@@ -26,9 +22,5 @@ export const Emitter: Emitter = stream => ({
     value =>
       () =>
         stream.shamefullySendNext(value)
-  ,
-  signal:
-    () =>
-      stream.shamefullySendNext(undefined!)
   ,
 })
