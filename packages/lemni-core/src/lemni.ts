@@ -2,7 +2,7 @@ import {
   Component,
   ComponentClass
 } from 'react'
-import {
+import xs, {
   Listener,
   Stream
 } from 'xstream'
@@ -39,12 +39,12 @@ export interface ViewSources<P, L> {
 
 export interface Sinks<P, L, S> {
   initialState?: L
-  stateReducer?: Stream<Reducer<L>>
-  storeReducer?: Stream<Reducer<S>>
+  stateReducer?: Array<Stream<Reducer<L>>>
+  storeReducer?: Array<Stream<Reducer<S>>>
   view?:
-    (viewSources: ViewSources<P, L>) =>
-      JSX.Element | null | false
-  sideEffect?: Stream<() => void>
+  (viewSources: ViewSources<P, L>) =>
+    JSX.Element | null | false
+  sideEffect?: Array<Stream<() => void>>
 }
 
 export interface WithStore<T> {
@@ -56,7 +56,7 @@ export const lemni = <P = {}, L = {}, S = {}>(mainFn: LemniMainFunction<P, L, S>
   type PropsWithStore = WithStore<S> & P
 
   const propsWithoutStore = (propsWithStore: PropsWithStore) => {
-    const {store, ...props} = propsWithStore as any
+    const { store, ...props } = propsWithStore as any
     return props as P
   }
 
@@ -67,6 +67,9 @@ export const lemni = <P = {}, L = {}, S = {}>(mainFn: LemniMainFunction<P, L, S>
 
     private sources: SourceStreams<P, L, S>
     private sinks: Sinks<P, L, S>
+    private stateReducer: Stream<Reducer<L>>
+    private storeReducer: Stream<Reducer<S>>
+    private sideEffect: Stream<() => void>
 
     private stateListener: Partial<Listener<L>>
     private storeReducerListener: Partial<Listener<Reducer<S>>>
@@ -101,16 +104,20 @@ export const lemni = <P = {}, L = {}, S = {}>(mainFn: LemniMainFunction<P, L, S>
 
       this.sinks = mainFn(this.sources)
       const {
-        stateReducer,
-        storeReducer,
-        sideEffect,
+        stateReducer = [],
+        storeReducer = [],
+        sideEffect = [],
         initialState = {} as L
       } = this.sinks
+
+      this.stateReducer = xs.merge(...stateReducer)
+      this.storeReducer = xs.merge(...storeReducer)
+      this.sideEffect = xs.merge(...sideEffect)
 
       this.setState(initialState)
 
       if (stateReducer) {
-        const state = stateReducer.fold(
+        const state = this.stateReducer.fold(
           (lastState, reduce) =>
             reduce(lastState),
           initialState
@@ -128,7 +135,7 @@ export const lemni = <P = {}, L = {}, S = {}>(mainFn: LemniMainFunction<P, L, S>
             this.store.sendNextReducer(reducer)
         }
 
-        storeReducer.addListener(this.storeReducerListener)
+        this.storeReducer.addListener(this.storeReducerListener)
       }
 
       if (sideEffect) {
@@ -136,7 +143,7 @@ export const lemni = <P = {}, L = {}, S = {}>(mainFn: LemniMainFunction<P, L, S>
           next: (effect: () => void) => effect()
         }
 
-        sideEffect.addListener(this.sideEffectListener)
+        this.sideEffect.addListener(this.sideEffectListener)
       }
 
       this.sources.lifecycle.componentWillMount.shamefullySendNext(undefined)
@@ -167,11 +174,11 @@ export const lemni = <P = {}, L = {}, S = {}>(mainFn: LemniMainFunction<P, L, S>
       }
 
       if (this.storeReducerListener) {
-        this.sinks.storeReducer!.removeListener(this.storeReducerListener)
+        this.storeReducer.removeListener(this.storeReducerListener)
       }
 
       if (this.sideEffectListener) {
-        this.sinks.sideEffect!.removeListener(this.sideEffectListener)
+        this.sideEffect.removeListener(this.sideEffectListener)
       }
     }
 
@@ -180,10 +187,10 @@ export const lemni = <P = {}, L = {}, S = {}>(mainFn: LemniMainFunction<P, L, S>
 
       return this.sinks.view
         ? this.sinks.view({
-            props: this.componentProps,
-            state: this.state,
-            emitter: Emitter
-          })
+          props: this.componentProps,
+          state: this.state,
+          emitter: Emitter
+        })
         : null
     }
   }

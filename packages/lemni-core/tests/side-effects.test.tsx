@@ -13,25 +13,27 @@ interface Props {
 
 
 const SideEffectsComp = lemni<Props>(sources => ({
-  sideEffect: sources.props
-    .map(p => p.update)
-    .filter(Boolean)
-    .compose(sampleCombine(
-      sources.props
-        .map(p => p.onUpdate)
-    ))
-    .map(([_1, _2]) => _2)
-    .map(onUpdate =>
-      () => {
-        onUpdate()
-      }
-    ),
+  sideEffect: [
+    sources.props
+      .map(p => p.update)
+      .filter(Boolean)
+      .compose(sampleCombine(
+        sources.props
+          .map(p => p.onUpdate)
+      ))
+      .map(([_1, _2]) => _2)
+      .map(onUpdate =>
+        () => {
+          onUpdate()
+        }
+      ),
+  ]
 }))
 
 const onUpdateSpy = spy()
 
 test('Side Effect', () => {
-  const wrapper = mount(<SideEffectsComp onUpdate={ onUpdateSpy } />)
+  const wrapper = mount(<SideEffectsComp onUpdate={onUpdateSpy} />)
   expect(onUpdateSpy.callCount).toBe(0)
 
   wrapper.setProps({

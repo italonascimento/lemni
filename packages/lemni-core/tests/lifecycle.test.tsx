@@ -2,7 +2,6 @@ import { mount } from 'enzyme'
 import 'jest'
 import * as React from 'react'
 import { spy } from 'sinon'
-import xs from 'xstream'
 import { lemni } from '../src'
 
 
@@ -14,7 +13,7 @@ const componentDidUpdate = spy()
 const componentWillUnmount = spy()
 
 const LifecycleComp = lemni(sources => ({
-  sideEffect: xs.merge(
+  sideEffect: [
     sources.lifecycle.componentWillMount
       .mapTo(() => componentWillMount()),
     sources.lifecycle.componentDidMount
@@ -27,7 +26,7 @@ const LifecycleComp = lemni(sources => ({
       .mapTo(() => componentDidUpdate()),
     sources.lifecycle.componentWillUnmount
       .mapTo(() => componentWillUnmount()),
-  )
+  ]
 }))
 
 test('Lifecycle', () => {

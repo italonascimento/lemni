@@ -2,7 +2,6 @@ import { mount } from 'enzyme'
 import 'jest'
 import * as React from 'react'
 import { Stream } from 'xstream'
-import xs from 'xstream'
 import sampleCombine from 'xstream/extra/sampleCombine'
 import { lemni } from '../src'
 
@@ -21,7 +20,7 @@ const EventsComp = lemni<{}, State>(sources => {
       count: 0,
     },
 
-    stateReducer: xs.merge(
+    stateReducer: [
       increment
         .mapTo((state: State) => ({
           count: state.count + 1
@@ -34,14 +33,14 @@ const EventsComp = lemni<{}, State>(sources => {
               count: state.count + value
             })
         )
-    ),
+    ],
 
     view: ({ props, state, emitter }) => (
       <div>
         <p>Counter: {state.count}</p>
         <button className='increment' onClick={emitter(increment).emitValue(undefined)}>Increment</button>
         <button className='incrementBy2' onClick={emitter(incrementBy).emitValue(2)}>Increment by 2</button>
-        <IncrementButton by={3} onClick={emitter(incrementBy).emitValue} />
+        <IncrementButton by={3} onClick={emitter(incrementBy).emit} />
       </div>
     )
   }
@@ -58,16 +57,18 @@ const IncrementButton = lemni<IncrementProps>(sources => {
   const onClickEvent = Stream.create<undefined>()
 
   return {
-    sideEffect: onClickEvent
-      .compose(sampleCombine(
-        sources.props
-      ))
-      .map(([_1, _2]) => _2)
-      .map(({ by, onClick }) =>
-        () => {
-          onClick(by)
-        }
-      ),
+    sideEffect: [
+      onClickEvent
+        .compose(sampleCombine(
+          sources.props
+        ))
+        .map(([_1, _2]) => _2)
+        .map(({ by, onClick }) =>
+          () => {
+            onClick(by)
+          }
+        ),
+    ],
 
     view: ({ props, state, emitter }) => (
       <button onClick={emitter(onClickEvent).emitValue(undefined)} />

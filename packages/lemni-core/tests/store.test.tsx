@@ -25,22 +25,26 @@ const Comp = lemni<{}, State, Store>(sources => {
       count: 0,
     },
 
-    stateReducer: sources.store
-      .map(store => () => ({
-        count: store.count
-      })),
+    stateReducer: [
+      sources.store
+        .map(store => () => ({
+          count: store.count
+        })),
+    ],
 
-    storeReducer: increment
-      .mapTo((store: Store) => ({
-        count: store.count + 1
-      })),
+    storeReducer: [
+      increment
+        .mapTo((store: Store) => ({
+          count: store.count + 1
+        })),
+    ],
 
-    view: ({props, state, emitter}) => (
+    view: ({ props, state, emitter }) => (
       <div>
-        <p>Counter: { state.count }</p>
+        <p>Counter: {state.count}</p>
         <button
           className='increment'
-          onClick={ emitter(increment).signal }
+          onClick={emitter(increment).emitValue(undefined)}
         >
           Increment
         </button>
