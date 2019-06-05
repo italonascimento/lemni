@@ -18,7 +18,7 @@ export interface Store<T> {
 
 
 export function createStore<T>(initialStore: T): Store<T> {
-  const reducer = Stream.create<Reducer<T>>()
+  const reducer = Stream.createWithMemory<Reducer<T>>()
 
   const accumulate =
     (lastStore: T, reduce: Reducer<T>) =>
