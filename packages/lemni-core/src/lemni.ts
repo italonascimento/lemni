@@ -89,8 +89,8 @@ export const lemni = <P = {}, L = {}, S = {}>(mainFn: LemniMainFunction<P, L, S>
       const hasStore = Boolean(this.store)
 
       this.sources = {
-        props: Stream.create(),
-        state: Stream.create(),
+        props: Stream.createWithMemory(),
+        state: Stream.createWithMemory(),
         store: hasStore ? this.store.getStoreStream() : Stream.never(),
         lifecycle: {
           componentDidMount: Stream.create(),
