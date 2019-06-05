@@ -16,7 +16,7 @@
     "docs:publish": "sh scripts/docs-publish.sh"
   },
   "devDependencies": {
-    "lerna": "^2.8.0",
+    "lerna": "^3.14.1",
     "tslint": "^5.17.0",
     "typescript": "^3.5.1"
   }
