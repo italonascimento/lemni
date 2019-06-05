@@ -20,39 +20,23 @@
     "test": "jest --verbose",
     "prepublishOnly": "npm run build"
   },
-  "jest": {
-    "setupFiles": [
-      "<rootDir>/test-setup.js"
-    ],
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ],
-    "transform": {
-      "\\.(ts|tsx)$": "./node_modules/ts-jest/preprocessor.js"
-    },
-    "testRegex": "./tests/.*\\.test\\.(ts|tsx|js)$"
-  },
   "devDependencies": {
     "@lemni/tsconfig": "^0.0.6",
     "@lemni/tslint": "^0.0.6",
-    "@types/enzyme": "^3.1.8",
-    "@types/jest": "^22.0.1",
-    "@types/prop-types": "^15.5.2",
-    "@types/react": "^16.3.4",
-    "@types/sinon": "^4.1.3",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
-    "jest": "^22.1.4",
-    "react-dom": "^16.3.2",
-    "sinon": "^4.2.2",
-    "ts-jest": "^22.0.3"
+    "@types/enzyme": "^3.9.3",
+    "@types/jest": "^24.0.13",
+    "@types/react": "^16.8.19",
+    "@types/sinon": "^7.0.12",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "jest": "^24.8.0",
+    "react-dom": "^16.8.6",
+    "sinon": "^7.3.2",
+    "ts-jest": "^24.0.2"
   },
   "dependencies": {
-    "prop-types": "^15.6.2",
-    "react": "^16.6.1",
-    "xstream": "^11.7.0"
+    "react": "^16.8.6",
+    "xstream": "^11.11.0"
   },
   "gitHead": "8336a1e01b002a7f4120cca0fc10b97258f1ca21"
 }
