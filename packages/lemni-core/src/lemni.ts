@@ -37,16 +37,14 @@ export interface ViewSources<P, L> {
   emitter: typeof Emitter
 }
 
-// TODO: remove compatibility types and use only arrays
-// in stateReducer, storeReducer and sideEffects
 export interface Sinks<P, L, S> {
   initialState?: L
-  stateReducer?: Array<Stream<Reducer<L>>> | Stream<Reducer<L>>
-  storeReducer?: Array<Stream<Reducer<S>>> | Stream<Reducer<S>>
+  stateReducer?: Array<Stream<Reducer<L>>>
+  storeReducer?: Array<Stream<Reducer<S>>>
   view?:
   (viewSources: ViewSources<P, L>) =>
     JSX.Element | null | false
-  sideEffect?: Array<Stream<() => void>> | Stream<() => void>
+  sideEffect?: Array<Stream<() => void>>
 }
 
 export interface WithStore<T> {
@@ -111,20 +109,9 @@ export const lemni = <P = {}, L = {}, S = {}>(mainFn: LemniMainFunction<P, L, S>
         initialState = {} as L
       } = this.sinks
 
-      // TODO: remove isArray checks and deprecation warning in next minor
-      if (
-        !Array.isArray(stateReducer) ||
-        !Array.isArray(storeReducer) ||
-        !Array.isArray(sideEffect)
-      ) {
-        console.warn(
-          `[lemni] Passing a stream as stateReducer, storeReducer or sideEffect is \
-deprected and will throw error starting from version v0.1.0. Use array of stream instead.`
-        )
-      }
-      this.stateReducer = Array.isArray(stateReducer) ? xs.merge(...stateReducer) : stateReducer
-      this.storeReducer = Array.isArray(storeReducer) ? xs.merge(...storeReducer) : storeReducer
-      this.sideEffect = Array.isArray(sideEffect) ? xs.merge(...sideEffect) : sideEffect
+      this.stateReducer = xs.merge(...stateReducer)
+      this.storeReducer = xs.merge(...storeReducer)
+      this.sideEffect = xs.merge(...sideEffect)
 
       this.setState(initialState)
 
