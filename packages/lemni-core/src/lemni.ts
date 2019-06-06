@@ -112,7 +112,11 @@ export const lemni = <P = {}, L = {}, S = {}>(mainFn: LemniMainFunction<P, L, S>
       } = this.sinks
 
       // TODO: remove isArray checks and deprecation warning in next minor
-      if (Array.isArray(stateReducer) || Array.isArray(storeReducer) || Array.isArray(sideEffect)) {
+      if (
+        !Array.isArray(stateReducer) ||
+        !Array.isArray(storeReducer) ||
+        !Array.isArray(sideEffect)
+      ) {
         console.warn(
           `[lemni] Passing a stream as stateReducer, storeReducer or sideEffect is \
 deprected and will throw error starting from version v0.1.0. Use array of stream instead.`
@@ -197,7 +201,7 @@ deprected and will throw error starting from version v0.1.0. Use array of stream
         ? this.sinks.view({
           props: this.componentProps,
           state: this.state,
-          emitter: Emitter
+          emitter: Emitter,
         })
         : null
     }
