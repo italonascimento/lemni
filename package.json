@@ -16,7 +16,10 @@
     "docs:publish": "sh scripts/docs-publish.sh"
   },
   "devDependencies": {
+    "doctoc": "^1.4.0",
+    "husky": "^3.0.0",
     "lerna": "^3.15.0",
+    "lint-staged": "^9.2.0",
     "tslint": "^5.18.0",
     "typescript": "^3.5.3"
   }
