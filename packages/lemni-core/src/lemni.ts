@@ -146,6 +146,7 @@ export const lemni = <P = {}, L = {}, S = {}>(mainFn: LemniMainFunction<P, L, S>
       }
 
       this.sources.lifecycle.componentWillMount.shamefullySendNext(undefined)
+      this.sources.props.shamefullySendNext(this.componentProps)
     }
 
     componentWillReceiveProps() {
